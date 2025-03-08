@@ -87,6 +87,14 @@ const useRouteElements = () => {
       )
     },
     {
+      path: '/du-lich/:local/:local2/:slug',
+      element: (
+        <HomeLayout>
+          <DuLich />
+        </HomeLayout>
+      )
+    },
+    {
       path: '/loai-tin-tuc/:type',
       element: (
         <HomeLayout>

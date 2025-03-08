@@ -124,7 +124,7 @@ const DuLich = () => {
                 <input
                   onChange={(e) => {
                     setActive(e.target.value)
-                    navigate(`/du-lich/${e.target.value}`, {
+                    navigate(`/du-lich/${e.target.value}?${getUpdatedQueryParams({}, location)}`, {
                       state: {
                         title: 'Du Lịch Nước Ngoài',
                         type: e.target.value
@@ -150,7 +150,7 @@ const DuLich = () => {
                 <input
                   onChange={(e) => {
                     setActive(e.target.value)
-                    navigate(`/du-lich/${e.target.value}`, {
+                    navigate(`/du-lich/${e.target.value}?${getUpdatedQueryParams({}, location)}`, {
                       state: {
                         title: 'Du Lịch Trong Nước',
                         type: e.target.value
@@ -176,7 +176,7 @@ const DuLich = () => {
                 <input
                   onChange={(e) => {
                     setActive(e.target.value)
-                    navigate(`/du-lich/${e.target.value}`, {
+                    navigate(`/du-lich/${e.target.value}?${getUpdatedQueryParams({}, location)}`, {
                       state: {
                         title: 'Tour Cao Cấp',
                         type: e.target.value
@@ -619,7 +619,7 @@ const DuLich = () => {
             </div>
           </div>
         </div>
-        <div className='flex-1 ml-5'>
+        <div className='flex-1 md:ml-5'>
           <div className='flex flex-col md:flex-row items-center justify-between '>
             <p className=' font-bold text-[26px] xl:text-[40px] text-[#013879] md:pr-10 mb-10 md:mb-0'>
               {location?.state?.local ? `Du Lịch ${location?.state?.local}` : location?.state?.title}
@@ -653,8 +653,27 @@ const DuLich = () => {
               Hành trình đầy mê hoặc qua những thành phố lãng mạn, di sản văn hóa lâu đời và thiên nhiên hùng vĩ ở châu
               Âu. <strong className='italic text-[#000080]'>Tour du lịch Châu Âu</strong> sẽ đưa du khách đến những điểm
               đến biểu tượng nhất như{' '}
-              <strong className='text-[#ff6600]'>Paris hoa lệ, Venice lãng mạn và dãy núi Alps hùng vĩ</strong>,… Hãy cùng
-              Lửa Việt Tours chìm đắm vào những khoảnh khắc đáng nhớ cùng hành trình khám phá châu Âu không thể nào quên!
+              <strong className='text-[#ff6600]'>Paris hoa lệ, Venice lãng mạn và dãy núi Alps hùng vĩ</strong>,… Hãy
+              cùng Lửa Việt Tours chìm đắm vào những khoảnh khắc đáng nhớ cùng hành trình khám phá châu Âu không thể nào
+              quên!
+            </div>
+          )}
+          {location?.state?.local === 'Châu Á' && (
+            <div className='mt-2'>
+              <strong className='italic text-[#000080]'>Du lịch Châu Á</strong> khám phá những nền văn hóa, ẩm thực và
+              cảnh quan thiên nhiên độc đáo. Từ những ngôi đền cổ kính ở Nhật Bản, cảnh sắc hiện đại và truyền thống hòa
+              quyện ở <strong className='text-[#ff6600]'>Hàn Quốc</strong>, thiên đường biển đảo tại{' '}
+              <strong className='text-[#ff6600]'>Thái Lan</strong>, đến các kỳ quan thiên nhiên hùng vĩ ở{' '}
+              <strong className='text-[#ff6600]'>Trung Quốc</strong>,… Chùm tour du lịch Châu Á hứa hẹn sẽ mang đến cho
+              du khách những kỉ niệm khó quên.
+            </div>
+          )}
+          {location?.state?.local === 'Châu Úc' && (
+            <div className='mt-2'>
+              <strong className='italic text-[#000080]'>Du lịch châu Úc</strong> tuyệt đẹp và nhận ngay những ưu đặc biệt từ Lửa Việt! Trải nghiệm những kỳ quan thiên
+              nhiên nổi tiếng như <strong className='text-[#ff6600]'>Nhà hát Opera Sydney, khu phố cổ The Rocks, Nhà thờ St. Mary</strong>,… Cùng với đó là nhiều
+              hoạt động trải nghiệm đầy mới lạ như khám phá nền văn hóa mới, thưởng thức ẩm thực đặc trưng và tham gia
+              vào những hoạt động thú vị tại xứ sở Nam Bán Cầu.
             </div>
           )}
           <div className='mt-[30px] grid grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-16'>
