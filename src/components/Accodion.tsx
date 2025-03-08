@@ -6,7 +6,8 @@ const Accodion = ({ title }: { title: string }) => {
     <div className='bg-[#F6F8FA]'>
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className={`    cursor-pointer  transition-all duration-300  p-4 md:py-[25px] md:px-[37px] flex items-center justify-between ${isOpen ? 'text-[#013879]' : 'bg-[#013879] text-white hover:bg-[#013879]/80'}`}
+        className={`    cursor-pointer  transition-all duration-300  p-4 md:py-[25px] md:px-[37px] flex items-center justify-between ${isOpen ? 'text-[#013879]' : 'bg-[#013879] text-white hover:bg-[#013879]/80'
+          }`}
       >
         <h2 className='md:text-lg font-bold'>{title}</h2>
         <svg
@@ -71,6 +72,33 @@ const Accodion = ({ title }: { title: string }) => {
           <div className='text-[#222222]'>Thứ hai đến thứ sáu: 08:00 – 17h30.</div>
         </div>
         <Button className='py-4 mx-auto mt-10'>Ứng tuyển ngay</Button>
+      </div>
+    </div>
+  )
+}
+
+export const AccodionFilter = ({ title, children }: { title: string, children: React.ReactNode }) => {
+  const [show, setShow] = useState(false)
+  return (
+    <div className='pb-3 border-b mb-3'>
+      <div
+        onClick={() => setShow(!show)}
+        className=' flex  items-center justify-between text-[#013879] cursor-pointer mb-2'
+      >
+        <p className='font-bold  '>{title}</p>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          fill='none'
+          viewBox='0 0 24 24'
+          strokeWidth={1.5}
+          stroke='currentColor'
+          className={`transition-all size-4 ${show ? 'rotate-180' : ''}`}
+        >
+          <path strokeLinecap='round' strokeLinejoin='round' d='m19.5 8.25-7.5 7.5-7.5-7.5' />
+        </svg>
+      </div>
+      <div className={`grid grid-cols-2 gap-3 transition-all overflow-hidden ${show ? 'max-h-[1000px]' : 'max-h-0'}`}>
+        {children}
       </div>
     </div>
   )

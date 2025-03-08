@@ -8,6 +8,7 @@ import TuyenDung from '~/pages/TuyenDung'
 import Contact from '~/pages/Contact'
 import Policy from '~/pages/Policy'
 import PolicyDetail from '~/pages/PolicyDetail'
+import DuLich from '~/pages/DuLich'
 
 const useRouteElements = () => {
   const routeElements = useRoutes([
@@ -66,6 +67,22 @@ const useRouteElements = () => {
       element: (
         <HomeLayout>
           <News />
+        </HomeLayout>
+      )
+    },
+    {
+      path: '/du-lich/:slug',
+      element: (
+        <HomeLayout>
+          <DuLich />
+        </HomeLayout>
+      )
+    },
+    {
+      path: '/du-lich/:local/:slug',
+      element: (
+        <HomeLayout>
+          <DuLich />
         </HomeLayout>
       )
     },

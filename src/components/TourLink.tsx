@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import news1 from '~/assets/6170305031849493246 (1).jpg'
 
-const TourLink = ({ index, link, sale, type }: { index: number; link: string; sale?: boolean; type: 'standard' | 'high' | 'save' }) => {
+const TourLink = ({ index, link, sale, type, news }: { index: number; link: string; sale?: boolean; news?: boolean; type: 'standard' | 'high' | 'save' }) => {
   return (
     <Link to={link}>
       <div key={index} className='cursor-pointer'>
@@ -11,11 +11,19 @@ const TourLink = ({ index, link, sale, type }: { index: number; link: string; sa
             alt='news1'
             className='w-full h-full aspect-[9/7] object-cover hover:scale-110 transition-all duration-300'
           />
-          {sale && (
-            <div className='absolute top-2 right-2  bg-[#ED1B35] text-white text-xs gap-x-1  px-2 md:px-3 py-0.5  md:text-base  flex items-center justify-center'>
-              Khuyến mãi
-            </div>
-          )}
+          <div className='flex gap-x-2 items-center absolute top-2 right-2'>
+
+            {news && (
+              <div className='rounded-tr-md rounded-bl-md   bg-[#e6e328]  text-black text-xs gap-x-1  px-2 md:px-3 py-0.5  md:font-medium md:py-1  flex items-center justify-center'>
+                New
+              </div>
+            )}
+            {sale && (
+              <div className='rounded-tr-md rounded-bl-md   bg-[#ED1B35] text-white text-xs gap-x-1  px-2 md:px-3 py-0.5  md:font-medium md:py-1  flex items-center justify-center'>
+                Khuyến mãi
+              </div>
+            )}
+          </div>
           {type === 'save' && (
             <div className='absolute bottom-2 left-0  bg-[#2faf23b3] text-white text-xs gap-x-1  px-2 md:px-3 py-0.5  md:text-base  flex items-center justify-center'>
               <svg

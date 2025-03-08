@@ -4,6 +4,7 @@ import Button from '../Button'
 import { useEffect, useState } from 'react'
 import ChangeLanguage from '../ChangeLanguage'
 const Header = () => {
+  const [activeTour, setActive] = useState(1)
   return (
     <header
       style={{
@@ -36,16 +37,225 @@ const Header = () => {
               style={{ boxShadow: '0 4px 10px rgba(0,0,0,0.2)' }}
               className='px-5 pt-[82px] font-normal text-[#222222] w-screen rounded pb-[37px]  transition-all duration-300 opacity-0 invisible group-hover:opacity-100 group-hover:visible left-0 top-[150px] group-hover:top-[50px]  z-50 fixed bg-white'
             >
-              <div className='max-w-[1242px] mx-auto px-4'>
-                <Link to={'/'} className='w-[149px] mb-3 block '>
-                  Ngân hàng
-                </Link>
-                <Link to={'/'} className='w-[149px] mb-3 block '>
-                  Tài chính
-                </Link>
-                <Link to={'/'} className='w-[149px] mb-3 block '>
-                  Thương mại
-                </Link>
+              <div className='max-w-[1242px] mx-auto px-4 flex '>
+                <div className='w-[300px]'>
+                  <Link
+                    to={'/du-lich/du-lich-nuoc-ngoai'}
+                    state={{ title: 'Du Lịch Nước Ngoài', type: 'du-lich-nuoc-ngoai' }}
+                    onMouseEnter={() => setActive(1)}
+                    className={`${activeTour === 1 && 'font-medium'} hover:font-medium mb-3 block `}
+                  >
+                    Du Lịch Nước Ngoài
+                  </Link>
+                  <Link
+                    to={'/du-lich/du-lich-trong-nuoc'}
+                    state={{ title: 'Du Lịch Trong Nước', type: 'du-lich-trong-nuoc' }}
+                    onMouseEnter={() => setActive(2)}
+                    className={`${activeTour === 2 && 'font-medium'} hover:font-medium mb-3 block `}
+                  >
+                    Du Lịch Trong Nước
+                  </Link>
+                  <Link
+                    to={'/du-lich/tour-cao-cap'}
+                    state={{ title: 'Tour Cao Cấp', type: 'tour-cao-cap' }}
+                    onMouseEnter={() => setActive(3)}
+                    className={`${activeTour === 3 && 'font-medium'} hover:font-medium mb-3 block `}
+                  >
+                    Tour Cao Cấp
+                  </Link>
+                </div>
+                <div className='flex-1 flex gap-x-6'>
+                  <div className={`${activeTour === 1 ? 'flex' : 'hidden'} `}>
+                    <div className='w-[140px] xl:w-[180px]'>
+                      <Link
+                        to={'/du-lich/du-lich-nuoc-ngoai/chau-au'}
+                        state={{ title: 'Du lịch Nước ngoài', local: 'Châu Âu', type: 'du-lich-nuoc-ngoai' }}
+                        className='font-semibold mb-2 block'
+                      >
+                        Châu Âu
+                      </Link>
+                      <div className='flex flex-col gap-y-3 text-sm'>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Bỉ
+                        </Link>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Pháp
+                        </Link>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Đức
+                        </Link>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Ý
+                        </Link>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Hà Lan
+                        </Link>
+                        <Link to={'/du-lich/du-lich-nuoc-ngoai/chau-au'}
+                          state={{ title: 'Du lịch Nước ngoài', local: 'Châu Âu', type: 'du-lich-nuoc-ngoai' }} className='font-medium underline hover:opacity-55 transition-all '>
+                          Xem tất cả
+                        </Link>
+                      </div>
+                    </div>
+                    <div className='w-[140px] xl:w-[180px]'>
+                      <Link
+                        to={'/du-lich/du-lich-nuoc-ngoai/chau-a'}
+                        state={{ title: 'Du lịch Nước ngoài', local: 'Châu Á', type: 'du-lich-nuoc-ngoai' }}
+                        className='font-semibold mb-2 block'>Châu Á</Link>
+                      <div className='flex flex-col gap-y-3 text-sm'>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Nhật Bản
+                        </Link>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Trung Quốc
+                        </Link>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Hàn Quốc
+                        </Link>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Đài Loan
+                        </Link>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Dubai
+                        </Link>
+                        <Link to={'/du-lich/du-lich-nuoc-ngoai/chau-a'}
+                          state={{ title: 'Du lịch Nước ngoài', local: 'Châu Á', type: 'du-lich-nuoc-ngoai' }} className='font-medium underline hover:opacity-55 transition-all '>
+                          Xem tất cả
+                        </Link>
+                      </div>
+                    </div>
+                    <div className='w-[140px] xl:w-[180px]'>
+                      <Link
+                        to={'/du-lich/du-lich-nuoc-ngoai/chau-uc'}
+                        state={{ title: 'Du lịch Nước ngoài', local: 'Châu Úc', type: 'du-lich-nuoc-ngoai' }}
+                        className='font-semibold mb-2 block'>Châu Úc</Link>
+                      <div className='flex flex-col gap-y-3 text-sm'>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Úc
+                        </Link>
+                      </div>
+                    </div>
+                    <div className='w-[140px] xl:w-[180px]'>
+                      <Link
+                        to={'/du-lich/du-lich-nuoc-ngoai/chau-my'}
+                        state={{ title: 'Du lịch Nước ngoài', local: 'Châu Mỹ', type: 'du-lich-nuoc-ngoai' }}
+                        className='font-semibold mb-2 block'>Châu Mỹ</Link>
+                      <div className='flex flex-col gap-y-3 text-sm'>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Hoa Kỳ
+                        </Link>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Canada
+                        </Link>
+                      </div>
+                    </div>
+                    <div className='w-[140px] xl:w-[180px]'>
+                      <Link
+                        to={'/du-lich/du-lich-nuoc-ngoai/chau-phi'}
+                        state={{ title: 'Du lịch Nước ngoài', local: 'Châu Phi', type: 'du-lich-nuoc-ngoai' }}
+                        className='font-semibold mb-2 block' >Châu Phi</Link>
+                      <div className='flex flex-col gap-y-3 text-sm'>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Ai Cập
+                        </Link>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Nam Phi
+                        </Link>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Mauritius
+                        </Link>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Kenya
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={`${activeTour === 2 ? 'flex' : 'hidden'} `}>
+                    <div className='w-[140px] xl:w-[180px]'>
+                      <p className='font-semibold mb-2'>Miền Trung</p>
+                      <div className='flex flex-col gap-y-3 text-sm'>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Huế
+                        </Link>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Đà Nẵng
+                        </Link>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Hội An
+                        </Link>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Quảng Bình
+                        </Link>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Tây Nguyên
+                        </Link>
+                        <Link to='/' className='font-medium underline hover:opacity-55 transition-all '>
+                          Xem tất cả
+                        </Link>
+                      </div>
+                    </div>
+                    <div className='w-[140px] xl:w-[180px]'>
+                      <p className='font-semibold mb-2'>Miền Bắc</p>
+                      <div className='flex flex-col gap-y-3 text-sm'>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Hà Nội
+                        </Link>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Hạ Long
+                        </Link>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Ninh Bình
+                        </Link>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Tây Bắc
+                        </Link>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Sapa
+                        </Link>
+                        <Link to='/' className='font-medium underline hover:opacity-55 transition-all '>
+                          Xem tất cả
+                        </Link>
+                      </div>
+                    </div>
+                    <div className='w-[140px] xl:w-[180px]'>
+                      <p className='font-semibold mb-2'>Miền Nam</p>
+                      <div className='flex flex-col gap-y-3 text-sm'>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          TP Hồ Chí Minh
+                        </Link>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Côn Đảo
+                        </Link>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Phú Quốc
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={`${activeTour === 3 ? 'flex' : 'hidden'} `}>
+                    <div className='w-[140px] xl:w-[180px]'>
+                      <p className='font-semibold mb-2'>Châu Mỹ</p>
+                      <div className='flex flex-col gap-y-3 text-sm'>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Bờ Tây
+                        </Link>
+                      </div>
+                    </div>
+                    <div className='w-[140px] xl:w-[180px]'>
+                      <p className='font-semibold mb-2'>Tour Du thuyền</p>
+                      <div className='flex flex-col gap-y-3 text-sm'>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Singapore - Malaysia
+                        </Link>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Đài Loan - Nhật Bản
+                        </Link>
+                        <Link className='hover:opacity-55 transition-all ' to='/'>
+                          Hong Kong - Nhật Bản
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
