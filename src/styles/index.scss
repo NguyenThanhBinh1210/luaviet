@@ -31,7 +31,6 @@ textarea {
 
 button {
   cursor: pointer;
-
 }
 
 body {
@@ -48,4 +47,16 @@ body {
 .scrollbar-hidden {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 2s forwards;
+  /* Thêm hiệu ứng fade-in */
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
 }

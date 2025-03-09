@@ -1,7 +1,19 @@
 import { Link } from 'react-router-dom'
 import news1 from '~/assets/6170305031849493246 (1).jpg'
 
-const TourLink = ({ index, link, sale, type, news }: { index: number; link: string; sale?: boolean; news?: boolean; type: 'standard' | 'high' | 'save' }) => {
+const TourLink = ({
+  index,
+  link,
+  sale,
+  type,
+  news
+}: {
+  index: number
+  link: string
+  sale?: boolean
+  news?: boolean
+  type: 'standard' | 'high' | 'save'
+}) => {
   return (
     <Link to={link}>
       <div key={index} className='cursor-pointer'>
@@ -12,7 +24,6 @@ const TourLink = ({ index, link, sale, type, news }: { index: number; link: stri
             className='w-full h-full aspect-[9/7] object-cover hover:scale-110 transition-all duration-300'
           />
           <div className='flex gap-x-2 items-center absolute top-2 right-2'>
-
             {news && (
               <div className='rounded-tr-md rounded-bl-md   bg-[#e6e328]  text-black text-xs gap-x-1  px-2 md:px-3 py-0.5  md:font-medium md:py-1  flex items-center justify-center'>
                 New
@@ -49,17 +60,41 @@ const TourLink = ({ index, link, sale, type, news }: { index: number; link: stri
           )}
           {type === 'standard' && (
             <div className='absolute bottom-2 left-0  bg-[#0394d9b3] text-white text-xs gap-x-1  px-2 md:px-3 py-0.5  md:text-base  flex items-center justify-center'>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="size-4">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
+                strokeWidth={1}
+                stroke='currentColor'
+                className='size-4'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  d='M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z'
+                />
               </svg>
-
               Tiêu chuẩn
             </div>
           )}
           {type === 'high' && (
             <div className='absolute bottom-2 left-0  bg-[#ffb800b3] text-white text-xs gap-x-1  px-2 md:px-3 py-0.5  md:text-base  flex items-center justify-center'>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-gem size-4" ><path d="M6 3h12l4 6-10 13L2 9Z" /><path d="M11 3 8 9l4 13 4-13-3-6" /><path d="M2 9h20" /></svg>
-
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                width='24'
+                height='24'
+                viewBox='0 0 24 24'
+                fill='none'
+                stroke='currentColor'
+                stroke-width='2'
+                stroke-linecap='round'
+                stroke-linejoin='round'
+                className='lucide lucide-gem size-4'
+              >
+                <path d='M6 3h12l4 6-10 13L2 9Z' />
+                <path d='M11 3 8 9l4 13 4-13-3-6' />
+                <path d='M2 9h20' />
+              </svg>
               Cao cấp
             </div>
           )}

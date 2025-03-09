@@ -13,8 +13,8 @@ export const menuItems = [
           { title: 'Đức', path: '/du-lich/du-lich-nuoc-ngoai/chau-au/duc' },
           { title: 'Ý', path: '/du-lich/du-lich-nuoc-ngoai/chau-au/it' },
           { title: 'Hà Lan', path: '/du-lich/du-lich-nuoc-ngoai/chau-au/han-lan' },
-          { title: 'Xem tất cả', path: '/du-lich/du-lich-nuoc-ngoai/chau-au' },
-        ],
+          { title: 'Xem tất cả', path: '/du-lich/du-lich-nuoc-ngoai/chau-au' }
+        ]
       },
       {
         title: 'Châu Á',
@@ -25,16 +25,16 @@ export const menuItems = [
           { title: 'Hàn Quốc', path: '/du-lich/du-lich-nuoc-ngoai/chau-a/han-quoc' },
           { title: 'Đài Loan', path: '/du-lich/du-lich-nuoc-ngoai/chau-a/dai-loan' },
           { title: 'Dubai', path: '/du-lich/du-lich-nuoc-ngoai/chau-a/dubai' },
-          { title: 'Xem tất cả', path: '/du-lich/du-lich-nuoc-ngoai/chau-a' },
-        ],
+          { title: 'Xem tất cả', path: '/du-lich/du-lich-nuoc-ngoai/chau-a' }
+        ]
       },
       {
         title: 'Châu Úc',
         path: '/du-lich/du-lich-nuoc-ngoai/chau-uc',
         subSubItems: [
           { title: 'Úc', path: '/du-lich/du-lich-nuoc-ngoai/chau-uc/uc' },
-          { title: 'Xem tất cả', path: '/du-lich/du-lich-nuoc-ngoai/chau-uc' },
-        ],
+          { title: 'Xem tất cả', path: '/du-lich/du-lich-nuoc-ngoai/chau-uc' }
+        ]
       },
       {
         title: 'Châu Mỹ',
@@ -42,8 +42,8 @@ export const menuItems = [
         subSubItems: [
           { title: 'Hoa Kỳ', path: '/du-lich/du-lich-nuoc-ngoai/chau-my/hoa-ky' },
           { title: 'Canada', path: '/du-lich/du-lich-nuoc-ngoai/chau-my/canada' },
-          { title: 'Xem tất cả', path: '/du-lich/du-lich-nuoc-ngoai/chau-my' },
-        ],
+          { title: 'Xem tất cả', path: '/du-lich/du-lich-nuoc-ngoai/chau-my' }
+        ]
       },
       {
         title: 'Châu Phi',
@@ -53,10 +53,10 @@ export const menuItems = [
           { title: 'Nam Phi', path: '/du-lich/du-lich-nuoc-ngoai/chau-phi/nam-phi' },
           { title: 'Mauritius', path: '/du-lich/du-lich-nuoc-ngoai/chau-phi/mauritius' },
           { title: 'Kenya', path: '/du-lich/du-lich-nuoc-ngoai/chau-phi/kenya' },
-          { title: 'Xem tất cả', path: '/du-lich/du-lich-nuoc-ngoai/chau-phi' },
-        ],
-      },
-    ],
+          { title: 'Xem tất cả', path: '/du-lich/du-lich-nuoc-ngoai/chau-phi' }
+        ]
+      }
+    ]
   },
   {
     title: 'Du Lịch Trong Nước',
@@ -73,8 +73,8 @@ export const menuItems = [
           { title: 'Hội An', path: '/du-lich/du-lich-trong-nuoc/mien-trung/hoi-an' },
           { title: 'Quảng Bình', path: '/du-lich/du-lich-trong-nuoc/mien-trung/quang-binh' },
           { title: 'Tây Nguyên', path: '/du-lich/du-lich-trong-nuoc/mien-trung/tay-nguyen' },
-          { title: 'Xem tất cả', path: '/du-lich/du-lich-trong-nuoc/mien-trung' },
-        ],
+          { title: 'Xem tất cả', path: '/du-lich/du-lich-trong-nuoc/mien-trung' }
+        ]
       },
       {
         title: 'Miền Bắc',
@@ -85,8 +85,8 @@ export const menuItems = [
           { title: 'Ninh Bình', path: '/du-lich/du-lich-trong-nuoc/mien-bac/ninh-binh' },
           { title: 'Tây Bắc', path: '/du-lich/du-lich-trong-nuoc/mien-bac/tay-bac' },
           { title: 'Sapa', path: '/du-lich/du-lich-trong-nuoc/mien-bac/sapa' },
-          { title: 'Xem tất cả', path: '/du-lich/du-lich-trong-nuoc/mien-bac' },
-        ],
+          { title: 'Xem tất cả', path: '/du-lich/du-lich-trong-nuoc/mien-bac' }
+        ]
       },
       {
         title: 'Miền Nam',
@@ -95,10 +95,10 @@ export const menuItems = [
           { title: 'TP Hồ Chí Minh', path: '/du-lich/du-lich-trong-nuoc/mien-nam/tp-ho-chi-minh' },
           { title: 'Côn Đảo', path: '/du-lich/du-lich-trong-nuoc/mien-nam/con-dao' },
           { title: 'Phú Quốc', path: '/du-lich/du-lich-trong-nuoc/mien-nam/phu-quoc' },
-          { title: 'Xem tất cả', path: '/du-lich/du-lich-trong-nuoc/mien-nam' },
-        ],
-      },
-    ],
+          { title: 'Xem tất cả', path: '/du-lich/du-lich-trong-nuoc/mien-nam' }
+        ]
+      }
+    ]
   },
   {
     title: 'Tour Cao Cấp',
@@ -110,9 +110,9 @@ export const menuItems = [
         path: '/du-lich/tour-cao-cap/chau-my',
         subSubItems: [
           { title: 'Bờ Tây', path: '/du-lich/tour-cao-cap/chau-my/bo-tay' },
-          { title: 'Xem tất cả', path: '/du-lich/tour-cao-cap/chau-my' },
-        ],
-      },
-    ],
-  },
-];
+          { title: 'Xem tất cả', path: '/du-lich/tour-cao-cap/chau-my' }
+        ]
+      }
+    ]
+  }
+]

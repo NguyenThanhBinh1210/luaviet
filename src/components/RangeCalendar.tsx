@@ -99,7 +99,7 @@ const RangeCalendar: React.FC = () => {
     )
   }
 
-  const prices = Array.from({ length: daysInMonth }, () => Math.floor(Math.random() * 500) + 500); // Giá tiền ngẫu nhiên từ 500 đến 1000
+  const prices = Array.from({ length: daysInMonth }, () => Math.floor(Math.random() * 500) + 500) // Giá tiền ngẫu nhiên từ 500 đến 1000
 
   return (
     <div className='w-full p-4  text-black rounded-lg '>
@@ -154,7 +154,7 @@ const RangeCalendar: React.FC = () => {
               `}
             >
               {day}
-              <div className="text-xs ">${prices[dayIndex]}</div>
+              <div className='text-xs '>${prices[dayIndex]}</div>
             </div>
           )
         })}

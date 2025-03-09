@@ -120,20 +120,32 @@ const News = () => {
                 </div>
                 <p className=' font-bold text-[30px] mt-4'>{location.state?.title}</p>
                 <p className='mt-4 text-[#222222] italic'>
-                  Cầu Cổng Vàng, biểu tượng nổi tiếng thế giới thuộc thành phố San Francisco với thiết kế độc đáo nổi bật với gam màu đỏ cam đầy rực rỡ. Ngoài ra, đây còn là biểu tượng của sự phát triển và tinh thần đổi mới. Dù là trong ánh bình minh, giữa làn sương mờ hay khi hoàng hôn buông xuống, Cầu Cổng Vàng luôn mang đến vẻ đẹp ngoạn mục, thu hút du khách từ khắp nơi đến chiêm ngưỡng và tìm hiểu. Hãy cùng Lửa Việt Tours bắt đầu bước vào hành trình khám phá vẻ đẹp bất tận và những câu chuyện thú vị đằng sau biểu tượng huyền thoại này ngay sau đây nhé.
+                  Cầu Cổng Vàng, biểu tượng nổi tiếng thế giới thuộc thành phố San Francisco với thiết kế độc đáo nổi
+                  bật với gam màu đỏ cam đầy rực rỡ. Ngoài ra, đây còn là biểu tượng của sự phát triển và tinh thần đổi
+                  mới. Dù là trong ánh bình minh, giữa làn sương mờ hay khi hoàng hôn buông xuống, Cầu Cổng Vàng luôn
+                  mang đến vẻ đẹp ngoạn mục, thu hút du khách từ khắp nơi đến chiêm ngưỡng và tìm hiểu. Hãy cùng Lửa
+                  Việt Tours bắt đầu bước vào hành trình khám phá vẻ đẹp bất tận và những câu chuyện thú vị đằng sau
+                  biểu tượng huyền thoại này ngay sau đây nhé.
                 </p>
-                <div className='mt-4 py-[50px] border-b'>
-                  content
-                </div>
+                <div className='mt-4 py-[50px] border-b'>content</div>
                 <div className='flex items-center gap-x-4 pt-3 justify-between'>
                   <button className=' px-5 py-2 rounded-full uppercase font-semibold flex items-center gap-x-2 '>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      strokeWidth={1.5}
+                      stroke='currentColor'
+                      className='size-6'
+                    >
+                      <path strokeLinecap='round' strokeLinejoin='round' d='M15.75 19.5 8.25 12l7.5-7.5' />
                     </svg>
-
                     Bài Trước
                   </button>
-                  <Link to='/tin-tuc' className=' px-5 py-2 rounded-full uppercase font-semibold flex items-center gap-x-2 '>
+                  <Link
+                    to='/tin-tuc'
+                    className=' px-5 py-2 rounded-full uppercase font-semibold flex items-center gap-x-2 '
+                  >
                     Danh sách tin tức
                   </Link>
                   <div></div>

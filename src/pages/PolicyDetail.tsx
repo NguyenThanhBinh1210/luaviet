@@ -1,6 +1,6 @@
-import { Link, useLocation } from "react-router-dom"
-import Container from "~/components/Container"
-import Section from "~/components/Section"
+import { Link, useLocation } from 'react-router-dom'
+import Container from '~/components/Container'
+import Section from '~/components/Section'
 
 const PolicyDetail = () => {
   const location = useLocation()
@@ -50,38 +50,45 @@ const PolicyDetail = () => {
           >
             <path strokeLinecap='round' strokeLinejoin='round' d='m8.25 4.5 7.5 7.5-7.5 7.5' />
           </svg>
-          <p className='text-[13px]'>
-            {title}
-          </p>
-
+          <p className='text-[13px]'>{title}</p>
         </div>
       </Container>
       <Section>
-        <h1 className="uppercase text-[24px] md:text-[30px] font-bold text-[#222222] text-center"> {title}</h1>
-        <div className="text-center text-gray-500 text-lg font-medium">
-          30-01-2024
-        </div>
-        <div className="mt-4 pb-[50px] border-b">
-          content
-        </div>
+        <h1 className='uppercase text-[24px] md:text-[30px] font-bold text-[#222222] text-center'> {title}</h1>
+        <div className='text-center text-gray-500 text-lg font-medium'>30-01-2024</div>
+        <div className='mt-4 pb-[50px] border-b'>content</div>
         <div className='flex items-center gap-x-4 pt-3 justify-between'>
           <button className=' px-5 py-2 rounded-full uppercase font-semibold flex items-center gap-x-2 '>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              viewBox='0 0 24 24'
+              strokeWidth={1.5}
+              stroke='currentColor'
+              className='size-6'
+            >
+              <path strokeLinecap='round' strokeLinejoin='round' d='M15.75 19.5 8.25 12l7.5-7.5' />
             </svg>
-
             Bài Trước
           </button>
-          <Link to='/chinh-sach-va-quy-dinh' className=' px-5 py-2 rounded-full uppercase font-semibold flex items-center gap-x-2 '>
+          <Link
+            to='/chinh-sach-va-quy-dinh'
+            className=' px-5 py-2 rounded-full uppercase font-semibold flex items-center gap-x-2 '
+          >
             QUAY LẠI TRANG CHÍNH SÁCH VÀ QUY ĐỊNH
           </Link>
           <button className=' px-5 py-2 rounded-full uppercase font-semibold flex items-center gap-x-2 '>
             Bài Sau
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 rotate-180">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              viewBox='0 0 24 24'
+              strokeWidth={1.5}
+              stroke='currentColor'
+              className='size-6 rotate-180'
+            >
+              <path strokeLinecap='round' strokeLinejoin='round' d='M15.75 19.5 8.25 12l7.5-7.5' />
             </svg>
-
-
           </button>
         </div>
       </Section>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import logo from '~/assets/logo.jpg'
+import logo from '~/assets/6219758633915369280.jpg'
 import Button from '../Button'
 import { useEffect, useState } from 'react'
 import ChangeLanguage from '../ChangeLanguage'
@@ -14,9 +14,8 @@ const Header = () => {
       className='fixed  bg-white top-0 left-0 right-0 z-50 flex justify-between items-center px-2 md:px-4 xl:px-8 '
     >
       <div className='flex   w-full justify-between items-center'>
-
         <Link to='/' className='flex items-center gap-4'>
-          <img src={logo} alt='logo' className='w-[108px] md:w-[120px] xl:w-[155px]' />
+          <img src={logo} alt='logo' className='  w-[70px]' />
         </Link>
         <div className='flex items-center gap-4 '>
           <div className='hidden lg:flex md:gap-x-3 xl:gap-x-6 2xl:gap-x-10 mr-6 text-sm xl:text-base'>
@@ -53,7 +52,6 @@ const Header = () => {
                         {item.title}
                       </Link>
                     ))}
-
                   </div>
                   <div className='flex-1 flex gap-x-6'>
                     <div className={`${activeTour === 1 ? 'flex' : 'hidden'} `}>
@@ -596,10 +594,15 @@ const ButtonMenu = () => {
         )}
       </button>
       <div
-        className={`fixed overflow-y-scroll scrollbar-hidden w-full bottom-0  border-t h-[calc(100vh-64px)] bg-white z-50   transition-all duration-500 ${isOpen ? '-right-0' : '-right-full opacity-0 pointer-events-none'
-          }`}
+        className={`fixed overflow-y-scroll scrollbar-hidden w-full bottom-0  border-t h-[calc(100vh-64px)] bg-white z-50   transition-all duration-500 ${
+          isOpen ? '-right-0' : '-right-full opacity-0 pointer-events-none'
+        }`}
       >
-        <Link to={'/'} className='text-[#013879] font-medium text-lg py-6 px-[16px] w-full block border-b' onClick={handleLinkClick}>
+        <Link
+          to={'/'}
+          className='text-[#013879] font-medium text-lg py-6 px-[16px] w-full block border-b'
+          onClick={handleLinkClick}
+        >
           Giới Thiệu
         </Link>
 
@@ -1056,27 +1059,53 @@ const ButtonMenu = () => {
             </div>
           </div>
         </Accordion>
-        <Link to={'/'} className='text-[#013879] font-medium text-lg py-6 px-[16px] w-full block border-b' onClick={handleLinkClick}>
+        <Link
+          to={'/'}
+          className='text-[#013879] font-medium text-lg py-6 px-[16px] w-full block border-b'
+          onClick={handleLinkClick}
+        >
           Tour Khách Đoàn
         </Link>
         <Accordion title='Đối tác'>
           <div className='space-y-2 flex flex-col'>
-            <Link to='/' onClick={handleLinkClick}>Ngân Hàng</Link>
-            <Link to='/' onClick={handleLinkClick}>Tài Chính</Link>
-            <Link to='/' onClick={handleLinkClick}>Thương mại</Link>
+            <Link to='/' onClick={handleLinkClick}>
+              Ngân Hàng
+            </Link>
+            <Link to='/' onClick={handleLinkClick}>
+              Tài Chính
+            </Link>
+            <Link to='/' onClick={handleLinkClick}>
+              Thương mại
+            </Link>
           </div>
         </Accordion>
 
-        <Link to={'/'} className='text-[#013879] font-medium text-lg py-6 px-[16px] w-full block border-b' onClick={handleLinkClick}>
+        <Link
+          to={'/'}
+          className='text-[#013879] font-medium text-lg py-6 px-[16px] w-full block border-b'
+          onClick={handleLinkClick}
+        >
           Tin Tức
         </Link>
-        <Link to={'/'} className='text-[#013879] font-medium text-lg py-6 px-[16px] w-full block border-b' onClick={handleLinkClick}>
+        <Link
+          to={'/'}
+          className='text-[#013879] font-medium text-lg py-6 px-[16px] w-full block border-b'
+          onClick={handleLinkClick}
+        >
           Chính Sách & Quy Định
         </Link>
-        <Link to={'/'} className='text-[#013879] font-medium text-lg py-6 px-[16px] w-full block border-b' onClick={handleLinkClick}>
+        <Link
+          to={'/'}
+          className='text-[#013879] font-medium text-lg py-6 px-[16px] w-full block border-b'
+          onClick={handleLinkClick}
+        >
           Liên Hệ
         </Link>
-        <Link to={'/tuyen-dung'} className='text-[#013879] font-medium text-lg py-6 px-[16px] w-full block border-b' onClick={handleLinkClick}>
+        <Link
+          to={'/tuyen-dung'}
+          className='text-[#013879] font-medium text-lg py-6 px-[16px] w-full block border-b'
+          onClick={handleLinkClick}
+        >
           Tuyển Dụng
         </Link>
       </div>
@@ -1104,8 +1133,9 @@ const SearchButton = () => {
         </svg>
       </button>
       <div
-        className={`fixed inset-0 bg-white z-50 px-4 py-20 transition-all duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-          }`}
+        className={`fixed inset-0 bg-white z-50 px-4 py-20 transition-all duration-300 ${
+          isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
       >
         <div className='max-w-[1060px] mx-auto'>
           <div className='relative flex items-center border-b-2 border-[#013879] pb-4'>
@@ -1166,8 +1196,9 @@ const Accordion = ({ title, children }: { title: string; children: React.ReactNo
         </svg>
       </div>
       <div
-        className={`px-[16px]  flex flex-col  text-[#222222]  ${isOpen ? 'max-h-[3000px] pb-3' : 'max-h-0 pb-0'
-          } transition-max-height duration-500 overflow-hidden`}
+        className={`px-[16px]  flex flex-col  text-[#222222]  ${
+          isOpen ? 'max-h-[3000px] pb-3' : 'max-h-0 pb-0'
+        } transition-max-height duration-500 overflow-hidden`}
       >
         {children}
       </div>

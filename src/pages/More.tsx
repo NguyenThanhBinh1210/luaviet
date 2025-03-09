@@ -23,9 +23,7 @@ const More = () => {
       </div>
       <div>
         <div className='pt-[160px] px-[33px]'>
-          <h1 className='mb-10 text-center text-[28px] md:text-[40px] max-w-[980px] md:mx-auto'>
-            MORE EXPERIENCES
-          </h1>
+          <h1 className='mb-10 text-center text-[28px] md:text-[40px] max-w-[980px] md:mx-auto'>MORE EXPERIENCES</h1>
         </div>
         <div className='py-20'>
           <div className='pl-4 2xl:pl-[180px] lg:pl-[110px] lg:grid grid-cols-7 lg:gap-10'>
@@ -55,7 +53,6 @@ const More = () => {
             </div>
           </div>
         </div>
-
 
         <div className='bg-[#f0f1eb] py-16'>
           <h3 className='uppercase text-[25px] mb-4 pl-4 lg:hidden'>Exclusive Benefits With The Sands Rewards Club</h3>

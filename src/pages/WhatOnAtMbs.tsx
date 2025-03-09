@@ -1,8 +1,5 @@
-
 const WhatOnAtMbs = () => {
-  return (
-    <div>WhatOnAtMbs</div>
-  )
+  return <div>WhatOnAtMbs</div>
 }
 
 export default WhatOnAtMbs

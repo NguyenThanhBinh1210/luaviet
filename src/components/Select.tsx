@@ -28,7 +28,6 @@ export const SortBy = ({ sortInitial }: { sortInitial: any }) => {
       <div className='absolute top-full left-0 bg-white  p-4 text-sm w-full shadow-md  group-hover:opacity-100 opacity-0 group-hover:visible invisible'>
         {sortInitial.map((item: any, index: number) => (
           <Link
-
             state={location.state}
             to={`${location.pathname}?${getUpdatedQueryParams({ sort: item.value }, location)}`}
             className={`block mb-2 ${getQueryParams(location).sort === item.value && 'text-red-500'} `}

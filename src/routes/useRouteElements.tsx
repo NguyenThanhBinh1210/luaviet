@@ -9,10 +9,11 @@ import Contact from '~/pages/Contact'
 import Policy from '~/pages/Policy'
 import PolicyDetail from '~/pages/PolicyDetail'
 import DuLich from '~/pages/DuLich'
+import TourDetail from '~/pages/TourDetail'
+import Booking from '~/pages/Booking'
 
 const useRouteElements = () => {
   const routeElements = useRoutes([
-
     {
       path: '/',
       index: true,
@@ -95,6 +96,22 @@ const useRouteElements = () => {
       )
     },
     {
+      path: '/du-lich/:local/:local2/:slug/:slug',
+      element: (
+        <HomeLayout>
+          <TourDetail />
+        </HomeLayout>
+      )
+    },
+    {
+      path: '/booking',
+      element: (
+        <HomeLayout>
+          <Booking />
+        </HomeLayout>
+      )
+    },
+    {
       path: '/loai-tin-tuc/:type',
       element: (
         <HomeLayout>
@@ -102,7 +119,6 @@ const useRouteElements = () => {
         </HomeLayout>
       )
     },
-
 
     {
       path: '*',

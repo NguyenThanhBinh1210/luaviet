@@ -6,8 +6,9 @@ const Accodion = ({ title }: { title: string }) => {
     <div className='bg-[#F6F8FA]'>
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className={`    cursor-pointer  transition-all duration-300  p-4 md:py-[25px] md:px-[37px] flex items-center justify-between ${isOpen ? 'text-[#013879]' : 'bg-[#013879] text-white hover:bg-[#013879]/80'
-          }`}
+        className={`    cursor-pointer  transition-all duration-300  p-4 md:py-[25px] md:px-[37px] flex items-center justify-between ${
+          isOpen ? 'text-[#013879]' : 'bg-[#013879] text-white hover:bg-[#013879]/80'
+        }`}
       >
         <h2 className='md:text-lg font-bold'>{title}</h2>
         <svg
@@ -22,8 +23,9 @@ const Accodion = ({ title }: { title: string }) => {
         </svg>
       </div>
       <div
-        className={`px-4 pt-1  md:px-[37px]  space-y-3 md:space-y-6 ${isOpen ? 'max-h-[5000px] pb-4  md:pb-[25px]' : 'max-h-0 py-0'
-          } overflow-hidden transition-all ease-in-out duration-700`}
+        className={`px-4 pt-1  md:px-[37px]  space-y-3 md:space-y-6 ${
+          isOpen ? 'max-h-[5000px] pb-4  md:pb-[25px]' : 'max-h-0 py-0'
+        } overflow-hidden transition-all ease-in-out duration-700`}
       >
         <div className='flex flex-col gap-y-1 md:flex-row md:items-center text-[15px] md:text-[16px]'>
           <div className='font-bold text-[#013879] md:w-[220px]'>Ngày đăng</div>
@@ -77,7 +79,7 @@ const Accodion = ({ title }: { title: string }) => {
   )
 }
 
-export const AccodionFilter = ({ title, children }: { title: string, children: React.ReactNode }) => {
+export const AccodionFilter = ({ title, children }: { title: string; children: React.ReactNode }) => {
   const [show, setShow] = useState(false)
   return (
     <div className='pb-3 border-b mb-3'>

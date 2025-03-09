@@ -1,12 +1,49 @@
 import { Link } from 'react-router-dom'
 import news1 from '~/assets/6170305031849493246 (1).jpg'
+import banner1 from '~/assets/banner-website-han-quoc-pc.jpg'
+import banner2 from '~/assets/banner-website-dai-loan-pc.jpg'
+import banner3 from '~/assets/banner-website-chau-au-pc.png'
+import banner11 from '~/assets/banner-website-han-quoc-sp-1024x573.jpg'
+import banner22 from '~/assets/banner-website-dai-loan-sp-1024x573.jpg'
+import banner33 from '~/assets/banner-website-chau-au-sp-1024x573.png'
 import news2 from '~/assets/the-sands-collection-masthead-desktop.avif'
 import Button from '~/components/Button'
 import TourLink from '~/components/TourLink'
+import { useState, useEffect } from 'react'
 
 const Home = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % 3)
+    }, 4000)
+
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <div>
+      <div>
+        {currentImageIndex === 0 && (
+          <>
+            <img src={banner1} alt='banner' className='fade-in  object-cover hidden lg:block' />
+            <img src={banner11} alt='banner' className='fade-in  object-cover lg:hidden' />
+          </>
+        )}
+        {currentImageIndex === 1 && (
+          <>
+            <img src={banner2} alt='banner' className='fade-in  object-cover hidden lg:block' />
+            <img src={banner22} alt='banner' className='fade-in  object-cover lg:hidden' />
+          </>
+        )}
+        {currentImageIndex === 2 && (
+          <>
+            <img src={banner3} alt='banner' className='fade-in  object-cover hidden lg:block' />
+            <img src={banner33} alt='banner' className='fade-in  object-cover lg:hidden' />
+          </>
+        )}
+      </div>
       <section className='pt-20'>
         <div className='px-4 max-w-[1262px] mx-auto'>
           <h2 className='text-[28px] md:text-[40px] font-bold text-[#013879] text-center'>Tour Nổi Bật</h2>
@@ -88,7 +125,7 @@ const Home = () => {
                       <img
                         src={news1}
                         alt='news1'
-                        className='w-full object-cover h-full aspect-[9/6] object-cover hover:scale-110 transition-all duration-300'
+                        className='w-full  h-full aspect-[9/6] object-cover hover:scale-110 transition-all duration-300'
                       />
                     </div>
                     <div className='p-4'>

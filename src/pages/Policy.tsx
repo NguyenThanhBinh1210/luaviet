@@ -3,7 +3,6 @@ import Container from '~/components/Container'
 import Section from '~/components/Section'
 import news1 from '~/assets/6170305031849493246 (1).jpg'
 
-
 const Policy = () => {
   return (
     <div>
@@ -42,8 +41,7 @@ const Policy = () => {
       </Container>
       <Section>
         <div>
-          <p className=' font-bold text-[28px] md:text-[40px] text-[#013879] md:pr-10'>Chính Sách & Quy Định
-          </p>
+          <p className=' font-bold text-[28px] md:text-[40px] text-[#013879] md:pr-10'>Chính Sách & Quy Định</p>
           <div className='grid grid-cols-1 md:grid-cols-3 gap-8 mt-10'>
             {Array.from({ length: 6 }).map((_, index) => (
               <PolicyItem key={index} index={index} />
@@ -75,10 +73,9 @@ const PolicyItem = ({ index }: { index: number }) => {
             CẦU CỔNG VÀNG – TUYỆT TÁC KIẾN TRÚC VƯỢT THỜI GIAN TẠI SAN FRANCISCO
           </p>
           <p className='line-clamp-3 text-sm text-[#222222]'>
-            Cầu Cổng Vàng, biểu tượng nổi tiếng thế giới thuộc thành phố San Francisco với thiết kế độc đáo
-            nổi bật với gam màu đỏ cam đầy rực rỡ. Ngoài ra, đây còn là biểu tượng của sự phát triển và tinh
-            thần đổi mới. Dù là trong ánh bình minh, giữa làn sương mờ hay khi hoàng hôn buông xuống, Cầu
-            Cổng Vàng ...
+            Cầu Cổng Vàng, biểu tượng nổi tiếng thế giới thuộc thành phố San Francisco với thiết kế độc đáo nổi bật với
+            gam màu đỏ cam đầy rực rỡ. Ngoài ra, đây còn là biểu tượng của sự phát triển và tinh thần đổi mới. Dù là
+            trong ánh bình minh, giữa làn sương mờ hay khi hoàng hôn buông xuống, Cầu Cổng Vàng ...
           </p>
         </div>
       </div>
