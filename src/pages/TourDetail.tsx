@@ -4,7 +4,6 @@ import { Link, useLocation } from 'react-router-dom'
 import Button from '~/components/Button'
 import Container from '~/components/Container'
 import Section from '~/components/Section'
-import { getUpdatedQueryParams } from '~/utils/utils'
 import { tourApi } from '~/apis/tour.api'
 import { getLastSegment } from './DuLich'
 import { useQuery } from 'react-query'
@@ -90,9 +89,11 @@ const TourDetail = () => {
           </div>
           <div className='flex flex-col justify-end gap-y-3 mt-4 md:mt-0'>
 
-            <Button to={`/booking/?${getUpdatedQueryParams({ id: '23930' }, location)}`} className='py-4'>
-              Liên hệ ngay
-            </Button>
+            <a href="tel:1900 636 732">
+              <Button className='py-4'>
+                Liên hệ ngay
+              </Button>
+            </a>
           </div>
         </div>
         <div className='grid grid-cols-4 gap-1 mt-6 md:mt-10'>
@@ -140,13 +141,13 @@ const TourDetail = () => {
               </li>
             </ul>
             <div className='flex flex-col justify-end gap-y-3 mt-4 '>
-
-              <Button
-                to={`/booking/?${getUpdatedQueryParams({ id: '23930' }, location)}`}
-                className='py-4 w-full'
-              >
-                Liên hệ ngay
-              </Button>
+              <a href="tel:1900636732">
+                <Button
+                  className='py-4 w-full'
+                >
+                  Liên hệ ngay
+                </Button>
+              </a>
             </div>
           </div>
         </div>

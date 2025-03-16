@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from 'react-router-dom'
 import news1 from '~/assets/6170305031849493246 (1).jpg'
 import banner1 from '~/assets/banner-website-han-quoc-pc.jpg'
@@ -7,13 +8,15 @@ import banner11 from '~/assets/banner-website-han-quoc-sp-1024x573.jpg'
 import banner22 from '~/assets/banner-website-dai-loan-sp-1024x573.jpg'
 import banner33 from '~/assets/banner-website-chau-au-sp-1024x573.png'
 import news2 from '~/assets/the-sands-collection-masthead-desktop.avif'
-import Button from '~/components/Button'
 import TourLink from '~/components/TourLink'
 import { useState, useEffect } from 'react'
+import { tourApi } from '~/apis/tour.api'
+import { useQuery } from 'react-query'
 
 const Home = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-
+  const [tours, setTours] = useState<any>()
+  console.log(tours);
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % 3)
@@ -21,7 +24,14 @@ const Home = () => {
 
     return () => clearInterval(interval)
   }, [])
-
+  useQuery({
+    queryKey: ['tour-all'],
+    queryFn: async () => {
+      const response = await tourApi.getTours()
+      const data = response.data.data.filter((item: any) => item.isPopular === true)
+      setTours(data)
+    }
+  })
   return (
     <div>
       <div>
@@ -48,13 +58,16 @@ const Home = () => {
         <div className='px-4 max-w-[1262px] mx-auto'>
           <h2 className='text-[28px] md:text-[40px] font-bold text-[#013879] text-center'>Tour Nổi Bật</h2>
           <div className='grid grid-cols-2 md:grid-cols-3 gap-y-[33px] md:gap-y-[65px] gap-4 mt-8'>
-            {Array.from({ length: 6 }).map((_, index) => (
-              <TourLink sale type='high' key={index} index={index} link={'/tin-tuc/mua-hoa-anh-dao-han-quoc-2025'} />
+            {tours?.map((item: any, index: number) => (
+              <TourLink
+                item={item}
+                key={index}
+                index={index}
+                link={`/du-lich/${item.categoryIdLevel1.slug}/${item.categoryIdLevel2.slug}/${item.categoryIdLevel3.slug}/${item.slug}`}
+              />
             ))}
           </div>
-          <Button to='/tour' className='mx-auto mt-16 py-3'>
-            Xem Thêm
-          </Button>
+
         </div>
       </section>
       <section className='py-20'>
@@ -110,7 +123,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className='py-20 bg-[#F6F8FA]'>
+      {/* <section className='py-20 bg-[#F6F8FA]'>
         <div className='px-4 max-w-[1262px] mx-auto'>
           <h2 className='text-[28px] md:text-[40px] font-bold text-[#013879] text-center'>Tin Tức Và Sự Kiện</h2>
           <div className='my-12'>
@@ -149,7 +162,7 @@ const Home = () => {
         <Button to='/tin-tuc' className='mx-auto py-3'>
           Xem Thêm
         </Button>
-      </section>
+      </section> */}
     </div>
   )
 }
