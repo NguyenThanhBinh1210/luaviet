@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect, useMemo, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AccodionFilter } from '~/components/Accodion'
 import Container from '~/components/Container'
@@ -6,10 +7,46 @@ import Section from '~/components/Section'
 import { SortBy } from '~/components/Select'
 import TourLink from '~/components/TourLink'
 import { getQueryParams, getUpdatedQueryParams } from '~/utils/utils'
-import news1 from '~/assets/6170305031849493246 (1).jpg'
-import news2 from '~/assets/the-sands-collection-masthead-desktop.avif'
+
+import { useMutation, useQuery } from 'react-query'
+import { tourApi } from '~/apis/tour.api'
+import categoryApi from '~/apis/category.api'
 const DuLich = () => {
   const location = useLocation()
+  const [tour, setTour] = useState<any>([])
+  const [categories, setCategories] = useState<any>()
+  useQuery({
+    queryKey: ['categories1'],
+    queryFn: async () => {
+      const response = await categoryApi.getCategories()
+      setCategories(response.data.data)
+    }
+  })
+  const organizedCategories = useMemo(() => {
+    if (!categories) return []
+
+    const categoryMap: { [key: string]: any } = {}
+    const result: any = []
+
+    categories.forEach((cat: any) => {
+      categoryMap[cat._id] = { ...cat, subCategories: [] }
+    })
+
+    Object.values(categoryMap).forEach((cat: any) => {
+      if (cat.parentId) {
+        const parent = categoryMap[cat.parentId]
+        if (parent) {
+          parent.subCategories.push(cat)
+        }
+      } else {
+        result.push(cat)
+      }
+    })
+
+    return result
+  }, [categories])
+
+
   const [activeTour, setActive] = useState('')
   const [showFilter, setShowFilter] = useState(false)
   const navigate = useNavigate()
@@ -23,6 +60,23 @@ const DuLich = () => {
       document.body.style.overflow = 'auto'
     }
   }, [showFilter])
+
+  const mutation = useMutation({
+    mutationFn: async (url: string) => {
+      const response = await tourApi.getToursBySlug(url)
+      setTour(response.data.data)
+    }
+  })
+
+  useEffect(() => {
+    if (getLastSegment(location.pathname) === 'du-lich-trong-nuoc') {
+      mutation.mutate('trong-nuoc')
+    } else if (getLastSegment(location.pathname) === 'du-lich-nuoc-ngoai') {
+      mutation.mutate('nuoc-ngoai')
+    } else {
+      mutation.mutate(getLastSegment(location.pathname))
+    }
+  }, [location.pathname])
   const sortInitial = [
     {
       title: 'Mới nhất',
@@ -98,9 +152,8 @@ const DuLich = () => {
       <Section>
         <div className='flex'>
           <div
-            className={`${
-              !showFilter ? 'translate-x-full opacity-0 md:opacity-100 md:translate-x-0' : 'translate-x-0 opacity-100'
-            } transition-all duration-500 fixed z-[51] inset-0 w-full md:sticky md:top-[70px] md:h-max md:z-10 md:w-[240px] lg:w-[288px] bg-[#F6F8FA] p-4 mr-5`}
+            className={`${!showFilter ? 'translate-x-full opacity-0 md:opacity-100 md:translate-x-0' : 'translate-x-0 opacity-100'
+              } transition-all duration-500 fixed z-[51] inset-0 w-full md:sticky md:top-[70px] md:h-max md:z-10 md:w-[240px] lg:w-[288px] bg-[#F6F8FA] p-4 mr-5`}
           >
             <div className='absolute md:hidden top-0 left-0 bg-white text-[#013879] font-semibold z-10 w-full py-3 text-center text-lg'>
               Lọc
@@ -122,87 +175,36 @@ const DuLich = () => {
             </div>
             <div className='pt-12 md:pt-0'>
               <div className='mb-4 grid grid-cols-2 md:grid-cols-1 gap-y-1'>
-                <div className='flex items-center'>
-                  <input
-                    onChange={(e) => {
-                      setActive(e.target.value)
-                      navigate(`/du-lich/${e.target.value}?${getUpdatedQueryParams({}, location)}`, {
-                        state: {
-                          title: 'Du Lịch Nước Ngoài',
-                          type: e.target.value
-                        }
-                      })
-                    }}
-                    id='tour0'
-                    name='tour'
-                    type='radio'
-                    className='hidden'
-                    value='du-lich-nuoc-ngoai'
-                  />
-                  <label htmlFor='tour0' className='pl-7 relative cursor-pointer'>
-                    <div className='absolute left-0 top-1/2 -translate-y-1/2 size-5 rounded-full border border-[#013879] cursor-pointer'></div>
-                    Tour Nước Ngoài
-                    <div
-                      className={`${
-                        activeTour === 'du-lich-nuoc-ngoai' ? 'block' : 'hidden'
-                      } bg-[#013879] size-3 top-1/2 -translate-y-1/2 rounded-full absolute left-1`}
-                    ></div>
-                  </label>
-                </div>
-                <div className='flex items-center'>
-                  <input
-                    onChange={(e) => {
-                      setActive(e.target.value)
-                      navigate(`/du-lich/${e.target.value}?${getUpdatedQueryParams({}, location)}`, {
-                        state: {
-                          title: 'Du Lịch Trong Nước',
-                          type: e.target.value
-                        }
-                      })
-                    }}
-                    id='tour1'
-                    name='tour'
-                    type='radio'
-                    className='hidden'
-                    value='du-lich-trong-nuoc'
-                  />
-                  <label htmlFor='tour1' className='pl-7 relative cursor-pointer'>
-                    <div className='absolute left-0 top-1/2 -translate-y-1/2 size-5 rounded-full border border-[#013879] cursor-pointer'></div>
-                    Tour Trong Nước
-                    <div
-                      className={`${
-                        activeTour === 'du-lich-trong-nuoc' ? 'block' : 'hidden'
-                      } bg-[#013879] size-3 top-1/2 -translate-y-1/2 rounded-full absolute left-1`}
-                    ></div>
-                  </label>
-                </div>
-                <div className='flex items-center'>
-                  <input
-                    onChange={(e) => {
-                      setActive(e.target.value)
-                      navigate(`/du-lich/${e.target.value}?${getUpdatedQueryParams({}, location)}`, {
-                        state: {
-                          title: 'Tour Cao Cấp',
-                          type: e.target.value
-                        }
-                      })
-                    }}
-                    id='tour2'
-                    name='tour'
-                    type='radio'
-                    className='hidden'
-                    value='tour-cao-cap'
-                  />
-                  <label htmlFor='tour2' className='pl-7 relative cursor-pointer'>
-                    <div className='absolute left-0 top-1/2 -translate-y-1/2 size-5 rounded-full border border-[#013879] cursor-pointer'></div>
-                    Tour Cao Cấp
-                    <div
-                      className={`${
-                        activeTour === 'tour-cao-cap' ? 'block' : 'hidden'
-                      } bg-[#013879] size-3 top-1/2 -translate-y-1/2 rounded-full absolute left-1`}
-                    ></div>
-                  </label>
-                </div>
+                {organizedCategories?.map((cat: any, index: number) => (
+
+                  <div key={index} className='flex items-center'>
+                    <input
+                      onChange={() => {
+                        setActive(`du-lich-${cat.slug}`)
+                        navigate(`/du-lich/du-lich-${cat.slug}?${getUpdatedQueryParams({}, location)}`, {
+                          state: {
+                            title: `Du Lịch ${cat.name}`,
+                            type: `du-lich-${cat.slug}`
+                          }
+                        })
+                      }}
+                      id={`du-lich-${cat.slug}`}
+                      name='tour'
+                      type='radio'
+                      className='hidden'
+                      value={`du-lich-${cat.slug}`}
+                    />
+                    <label htmlFor={`du-lich-${cat.slug}`} className='pl-7 relative cursor-pointer'>
+                      <div className='absolute left-0 top-1/2 -translate-y-1/2 size-5 rounded-full border border-[#013879] cursor-pointer'></div>
+                      Du lịch {cat.name}
+                      <div
+                        className={`${activeTour === `du-lich-${cat.slug}` ? 'block' : 'hidden'
+                          } bg-[#013879] size-3 top-1/2 -translate-y-1/2 rounded-full absolute left-1`}
+                      ></div>
+                    </label>
+                  </div>
+                ))}
+
               </div>
               <div className='pb-4 md:pb-6 border-b mb-4 grid grid-cols-2 gap-x-2 md:flex md:flex-col'>
                 <div className='mb-4 '>
@@ -469,36 +471,32 @@ const DuLich = () => {
                 <Link
                   state={location.state}
                   to={`${location.pathname}?${getUpdatedQueryParams({ so_ngay: '1-3' }, location)}`}
-                  className={`${
-                    getQueryParams(location).so_ngay == '1-3' ? 'bg-[#C0E7FD]' : 'bg-white'
-                  } text-sm border-b border-r  cursor-pointer py-3 text-center border-[#C0E7FD]`}
+                  className={`${getQueryParams(location).so_ngay == '1-3' ? 'bg-[#C0E7FD]' : 'bg-white'
+                    } text-sm border-b border-r  cursor-pointer py-3 text-center border-[#C0E7FD]`}
                 >
                   1-3 ngày{' '}
                 </Link>
                 <Link
                   state={location.state}
                   to={`${location.pathname}?${getUpdatedQueryParams({ so_ngay: '4-7' }, location)}`}
-                  className={`${
-                    getQueryParams(location).so_ngay == '4-7' ? 'bg-[#C0E7FD]' : 'bg-white'
-                  } text-sm border-b border-r  cursor-pointer py-3 text-center border-[#C0E7FD]`}
+                  className={`${getQueryParams(location).so_ngay == '4-7' ? 'bg-[#C0E7FD]' : 'bg-white'
+                    } text-sm border-b border-r  cursor-pointer py-3 text-center border-[#C0E7FD]`}
                 >
                   4-7 ngày{' '}
                 </Link>
                 <Link
                   state={location.state}
                   to={`${location.pathname}?${getUpdatedQueryParams({ so_ngay: '8-14' }, location)}`}
-                  className={`${
-                    getQueryParams(location).so_ngay == '8-14' ? 'bg-[#C0E7FD]' : 'bg-white'
-                  } text-sm border-b border-r  cursor-pointer py-3 text-center border-[#C0E7FD]`}
+                  className={`${getQueryParams(location).so_ngay == '8-14' ? 'bg-[#C0E7FD]' : 'bg-white'
+                    } text-sm border-b border-r  cursor-pointer py-3 text-center border-[#C0E7FD]`}
                 >
                   8-14 ngày{' '}
                 </Link>
                 <Link
                   state={location.state}
                   to={`${location.pathname}?${getUpdatedQueryParams({ so_ngay: '>14' }, location)}`}
-                  className={`${
-                    getQueryParams(location).so_ngay == '>14' ? 'bg-[#C0E7FD]' : 'bg-white'
-                  } text-sm border-b border-r  cursor-pointer py-3 text-center border-[#C0E7FD]`}
+                  className={`${getQueryParams(location).so_ngay == '>14' ? 'bg-[#C0E7FD]' : 'bg-white'
+                    } text-sm border-b border-r  cursor-pointer py-3 text-center border-[#C0E7FD]`}
                 >
                   Trên 14 ngày{' '}
                 </Link>
@@ -507,36 +505,32 @@ const DuLich = () => {
                 <Link
                   state={location.state}
                   to={`${location.pathname}?${getUpdatedQueryParams({ so_nguoi: '1' }, location)}`}
-                  className={`${
-                    getQueryParams(location).so_nguoi == '1' ? 'bg-[#C0E7FD]' : 'bg-white'
-                  } text-sm border-b border-r  cursor-pointer py-3 text-center border-[#C0E7FD]`}
+                  className={`${getQueryParams(location).so_nguoi == '1' ? 'bg-[#C0E7FD]' : 'bg-white'
+                    } text-sm border-b border-r  cursor-pointer py-3 text-center border-[#C0E7FD]`}
                 >
                   1 người
                 </Link>
                 <Link
                   state={location.state}
                   to={`${location.pathname}?${getUpdatedQueryParams({ so_nguoi: '2' }, location)}`}
-                  className={`${
-                    getQueryParams(location).so_nguoi == '2' ? 'bg-[#C0E7FD]' : 'bg-white'
-                  } text-sm border-b border-r  cursor-pointer py-3 text-center border-[#C0E7FD]`}
+                  className={`${getQueryParams(location).so_nguoi == '2' ? 'bg-[#C0E7FD]' : 'bg-white'
+                    } text-sm border-b border-r  cursor-pointer py-3 text-center border-[#C0E7FD]`}
                 >
                   2 người
                 </Link>
                 <Link
                   state={location.state}
                   to={`${location.pathname}?${getUpdatedQueryParams({ so_nguoi: `3${','}5` }, location)}`}
-                  className={`${
-                    getQueryParams(location).so_nguoi == '3,5' ? 'bg-[#C0E7FD]' : 'bg-white'
-                  } text-sm border-b border-r  cursor-pointer py-3 text-center border-[#C0E7FD]`}
+                  className={`${getQueryParams(location).so_nguoi == '3,5' ? 'bg-[#C0E7FD]' : 'bg-white'
+                    } text-sm border-b border-r  cursor-pointer py-3 text-center border-[#C0E7FD]`}
                 >
                   3-5 người
                 </Link>
                 <Link
                   state={location.state}
                   to={`${location.pathname}?${getUpdatedQueryParams({ so_nguoi: '6' }, location)}`}
-                  className={`${
-                    getQueryParams(location).so_nguoi == '6' ? 'bg-[#C0E7FD]' : 'bg-white'
-                  } text-sm border-b border-r  cursor-pointer py-3 text-center border-[#C0E7FD]`}
+                  className={`${getQueryParams(location).so_nguoi == '6' ? 'bg-[#C0E7FD]' : 'bg-white'
+                    } text-sm border-b border-r  cursor-pointer py-3 text-center border-[#C0E7FD]`}
                 >
                   5+ người
                 </Link>
@@ -599,9 +593,8 @@ const DuLich = () => {
                       <div className='absolute left-0 top-1/2 -translate-y-1/2 size-5  border border-[#013879] cursor-pointer'></div>
                       Khuyến mãi
                       <div
-                        className={`${
-                          getQueryParams(location).khuyen_mai === 'true' ? 'block' : 'hidden'
-                        } bg-[#013879] size-3 top-1/2 -translate-y-1/2  absolute left-1`}
+                        className={`${getQueryParams(location).khuyen_mai === 'true' ? 'block' : 'hidden'
+                          } bg-[#013879] size-3 top-1/2 -translate-y-1/2  absolute left-1`}
                       ></div>
                     </label>
                   </div>
@@ -630,9 +623,8 @@ const DuLich = () => {
                       <div className='absolute left-0 top-1/2 -translate-y-1/2 size-5  border border-[#013879] cursor-pointer'></div>
                       Còn chỗ
                       <div
-                        className={`${
-                          getQueryParams(location).con_cho === 'true' ? 'block' : 'hidden'
-                        } bg-[#013879] size-3 top-1/2 -translate-y-1/2  absolute left-1`}
+                        className={`${getQueryParams(location).con_cho === 'true' ? 'block' : 'hidden'
+                          } bg-[#013879] size-3 top-1/2 -translate-y-1/2  absolute left-1`}
                       ></div>
                     </label>
                   </div>
@@ -700,71 +692,32 @@ const DuLich = () => {
               </div>
             )}
             <div className='mt-[30px] grid grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-16'>
-              {Array.from({ length: 6 }).map((_, index) => (
+              {tour.map((item: any, index: number) => (
                 <TourLink
-                  news
-                  sale
-                  type='save'
+                  item={item}
                   key={index}
                   index={index}
-                  link={'/tin-tuc/mua-hoa-anh-dao-han-quoc-2025'}
+                  link={`/du-lich/${item.categoryIdLevel1.slug}/${item.categoryIdLevel2.slug}/${item.categoryIdLevel3.slug}/${item.slug}`}
                 />
               ))}
+              {tour.length === 0 && (
+
+                <div className='text-center col-span-2 lg:col-span-3 text-lg' >
+                  Không có kết quả tìm kiếm phù hợp.
+
+                </div>
+              )}
             </div>
-            <div>
-              <p className=' font-bold text-[26px] mt-[100px] text-[#013879] md:pr-10 mb-4'>Điểm Đến Yêu Thích</p>
-              <div className='grid grid-cols-2 gap-4 lg:grid-cols-4'>
-                <Link to={'/tin-tuc/mua-hoa-anh-dao-han-quoc-2025'} className='relative  group 1'>
-                  <img
-                    src={news1}
-                    alt='news2'
-                    className='w-full  h-full  aspect-video object-cover hover:scale-110 transition-all duration-300'
-                  />
-                  <div className='group-hover:opacity-100 opacity-0 transition-all duration-300 absolute top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center'></div>
-                  <p className=' group-hover:bottom-1/2 group-hover:left-1/2 group-hover:-translate-x-1/2 group-hover:translate-y-1/2 transition-all duration-300 absolute bottom-2 left-2 text-white text-center '>
-                    Châu Âu
-                  </p>
-                </Link>
-                <Link to={'/tin-tuc/mua-hoa-anh-dao-han-quoc-2025'} className=' relative  group 2'>
-                  <img
-                    src={news2}
-                    alt='news2'
-                    className='w-full  h-full aspect-video  object-cover hover:scale-110 transition-all duration-300'
-                  />
-                  <div className='group-hover:opacity-100 opacity-0 transition-all duration-300 absolute top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center'></div>
-                  <p className='  group-hover:bottom-1/2 group-hover:left-1/2 group-hover:-translate-x-1/2 group-hover:translate-y-1/2 transition-all duration-300 absolute bottom-2 left-2 text-white text-center '>
-                    Châu Úc
-                  </p>
-                </Link>
-                <Link to={'/tin-tuc/mua-hoa-anh-dao-han-quoc-2025'} className=' relative  group 3'>
-                  <img
-                    src={news2}
-                    alt='news2'
-                    className='w-full  h-full  object-cover hover:scale-110 transition-all duration-300'
-                  />
-                  <div className='group-hover:opacity-100 opacity-0 transition-all duration-300 absolute top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center'></div>
-                  <p className='  group-hover:bottom-1/2 group-hover:left-1/2 group-hover:-translate-x-1/2 group-hover:translate-y-1/2 transition-all duration-300 absolute bottom-2 left-2 text-white text-center '>
-                    Hàn Quốc
-                  </p>
-                </Link>
-                <Link to={'/tin-tuc/mua-hoa-anh-dao-han-quoc-2025'} className=' relative  group 4'>
-                  <img
-                    src={news2}
-                    alt='news2'
-                    className='w-full  h-full  aspect-[2/1]  object-cover hover:scale-110 transition-all duration-300'
-                  />
-                  <div className='group-hover:opacity-100 opacity-0 transition-all duration-300 absolute top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center'></div>
-                  <p className='  group-hover:bottom-1/2 group-hover:left-1/2 group-hover:-translate-x-1/2 group-hover:translate-y-1/2 transition-all duration-300 absolute bottom-2 left-2 text-white text-center '>
-                    Nhật Bản
-                  </p>
-                </Link>
-              </div>
-            </div>
+
           </div>
         </div>
       </Section>
     </div>
   )
 }
-
+export function getLastSegment(url: string): string {
+  const segments = url.split('/')
+  const newI = segments[segments.length - 1]
+  return newI
+}
 export default DuLich

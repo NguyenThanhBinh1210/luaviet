@@ -1,25 +1,27 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from 'react-router-dom'
-import news1 from '~/assets/6170305031849493246 (1).jpg'
 
 const TourLink = ({
   index,
   link,
   sale,
   type,
-  news
+  news,
+  item
 }: {
   index: number
   link: string
   sale?: boolean
   news?: boolean
-  type: 'standard' | 'high' | 'save'
+  item: any
+  type?: 'standard' | 'high' | 'save'
 }) => {
   return (
-    <Link to={link}>
-      <div key={index} className='cursor-pointer'>
+    <Link to={link} key={index}>
+      <div className='cursor-pointer'>
         <div className='overflow-hidden relative'>
           <img
-            src={news1}
+            src={item?.images[0]}
             alt='news1'
             className='w-full h-full aspect-[9/7] object-cover hover:scale-110 transition-all duration-300'
           />
@@ -100,26 +102,8 @@ const TourLink = ({
           )}
         </div>
         <div>
-          <p className='text-xs text-gray-700 font-medium mt-3 mb-2'>Thời lượng: 9N9Đ</p>
-          <p className='uppercase font-medium'>CHÂU ÂU 9N9Đ | PHÁP – LUXEMBOURG – BỈ – HÀ LAN – ĐỨC</p>
-          <div className='flex items-center gap-2 text-gray-600 mb-1'>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none'
-              viewBox='0 0 24 24'
-              strokeWidth={1.5}
-              stroke='currentColor'
-              className='size-4'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d='M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 0 1 0 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 0 1 0-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375Z'
-              />
-            </svg>
-            <span className='text-sm'>Mã tour:</span>
-            <span className='font-medium text-sm text-black'>CHAUAU9N9DCA</span>
-          </div>
+          <p className='uppercase font-medium mt-3 mb-2'>{item?.title}</p>
+
           <div className='flex items-center gap-2 text-gray-600 mb-1'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -138,7 +122,7 @@ const TourLink = ({
             </svg>
 
             <span className='text-sm'>Nơi khởi hành:</span>
-            <span className='font-medium text-sm text-black'>TP Hồ Chí Minh</span>
+            <span className='font-medium text-sm text-black'>Tuỳ chọn</span>
           </div>
 
           <div className='flex items-center gap-2 text-gray-600 mb-1'>
@@ -158,26 +142,14 @@ const TourLink = ({
             </svg>
 
             <span className='text-sm'>Hãng bay:</span>
-            <span className='font-medium text-sm text-black'>Air China</span>
+            <span className='font-medium text-sm text-black'>Tuỳ chọn</span>
           </div>
           <div className='flex items-center gap-2 text-gray-600 mb-1 flex-wrap'>
             <span className='text-sm'>Ngày đi:</span>
-            <span className='font-medium text-xs text-black bg-[#D4F1FF] px-2 py-0.5 rounded-full cursor-pointer hover:opacity-80 transition-all duration-300'>
-              07-04
-            </span>
-            <span className='font-medium text-xs text-black bg-[#D4F1FF] px-2 py-0.5 rounded-full cursor-pointer hover:opacity-80 transition-all duration-300'>
-              07-04
-            </span>
-            <span className='font-medium text-xs text-black bg-[#D4F1FF] px-2 py-0.5 rounded-full cursor-pointer hover:opacity-80 transition-all duration-300'>
-              07-04
-            </span>
-            <span className='font-medium text-xs text-black bg-[#D4F1FF] px-2 py-0.5 rounded-full cursor-pointer hover:opacity-80 transition-all duration-300'>
-              07-04
-            </span>
+            <span className='font-medium text-sm text-gray-600'>Liên hệ</span>
           </div>
-          <div className='text-[#ED1B35] uppercase font-medium text-[22px] flex gap-x-1 end mt-3'>
-            <p className='font-bold'>6.190.000</p>
-            <p className='text-[12px] '>vnđ</p>
+          <div className='text-[#ED1B35]  font-medium text-[22px] flex gap-x-1 end mt-3'>
+            <p className=' font-bold'>Liên hệ ngay</p>
           </div>
         </div>
       </div>

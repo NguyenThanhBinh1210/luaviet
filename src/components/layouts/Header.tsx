@@ -1,11 +1,45 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from 'react-router-dom'
 import logo from '~/assets/6219758633915369280.jpg'
 import Button from '../Button'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import ChangeLanguage from '../ChangeLanguage'
-import { menuItems } from '~/constants/renaral.const'
+import { useQuery } from 'react-query'
+import categoryApi from '~/apis/category.api'
 const Header = () => {
-  const [activeTour, setActive] = useState(1)
+  const [categories, setCategories] = useState<any>()
+  useQuery({
+    queryKey: ['categories'],
+    queryFn: async () => {
+      const response = await categoryApi.getCategories()
+      setCategories(response.data.data)
+    }
+  })
+
+  const organizedCategories = useMemo(() => {
+    if (!categories) return []
+
+    const categoryMap: { [key: string]: any } = {}
+    const result: any = []
+
+    categories.forEach((cat: any) => {
+      categoryMap[cat._id] = { ...cat, subCategories: [] }
+    })
+
+    Object.values(categoryMap).forEach((cat: any) => {
+      if (cat.parentId) {
+        const parent = categoryMap[cat.parentId]
+        if (parent) {
+          parent.subCategories.push(cat)
+        }
+      } else {
+        result.push(cat)
+      }
+    })
+
+    return result
+  }, [categories])
+  const [activeTour, setActive] = useState<any>({})
   return (
     <header
       style={{
@@ -41,424 +75,53 @@ const Header = () => {
               >
                 <div className='max-w-[1242px] mx-auto px-4 flex '>
                   <div className='w-[300px]'>
-                    {menuItems.map((item, index) => (
+                    {organizedCategories.map((item: any, index: number) => (
                       <Link
                         key={index}
-                        to={item.path}
-                        state={{ title: item.title, type: item.type }}
-                        onMouseEnter={() => setActive(index + 1)}
-                        className={`${activeTour === index + 1 && 'font-medium'} hover:font-medium mb-3 block `}
+                        to={`/du-lich/du-lich-${item.slug}`}
+                        state={{ title: `Du Lịch ${item.name}`, type: `du-lich-${item.slug}` }}
+                        onMouseEnter={() => setActive(item)}
+                        className={`${activeTour === item && 'font-medium'} hover:font-medium mb-3 block `}
                       >
-                        {item.title}
+                        {item.name}
                       </Link>
                     ))}
                   </div>
                   <div className='flex-1 flex gap-x-6'>
-                    <div className={`${activeTour === 1 ? 'flex' : 'hidden'} `}>
-                      <div className='w-[140px] xl:w-[180px]'>
+                    {activeTour.subCategories?.map((item: any, index: number) => (
+                      <div key={index} className='w-[140px] xl:w-[180px]'>
                         <Link
-                          to={'/du-lich/du-lich-nuoc-ngoai/chau-au'}
-                          state={{ title: 'Du lịch Nước ngoài', local: 'Châu Âu', type: 'du-lich-nuoc-ngoai' }}
+                          to={`/du-lich/du-lich-${activeTour.slug}/${item.slug}`}
+                          state={{ title: `Du Lịch ${item.name}`, local: item.name, type: `du-lich-${item.slug}` }}
                           className='font-semibold mb-2 block'
                         >
-                          Châu Âu
+                          {item.name}
                         </Link>
                         <div className='flex flex-col gap-y-3 text-sm'>
-                          <Link
-                            to={'/du-lich/du-lich-nuoc-ngoai/chau-au/bi'}
-                            state={{ title: 'Du lịch Nước ngoài', local: 'Bỉ', type: 'du-lich-nuoc-ngoai' }}
-                            className='hover:opacity-55 transition-all '
-                          >
-                            Bỉ
-                          </Link>
-                          <Link
-                            to={'/du-lich/du-lich-nuoc-ngoai/chau-au/phap'}
-                            state={{ title: 'Du lịch Nước ngoài', local: 'Pháp', type: 'du-lich-nuoc-ngoai' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Pháp
-                          </Link>
+                          {item.subCategories.map((subItem: any, index: number) => (
+                            <Link
+                              key={index}
+                              to={`/du-lich/du-lich-${activeTour.slug}/${item.slug}/${subItem.slug}`}
+                              state={{ title: `Du lịch ${item.name}`, local: subItem.name, type: `du-lich-${item.slug}` }}
+                              className='hover:opacity-55 transition-all'
+                            >
+                              {subItem.name}
+                            </Link>
+                          ))}
+                          {item.subCategories.length > 5 && (
+                            <Link
+                              to={`/du-lich/du-lich-${item.slug}`}
+                              state={{ title: `Du Lịch ${item.name}`, type: `du-lich-${item.slug}` }}
+                              className='font-medium underline hover:opacity-55 transition-all '
+                            >
+                              Xem tất cả
+                            </Link>
+                          )}
 
-                          <Link
-                            to={'/du-lich/du-lich-nuoc-ngoai/chau-au/duc'}
-                            state={{ title: 'Du lịch Nước ngoài', local: 'Đức', type: 'du-lich-nuoc-ngoai' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Đức
-                          </Link>
-
-                          <Link
-                            to={'/du-lich/du-lich-nuoc-ngoai/chau-au/it'}
-                            state={{ title: 'Du lịch Nước ngoài', local: 'Ý', type: 'du-lich-nuoc-ngoai' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Ý
-                          </Link>
-
-                          <Link
-                            to={'/du-lich/du-lich-nuoc-ngoai/chau-au/han-lan'}
-                            state={{ title: 'Du lịch Nước ngoài', local: 'Hà Lan', type: 'du-lich-nuoc-ngoai' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Hà Lan
-                          </Link>
-                          <Link
-                            to={'/du-lich/du-lich-nuoc-ngoai/chau-au'}
-                            state={{ title: 'Du lịch Nước ngoài', local: 'Châu Âu', type: 'du-lich-nuoc-ngoai' }}
-                            className='font-medium underline hover:opacity-55 transition-all '
-                          >
-                            Xem tất cả
-                          </Link>
                         </div>
                       </div>
-                      <div className='w-[140px] xl:w-[180px]'>
-                        <Link
-                          to={'/du-lich/du-lich-nuoc-ngoai/chau-a'}
-                          state={{ title: 'Du lịch Nước ngoài', local: 'Châu Á', type: 'du-lich-nuoc-ngoai' }}
-                          className='font-semibold mb-2 block'
-                        >
-                          Châu Á
-                        </Link>
-                        <div className='flex flex-col gap-y-3 text-sm'>
-                          <Link
-                            to={'/du-lich/du-lich-nuoc-ngoai/chau-a/nhat-ban'}
-                            state={{ title: 'Du lịch Nước ngoài', local: 'Nhật Bản', type: 'du-lich-nuoc-ngoai' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Nhật Bản
-                          </Link>
+                    ))}
 
-                          <Link
-                            to={'/du-lich/du-lich-nuoc-ngoai/chau-a/trung-quoc'}
-                            state={{ title: 'Du lịch Nước ngoài', local: 'Trung Quốc', type: 'du-lich-nuoc-ngoai' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Trung Quốc
-                          </Link>
-
-                          <Link
-                            to={'/du-lich/du-lich-nuoc-ngoai/chau-a/han-quoc'}
-                            state={{ title: 'Du lịch Nước ngoài', local: 'Hàn Quốc', type: 'du-lich-nuoc-ngoai' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Hàn Quốc
-                          </Link>
-
-                          <Link
-                            to={'/du-lich/du-lich-nuoc-ngoai/chau-a/dai-loan'}
-                            state={{ title: 'Du lịch Nước ngoài', local: 'Đài Loan', type: 'du-lich-nuoc-ngoai' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Đài Loan
-                          </Link>
-
-                          <Link
-                            to={'/du-lich/du-lich-nuoc-ngoai/chau-a/dubai'}
-                            state={{ title: 'Du lịch Nước ngoài', local: 'Dubai', type: 'du-lich-nuoc-ngoai' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Dubai
-                          </Link>
-                          <Link
-                            to={'/du-lich/du-lich-nuoc-ngoai/chau-a'}
-                            state={{ title: 'Du lịch Nước ngoài', local: 'Châu Á', type: 'du-lich-nuoc-ngoai' }}
-                            className='font-medium underline hover:opacity-55 transition-all '
-                          >
-                            Xem tất cả
-                          </Link>
-                        </div>
-                      </div>
-                      <div className='w-[140px] xl:w-[180px]'>
-                        <Link
-                          to={'/du-lich/du-lich-nuoc-ngoai/chau-uc'}
-                          state={{ title: 'Du lịch Nước ngoài', local: 'Châu Úc', type: 'du-lich-nuoc-ngoai' }}
-                          className='font-semibold mb-2 block'
-                        >
-                          Châu Úc
-                        </Link>
-                        <div className='flex flex-col gap-y-3 text-sm'>
-                          <Link
-                            to={'/du-lich/du-lich-nuoc-ngoai/chau-uc/uc'}
-                            state={{ title: 'Du lịch Nước ngoài', local: 'Úc', type: 'du-lich-nuoc-ngoai' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Úc
-                          </Link>
-                        </div>
-                      </div>
-                      <div className='w-[140px] xl:w-[180px]'>
-                        <Link
-                          to={'/du-lich/du-lich-nuoc-ngoai/chau-my'}
-                          state={{ title: 'Du lịch Nước ngoài', local: 'Châu Mỹ', type: 'du-lich-nuoc-ngoai' }}
-                          className='font-semibold mb-2 block'
-                        >
-                          Châu Mỹ
-                        </Link>
-                        <div className='flex flex-col gap-y-3 text-sm'>
-                          <Link
-                            to={'/du-lich/du-lich-nuoc-ngoai/chau-my/hoa-ky'}
-                            state={{ title: 'Du lịch Nước ngoài', local: 'Hoa Kỳ', type: 'du-lich-nuoc-ngoai' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Hoa Kỳ
-                          </Link>
-
-                          <Link
-                            to={'/du-lich/du-lich-nuoc-ngoai/chau-my/canada'}
-                            state={{ title: 'Du lịch Nước ngoài', local: 'Canada', type: 'du-lich-nuoc-ngoai' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Canada
-                          </Link>
-                        </div>
-                      </div>
-                      <div className='w-[140px] xl:w-[180px]'>
-                        <Link
-                          to={'/du-lich/du-lich-nuoc-ngoai/chau-phi'}
-                          state={{ title: 'Du lịch Nước ngoài', local: 'Châu Phi', type: 'du-lich-nuoc-ngoai' }}
-                          className='font-semibold mb-2 block'
-                        >
-                          Châu Phi
-                        </Link>
-                        <div className='flex flex-col gap-y-3 text-sm'>
-                          <Link
-                            to={'/du-lich/du-lich-nuoc-ngoai/chau-phi/ai-cap'}
-                            state={{ title: 'Du lịch Nước ngoài', local: 'Ai Cập', type: 'du-lich-nuoc-ngoai' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Ai Cập
-                          </Link>
-
-                          <Link
-                            to={'/du-lich/du-lich-nuoc-ngoai/chau-phi/nam-phi'}
-                            state={{ title: 'Du lịch Nước ngoài', local: 'Nam Phi', type: 'du-lich-nuoc-ngoai' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Nam Phi
-                          </Link>
-
-                          <Link
-                            to={'/du-lich/du-lich-nuoc-ngoai/chau-phi/mauritius'}
-                            state={{ title: 'Du lịch Nước ngoài', local: 'Mauritius', type: 'du-lich-nuoc-ngoai' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Mauritius
-                          </Link>
-
-                          <Link
-                            to={'/du-lich/du-lich-nuoc-ngoai/chau-phi/kenya'}
-                            state={{ title: 'Du lịch Nước ngoài', local: 'Kenya', type: 'du-lich-nuoc-ngoai' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Kenya
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                    <div className={`${activeTour === 2 ? 'flex' : 'hidden'} `}>
-                      <div className='w-[140px] xl:w-[180px]'>
-                        <Link
-                          to={'/du-lich/du-lich-trong-nuoc/mien-trung'}
-                          state={{ title: 'Du lịch Trong Nước', local: 'Miền Trung', type: 'du-lich-trong-nuoc' }}
-                          className='font-semibold mb-2 block'
-                        >
-                          Miền Trung
-                        </Link>
-                        <div className='flex flex-col gap-y-3 text-sm'>
-                          <Link
-                            to={'/du-lich/du-lich-trong-nuoc/mien-trung/hue'}
-                            state={{ title: 'Du lịch Trong Nước', local: 'Huế', type: 'du-lich-trong-nuoc' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Huế
-                          </Link>
-
-                          <Link
-                            to={'/du-lich/du-lich-trong-nuoc/mien-trung/da-nang'}
-                            state={{ title: 'Du lịch Trong Nước', local: 'Đà Nẵng', type: 'du-lich-trong-nuoc' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Đà Nẵng
-                          </Link>
-
-                          <Link
-                            to={'/du-lich/du-lich-trong-nuoc/mien-trung/hoi-an'}
-                            state={{ title: 'Du lịch Trong Nước', local: 'Hội An', type: 'du-lich-trong-nuoc' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Hội An
-                          </Link>
-
-                          <Link
-                            to={'/du-lich/du-lich-trong-nuoc/mien-trung/quang-binh'}
-                            state={{ title: 'Du lịch Trong Nước', local: 'Quảng Bình', type: 'du-lich-trong-nuoc' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Quảng Bình
-                          </Link>
-
-                          <Link
-                            to={'/du-lich/du-lich-trong-nuoc/mien-trung/tay-nguyen'}
-                            state={{ title: 'Du lịch Trong Nước', local: 'Tây Nguyên', type: 'du-lich-trong-nuoc' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Tây Nguyên
-                          </Link>
-                          <Link
-                            to={'/du-lich/du-lich-trong-nuoc/mien-trung'}
-                            state={{ title: 'Du lịch Trong Nước', local: 'Miền Trung', type: 'du-lich-trong-nuoc' }}
-                            className='font-medium underline hover:opacity-55 transition-all '
-                          >
-                            Xem tất cả
-                          </Link>
-                        </div>
-                      </div>
-                      <div className='w-[140px] xl:w-[180px]'>
-                        <Link
-                          to={'/du-lich/du-lich-trong-nuoc/mien-trung'}
-                          state={{ title: 'Du lịch Trong Nước', local: 'Miền Bắc', type: 'du-lich-trong-nuoc' }}
-                          className='font-semibold mb-2  block'
-                        >
-                          Miền Bắc
-                        </Link>
-                        <div className='flex flex-col gap-y-3 text-sm'>
-                          <Link
-                            to={'/du-lich/du-lich-trong-nuoc/mien-bac/ha-noi'}
-                            state={{ title: 'Du lịch Trong Nước', local: 'Hà Nội', type: 'du-lich-trong-nuoc' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Hà Nội
-                          </Link>
-
-                          <Link
-                            to={'/du-lich/du-lich-trong-nuoc/mien-bac/ha-long'}
-                            state={{ title: 'Du lịch Trong Nước', local: 'Hạ Long', type: 'du-lich-trong-nuoc' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Hạ Long
-                          </Link>
-
-                          <Link
-                            to={'/du-lich/du-lich-trong-nuoc/mien-bac/ninh-binh'}
-                            state={{ title: 'Du lịch Trong Nước', local: 'Ninh Bình', type: 'du-lich-trong-nuoc' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Ninh Bình
-                          </Link>
-
-                          <Link
-                            to={'/du-lich/du-lich-trong-nuoc/mien-bac/tay-bac'}
-                            state={{ title: 'Du lịch Trong Nước', local: 'Tây Bắc', type: 'du-lich-trong-nuoc' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Tây Bắc
-                          </Link>
-
-                          <Link
-                            to={'/du-lich/du-lich-trong-nuoc/mien-bac/sapa'}
-                            state={{ title: 'Du lịch Trong Nước', local: 'Sapa', type: 'du-lich-trong-nuoc' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Sapa
-                          </Link>
-                          <Link
-                            to={'/du-lich/du-lich-trong-nuoc/mien-trung'}
-                            state={{ title: 'Du lịch Trong Nước', local: 'Miền Bắc', type: 'du-lich-trong-nuoc' }}
-                            className='font-medium underline hover:opacity-55 transition-all '
-                          >
-                            Xem tất cả
-                          </Link>
-                        </div>
-                      </div>
-                      <div className='w-[140px] xl:w-[180px]'>
-                        <Link
-                          to={'/du-lich/du-lich-trong-nuoc/mien-nam'}
-                          state={{ title: 'Du lịch Trong Nước', local: 'Miền Nam', type: 'du-lich-trong-nuoc' }}
-                          className='font-semibold mb-2  block'
-                        >
-                          Miền Nam
-                        </Link>
-                        <div className='flex flex-col gap-y-3 text-sm'>
-                          <Link
-                            to={'/du-lich/du-lich-trong-nuoc/mien-nam/tp-ho-chi-minh'}
-                            state={{ title: 'Du lịch Trong Nước', local: 'TP Hồ Chí Minh', type: 'du-lich-trong-nuoc' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            TP Hồ Chí Minh
-                          </Link>
-
-                          <Link
-                            to={'/du-lich/du-lich-trong-nuoc/mien-nam/con-dao'}
-                            state={{ title: 'Du lịch Trong Nước', local: 'Côn Đảo', type: 'du-lich-trong-nuoc' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Côn Đảo
-                          </Link>
-
-                          <Link
-                            to={'/du-lich/du-lich-trong-nuoc/mien-nam/phu-quoc'}
-                            state={{ title: 'Du lịch Trong Nước', local: 'Phú Quốc', type: 'du-lich-trong-nuoc' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Phú Quốc
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                    <div className={`${activeTour === 3 ? 'flex' : 'hidden'} `}>
-                      <div className='w-[140px] xl:w-[180px]'>
-                        <Link
-                          to={'/du-lich/tour-cao-cap/chau-my'}
-                          state={{ title: 'Tour Cao Cấp', local: 'Châu Mỹ', type: 'tour-cao-cap' }}
-                          className='font-semibold mb-2  block'
-                        >
-                          Châu Mỹ
-                        </Link>
-                        <div className='flex flex-col gap-y-3 text-sm'>
-                          <Link
-                            to={'/du-lich/tour-cao-cap/chau-my/bo-tay'}
-                            state={{ title: 'Du lịch Nước ngoài', local: 'Bờ Tây', type: 'du-lich-nuoc-ngoai' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Bờ Tây
-                          </Link>
-                        </div>
-                      </div>
-                      <div className='w-[140px] xl:w-[180px]'>
-                        <Link
-                          to={'/du-lich/tour-cao-cap/du-lich-tour-du-thuyen'}
-                          state={{ title: 'Tour Cao Cấp', local: 'Tour Du thuyền', type: 'tour-cao-cap' }}
-                          className='font-semibold mb-2 block'
-                        >
-                          Tour Du thuyền
-                        </Link>
-                        <div className='flex flex-col gap-y-3 text-sm'>
-                          <Link
-                            to={'/du-lich/tour-cao-cap/du-lich-tour-du-thuyen/singapore-malaysia'}
-                            state={{ title: 'Du lịch Nước ngoài', local: 'Singapore - Malaysia', type: 'tour-cao-cap' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Singapore - Malaysia
-                          </Link>
-
-                          <Link
-                            to={'/du-lich/tour-cao-cap/du-lich-tour-du-thuyen/dai-loan-nhat-ban'}
-                            state={{ title: 'Du lịch Nước ngoài', local: 'Đài Loan - Nhật Bản', type: 'tour-cao-cap' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Đài Loan - Nhật Bản
-                          </Link>
-
-                          <Link
-                            to={'/du-lich/tour-cao-cap/du-lich-tour-du-thuyen/hong-kong-nhat-ban'}
-                            state={{ title: 'Du lịch Nước ngoài', local: 'Hong Kong - Nhật Bản', type: 'tour-cao-cap' }}
-                            className='hover:opacity-55 transition-all'
-                          >
-                            Hong Kong - Nhật Bản
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -538,13 +201,13 @@ const Header = () => {
           >
             12412321
           </Button>
-          <ButtonMenu />
+          <ButtonMenu organizedCategories={organizedCategories} />
         </div>
       </div>
     </header>
   )
 }
-const ButtonMenu = () => {
+const ButtonMenu = ({ organizedCategories }: { organizedCategories: any }) => {
   const [isOpen, setIsOpen] = useState(false)
   useEffect(() => {
     if (isOpen) {
@@ -594,9 +257,8 @@ const ButtonMenu = () => {
         )}
       </button>
       <div
-        className={`fixed overflow-y-scroll scrollbar-hidden w-full bottom-0  border-t h-[calc(100vh-64px)] bg-white z-50   transition-all duration-500 ${
-          isOpen ? '-right-0' : '-right-full opacity-0 pointer-events-none'
-        }`}
+        className={`fixed overflow-y-scroll scrollbar-hidden w-full bottom-0  border-t h-[calc(100vh-64px)] bg-white z-50   transition-all duration-500 ${isOpen ? '-right-0' : '-right-full opacity-0 pointer-events-none'
+          }`}
       >
         <Link
           to={'/'}
@@ -605,8 +267,49 @@ const ButtonMenu = () => {
         >
           Giới Thiệu
         </Link>
+        {organizedCategories.map((item: any, index: number) => (
+          <Accordion key={index} title={` Du Lịch ${item.name}`}  >
+            {item.subCategories.map((subItem: any, index: number) => (
+              <div key={index}>
+                <div className='mb-5'>
+                  <Link
+                    to={`/du-lich/du-lich-${item.slug}/${subItem.slug}`}
+                    state={{ title: `Du Lịch ${subItem.name}`, local: subItem.name, type: `du-lich-${item.slug}` }}
+                    className='font-semibold mb-2 block'
+                    onClick={handleLinkClick}
+                  >
+                    {subItem.name}
+                  </Link>
+                  <div className='grid grid-cols-3  gap-y-3 text-sm'>
+                    {subItem.subCategories.map((subSubItem: any, index: number) => (
+                      <Link
+                        key={index}
+                        to={`/du-lich/du-lich-${item.slug}/${subItem.slug}/${subSubItem.slug}`}
+                        state={{ title: `Du lịch ${item.name}`, local: subSubItem.name, type: `du-lich-${item.slug}` }}
+                        className='hover:opacity-55 transition-all'
+                        onClick={handleLinkClick}
+                      >
+                        {subSubItem.name}
+                      </Link>
+                    ))}
+                    {subItem.subCategories.length > 5 && (
+                      <Link
+                        to={`/du-lich/du-lich-${item.slug}/${subItem.slug}`}
+                        state={{ title: `Du Lịch ${subItem.name}`, local: subItem.name, type: `du-lich-${item.slug}` }}
+                        className='font-semibold mb-2 block'
+                        onClick={handleLinkClick}
+                      >
+                        Xem tất cả
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
 
-        <Accordion title='Du Lịch Nước Ngoài'>
+          </Accordion>
+        ))}
+        {/* <Accordion title='Du Lịch Nước Ngoài'>
           <div className='mb-5'>
             <Link
               to={'/du-lich/du-lich-nuoc-ngoai/chau-au'}
@@ -1058,7 +761,7 @@ const ButtonMenu = () => {
               </Link>
             </div>
           </div>
-        </Accordion>
+        </Accordion> */}
         <Link
           to={'/'}
           className='text-[#013879] font-medium text-lg py-6 px-[16px] w-full block border-b'
@@ -1133,9 +836,8 @@ const SearchButton = () => {
         </svg>
       </button>
       <div
-        className={`fixed inset-0 bg-white z-50 px-4 py-20 transition-all duration-300 ${
-          isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
+        className={`fixed inset-0 bg-white z-50 px-4 py-20 transition-all duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          }`}
       >
         <div className='max-w-[1060px] mx-auto'>
           <div className='relative flex items-center border-b-2 border-[#013879] pb-4'>
@@ -1196,9 +898,8 @@ const Accordion = ({ title, children }: { title: string; children: React.ReactNo
         </svg>
       </div>
       <div
-        className={`px-[16px]  flex flex-col  text-[#222222]  ${
-          isOpen ? 'max-h-[3000px] pb-3' : 'max-h-0 pb-0'
-        } transition-max-height duration-500 overflow-hidden`}
+        className={`px-[16px]  flex flex-col  text-[#222222]  ${isOpen ? 'max-h-[3000px] pb-3' : 'max-h-0 pb-0'
+          } transition-max-height duration-500 overflow-hidden`}
       >
         {children}
       </div>
