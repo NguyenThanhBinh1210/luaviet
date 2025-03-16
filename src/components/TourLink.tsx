@@ -4,17 +4,13 @@ import { Link } from 'react-router-dom'
 const TourLink = ({
   index,
   link,
-  sale,
-  type,
-  news,
+
   item
 }: {
   index: number
   link: string
-  sale?: boolean
-  news?: boolean
+
   item?: any
-  type?: 'standard' | 'high' | 'save'
 }) => {
   return (
     <Link to={link} key={index}>
@@ -26,18 +22,18 @@ const TourLink = ({
             className='w-full h-full aspect-[9/7] object-cover hover:scale-110 transition-all duration-300'
           />
           <div className='flex gap-x-2 items-center absolute top-2 right-2'>
-            {news && (
+            {item?.isPopular && (
               <div className='rounded-tr-md rounded-bl-md   bg-[#e6e328]  text-black text-xs gap-x-1  px-2 md:px-3 py-0.5  md:font-medium md:py-1  flex items-center justify-center'>
                 New
               </div>
             )}
-            {sale && (
+            {item?.isPromotion && (
               <div className='rounded-tr-md rounded-bl-md   bg-[#ED1B35] text-white text-xs gap-x-1  px-2 md:px-3 py-0.5  md:font-medium md:py-1  flex items-center justify-center'>
                 Khuyến mãi
               </div>
             )}
           </div>
-          {type === 'save' && (
+          {item?.type === 'budget' && (
             <div className='absolute bottom-2 left-0  bg-[#2faf23b3] text-white text-xs gap-x-1  px-2 md:px-3 py-0.5  md:text-base  flex items-center justify-center'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -60,7 +56,7 @@ const TourLink = ({
               Tiết kiệm
             </div>
           )}
-          {type === 'standard' && (
+          {item?.type === 'standard' && (
             <div className='absolute bottom-2 left-0  bg-[#0394d9b3] text-white text-xs gap-x-1  px-2 md:px-3 py-0.5  md:text-base  flex items-center justify-center'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -79,7 +75,7 @@ const TourLink = ({
               Tiêu chuẩn
             </div>
           )}
-          {type === 'high' && (
+          {item?.type === 'luxury' && (
             <div className='absolute bottom-2 left-0  bg-[#ffb800b3] text-white text-xs gap-x-1  px-2 md:px-3 py-0.5  md:text-base  flex items-center justify-center'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
