@@ -13,7 +13,7 @@ const TourLink = ({
   link: string
   sale?: boolean
   news?: boolean
-  item: any
+  item?: any
   type?: 'standard' | 'high' | 'save'
 }) => {
   return (
