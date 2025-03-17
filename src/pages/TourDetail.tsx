@@ -117,7 +117,7 @@ const TourDetail = () => {
           <div className='md:col-span-2 ' dangerouslySetInnerHTML={{ __html: tour?.content }}>
 
           </div>
-          <div
+          {/* <div
             className='p-[30px] text-[#222222] h-max sticky top-[80px]'
             style={{ boxShadow: '10px 10px 36px rgba(0,0,0,0.08)' }}
           >
@@ -149,7 +149,7 @@ const TourDetail = () => {
                 </Button>
               </a>
             </div>
-          </div>
+          </div> */}
         </div>
       </Section >
 
