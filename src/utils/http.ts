@@ -17,7 +17,7 @@ function createHttp(): AxiosInstance {
   // let refreshTokenRequest: Promise<string> | null = null
 
   const instance = axios.create({
-    baseURL: 'http://localhost:4001/',
+    baseURL: 'https://be-tour-du-lich.onrender.com/',
     timeout: 10000,
     headers: {
       'Content-Type': 'application/json'

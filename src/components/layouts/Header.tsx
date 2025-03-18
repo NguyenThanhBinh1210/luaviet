@@ -157,12 +157,12 @@ const Header = () => {
                 </Link>
               </div>
             </div>
-            <Link to={'/tin-tuc'} className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'>
+            <Link to={'/'} className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'>
               Tin Tức
               <div className='absolute bottom-0 left-0 w-0 h-[2px] bg-red-500 group-hover:w-full transition-all duration-300'></div>
             </Link>
             <Link
-              to={'/chinh-sach-va-quy-dinh'}
+              to={'/'}
               className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'
             >
               Chính Sách & Quy Định

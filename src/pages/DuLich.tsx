@@ -51,8 +51,10 @@ const DuLich = () => {
   const [showFilter, setShowFilter] = useState(false)
   const navigate = useNavigate()
   useEffect(() => {
-    setActive(location.state.type)
-  }, [location.state.type])
+    if (location.state?.type) {
+      setActive(location.state.type)
+    }
+  }, [location.state?.type])
   useEffect(() => {
     if (showFilter) {
       document.body.style.overflow = 'hidden'
@@ -127,12 +129,12 @@ const DuLich = () => {
               ...location.state,
               local: ''
             }}
-            to={`${location.state.local ? `/du-lich/${location?.state.type}` : '#'}`}
+            to={`${location.state?.local ? `/du-lich/${location.state?.type}` : '#'}`}
             className='text-[13px]'
           >
-            {location?.state?.title}
+            {location.state?.title || 'Du lịch'}
           </Link>
-          {location.state.local && (
+          {location.state?.local && (
             <>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -144,7 +146,7 @@ const DuLich = () => {
               >
                 <path strokeLinecap='round' strokeLinejoin='round' d='m8.25 4.5 7.5 7.5-7.5 7.5' />
               </svg>
-              <div className='text-[13px]'>{location?.state?.local}</div>
+              <div className='text-[13px]'>{location.state.local}</div>
             </>
           )}
         </div>
@@ -715,9 +717,10 @@ const DuLich = () => {
     </div>
   )
 }
-export function getLastSegment(url: string): string {
-  const segments = url.split('/')
-  const newI = segments[segments.length - 1]
-  return newI
+export const getLastSegment = (path: string | null): string => {
+  if (!path) return '';
+  
+  const segments = path.split('/');
+  return segments[segments.length - 1] || '';
 }
 export default DuLich

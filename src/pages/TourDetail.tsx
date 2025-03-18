@@ -9,6 +9,7 @@ import { getLastSegment } from './DuLich'
 import { useQuery } from 'react-query'
 const TourDetail = () => {
   const location = useLocation()
+  console.log(location);
   const [tour, setTour] = useState<any>()
   useQuery({
     queryKey: ['tour', getLastSegment(location.pathname)],

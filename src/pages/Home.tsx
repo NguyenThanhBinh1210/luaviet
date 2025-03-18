@@ -1,13 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from 'react-router-dom'
-import news1 from '~/assets/6170305031849493246 (1).jpg'
+import europe from '~/assets/canh-dong-hoa-tulip-ha-lan.jpg'
+import australia from '~/assets/nha-hat-con-so-mua-thu.jpg'
+import korea from '~/assets/thap-namsan-han-quoc.jpg'
+import japan from '~/assets/osaka-mua-hoa-anh-dao.jpg'
+
 import banner1 from '~/assets/banner-website-han-quoc-pc.jpg'
 import banner2 from '~/assets/banner-website-dai-loan-pc.jpg'
 import banner3 from '~/assets/banner-website-chau-au-pc.png'
 import banner11 from '~/assets/banner-website-han-quoc-sp-1024x573.jpg'
 import banner22 from '~/assets/banner-website-dai-loan-sp-1024x573.jpg'
 import banner33 from '~/assets/banner-website-chau-au-sp-1024x573.png'
-import news2 from '~/assets/the-sands-collection-masthead-desktop.avif'
 import TourLink from '~/components/TourLink'
 import { useState, useEffect } from 'react'
 import { tourApi } from '~/apis/tour.api'
@@ -75,9 +78,9 @@ const Home = () => {
           <h2 className='text-[28px] md:text-[40px] font-bold text-[#013879] text-center'>Điểm Đến Yêu Thích</h2>
           <div className='my-12'>
             <div className='grid grid-cols-2 md:grid-cols-4 md:grid-rows-2 gap-2 md:gap-4'>
-              <Link to={'/tin-tuc/mua-hoa-anh-dao-han-quoc-2025'} className='col-span-2 row-span-2 relative  group 1'>
+              <Link to={'/du-lich/du-lich-nuoc-ngoai/chau-au'} className='col-span-2 row-span-2 relative  group 1'>
                 <img
-                  src={news1}
+                  src={europe}
                   alt='news2'
                   className='w-full  h-full  aspect-square object-cover hover:scale-110 transition-all duration-300'
                 />
@@ -86,9 +89,9 @@ const Home = () => {
                   Châu Âu
                 </p>
               </Link>
-              <Link to={'/tin-tuc/mua-hoa-anh-dao-han-quoc-2025'} className=' relative  group 2'>
+              <Link to={'/du-lich/du-lich-nuoc-ngoai/chau-uc'} className=' relative  group 2'>
                 <img
-                  src={news2}
+                  src={australia}
                   alt='news2'
                   className='w-full  h-full aspect-square  object-cover hover:scale-110 transition-all duration-300'
                 />
@@ -97,9 +100,9 @@ const Home = () => {
                   Châu Úc
                 </p>
               </Link>
-              <Link to={'/tin-tuc/mua-hoa-anh-dao-han-quoc-2025'} className=' relative  group 3'>
+              <Link to={'/du-lich/du-lich-nuoc-ngoai/chau-a/han-quoc'} className=' relative  group 3'>
                 <img
-                  src={news2}
+                  src={korea}
                   alt='news2'
                   className='w-full  h-full  object-cover hover:scale-110 transition-all duration-300'
                 />
@@ -108,9 +111,9 @@ const Home = () => {
                   Hàn Quốc
                 </p>
               </Link>
-              <Link to={'/tin-tuc/mua-hoa-anh-dao-han-quoc-2025'} className='col-span-2  relative  group 4'>
+              <Link to={'/du-lich/du-lich-nuoc-ngoai/chau-a/nhat-ban'} className='col-span-2  relative  group 4'>
                 <img
-                  src={news2}
+                  src={japan}
                   alt='news2'
                   className='w-full  h-full  aspect-[2/1]  object-cover hover:scale-110 transition-all duration-300'
                 />

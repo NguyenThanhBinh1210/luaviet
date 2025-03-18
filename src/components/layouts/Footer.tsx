@@ -2,10 +2,102 @@ import { Link } from 'react-router-dom'
 import certification1 from '~/assets/certifi1.png'
 import certification2 from '~/assets/certifi2.png'
 import Button from '../Button'
+import zalo from '~/assets/zalo.svg'
+import whatsapp from '~/assets/whatsapp.svg'
+import { useQuery } from 'react-query'
+import chatApi from '~/apis/chat.api'
+import { useState } from 'react'
+
+// Add this interface near the top of the file
+interface SocialLink {
+  id: string | number
+  name: string
+  link: string
+}
+
+const SocialFloatingButtons = () => {
+  const [socialLinks, setSocialLinks] = useState<SocialLink[]>([])
+  useQuery({
+    queryKey: ['socialLinks'],
+    queryFn: async () => {
+      const response = await chatApi.getChats()
+      if (response.status === 200) {
+        setSocialLinks(response.data.data)
+      }
+      return response
+    }
+  })
+
+  return (
+    <div className="fixed right-4 bottom-20 flex flex-col gap-3 z-50">
+      {socialLinks.map((link) => {
+        if (link.name === "Facebook") {
+          return (
+            <a
+              key={link.id}
+              href={link.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-all"
+            >
+              <div className="w-12 h-12 rounded-full flex items-center justify-center bg-[#1877f2]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="white">
+                  <path d="M12.001 2.002c-5.522 0-9.999 4.477-9.999 9.999 0 4.99 3.656 9.126 8.437 9.879v-6.988h-2.54v-2.891h2.54V9.798c0-2.508 1.493-3.891 3.776-3.891 1.094 0 2.24.195 2.24.195v2.459h-1.264c-1.24 0-1.628.772-1.628 1.563v1.875h2.771l-.443 2.891h-2.328v6.988C18.344 21.129 22 16.992 22 12.001c0-5.522-4.477-9.999-9.999-9.999z" />
+                </svg>
+              </div>
+            </a>
+          )
+        } else if (link.name === "Zalo") {
+          return (
+            <a
+              key={link.id}
+              href={link.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-all"
+            >
+              <div className="w-12 h-12 rounded-full flex items-center justify-center bg-[#0068ff]">
+                <img src={zalo} alt="Zalo" />
+              </div>
+            </a>
+          )
+        } else if (link.name === "Whatsapp") {
+          return (
+            <a
+              key={link.id}
+              href={link.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-all"
+            >
+              <div className="w-12 h-12 rounded-full flex items-center justify-center">
+                <img src={whatsapp} alt="WhatsApp" />
+              </div>
+            </a>
+          )
+        }
+        return null
+      })}
+
+      {/* Phone Button - Static */}
+      {/* <a
+        href="tel:1900 6420"
+        className="bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-all"
+      >
+        <div className="w-12 h-12 rounded-full flex items-center justify-center bg-[#e60039]">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+          </svg>
+        </div>
+      </a> */}
+    </div>
+  );
+};
 
 const Footer = () => {
   return (
-    <div className='bg-[#013879] pt-14 text-white'>
+    <div className='bg-[#013879] pt-14 text-white relative'>
+      <SocialFloatingButtons />
       <div className='px-4 max-w-[1262px] mx-auto'>
         <div className='md:grid md:grid-cols-12'>
           <div className='col-span-7 flex flex-wrap gap-y-12'>
@@ -16,43 +108,43 @@ const Footer = () => {
                   <div className='w-1/3 max-w-[104px]'>
                     <p className='font-semibold mb-2'>Châu Âu</p>
                     <div className='flex flex-col gap-1'>
-                      <Link to='/'>Bỉ</Link>
-                      <Link to='/'>Pháp</Link>
-                      <Link to='/'>Đức</Link>
-                      <Link to='/'>Ý</Link>
-                      <Link to='/'>Hà Lan</Link>
+                      <Link to='/du-lich/chau-au/bi'>Bỉ</Link>
+                      <Link to='/du-lich/chau-au/phap'>Pháp</Link>
+                      <Link to='/du-lich/chau-au/duc'>Đức</Link>
+                      <Link to='/du-lich/chau-au/y'>Ý</Link>
+                      <Link to='/du-lich/chau-au/ha-lan'>Hà Lan</Link>
                     </div>
                   </div>
                   <div className='w-1/3 max-w-[104px]'>
                     <p className='font-semibold mb-2'>Châu Á</p>
                     <div className='flex flex-col gap-1'>
-                      <Link to='/'>Nhật Bản</Link>
-                      <Link to='/'>Trung Quốc</Link>
-                      <Link to='/'>Hàn Quốc</Link>
-                      <Link to='/'>Đài Loan</Link>
-                      <Link to='/'>Dubai</Link>
+                      <Link to='/du-lich/chau-a/nhat-ban'>Nhật Bản</Link>
+                      <Link to='/du-lich/chau-a/trung-quoc'>Trung Quốc</Link>
+                      <Link to='/du-lich/chau-a/han-quoc'>Hàn Quốc</Link>
+                      <Link to='/du-lich/chau-a/dai-loan'>Đài Loan</Link>
+                      <Link to='/du-lich/chau-a/dubai'>Dubai</Link>
                     </div>
                   </div>
                   <div className='w-1/3 max-w-[104px]'>
                     <p className='font-semibold mb-2'>Châu Úc</p>
                     <div className='flex flex-col gap-1'>
-                      <Link to='/'>Úc</Link>
+                      <Link to='/du-lich/chau-uc/uc'>Úc</Link>
                     </div>
                   </div>
                   <div className='w-1/3 max-w-[104px]'>
                     <p className='font-semibold mb-2'>Châu Mỹ</p>
                     <div className='flex flex-col gap-1'>
-                      <Link to='/'>Hoa Kỳ</Link>
-                      <Link to='/'>Canada</Link>
+                      <Link to='/du-lich/chau-my/hoa-ky'>Hoa Kỳ</Link>
+                      <Link to='/du-lich/chau-my/canada'>Canada</Link>
                     </div>
                   </div>
                   <div className='w-1/3 max-w-[104px]'>
                     <p className='font-semibold mb-2'>Châu Phi</p>
                     <div className='flex flex-col gap-1'>
-                      <Link to='/'>Ai Cập</Link>
-                      <Link to='/'>Nam Phi</Link>
-                      <Link to='/'>Mauritius</Link>
-                      <Link to='/'>Kenya</Link>
+                      <Link to='/du-lich/chau-phi/ai-cap'>Ai Cập</Link>
+                      <Link to='/du-lich/chau-phi/nam-phi'>Nam Phi</Link>
+                      <Link to='/du-lich/chau-phi/mauritius'>Mauritius</Link>
+                      <Link to='/du-lich/chau-phi/kenya'>Kenya</Link>
                     </div>
                   </div>
                 </div>
