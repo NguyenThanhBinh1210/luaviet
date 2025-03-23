@@ -101,7 +101,7 @@ const News = () => {
                           đáo nổi bật với gam màu đỏ cam đầy rực rỡ. Ngoài ra, đây còn là biểu tượng của sự phát triển
                           và tinh thần đổi mới. Dù là trong ánh bình minh, giữa làn sương mờ hay khi hoàng hôn buông
                           xuống, Cầu Cổng Vàng luôn mang đến vẻ đẹp ngoạn mục, thu hút du khách từ khắp nơi đến chiêm
-                          ngưỡng và tìm hiểu. Hãy cùng Lửa Việt Tours bắt đầu bước vào hành trình khám phá vẻ đẹp bất
+                          ngưỡng và tìm hiểu. Hãy cùng Hùng Anh Tours bắt đầu bước vào hành trình khám phá vẻ đẹp bất
                           tận và những câu chuyện thú vị đằng s...
                         </p>
                       </div>

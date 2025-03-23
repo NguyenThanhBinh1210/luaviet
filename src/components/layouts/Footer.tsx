@@ -478,7 +478,7 @@ const Footer = () => {
         </div>
       </div>
       <div className='bg-[#222] py-2.5 mt-8 text-[10px] text-white text-center'>
-        Copyright © 1999-2023 Công ty TNHH Du Lịch Lửa Việt
+        Copyright © 1999-2023 Công ty TNHH Du Lịch Hùng Anh
       </div>
     </div>
   )

@@ -39,7 +39,7 @@ const initial = [
 const initial2 = [
   {
     value: '1',
-    title: 'Thanh toán tại văn phòng Lửa Việt'
+    title: 'Thanh toán tại văn phòng Hùng Anh'
   },
   {
     value: '2',
@@ -203,7 +203,7 @@ const Booking = () => {
               <div className='bg-[#F6F8FA] p-6 mt-6 space-y-4'>
                 <p className='text-sm mb-4'>
                   Bằng cách nhấp chuột vào nút "ĐỒNG Ý" dưới đây, Khách hàng đồng ý rằng các Điều kiện điều khoản này sẽ
-                  được áp dụng. Vui lòng đọc kỹ Điều kiện điều khoản trước khi lựa chọn sử dụng dịch vụ của Lửa Việt
+                  được áp dụng. Vui lòng đọc kỹ Điều kiện điều khoản trước khi lựa chọn sử dụng dịch vụ của Hùng Anh
                   Tours.
                 </p>
                 <div className='flex items-center justify-center mt-4'>
@@ -237,9 +237,8 @@ const Booking = () => {
                       <div className='absolute left-0 top-1/2 -translate-y-1/2 size-5 rounded-full border border-[#013879] cursor-pointer'></div>
                       {item.title}
                       <div
-                        className={`${
-                          paymentMethod === item.value ? 'block' : 'hidden'
-                        } bg-[#013879] size-3 top-1/2 -translate-y-1/2 rounded-full absolute left-1`}
+                        className={`${paymentMethod === item.value ? 'block' : 'hidden'
+                          } bg-[#013879] size-3 top-1/2 -translate-y-1/2 rounded-full absolute left-1`}
                       ></div>
                     </label>
                   </div>

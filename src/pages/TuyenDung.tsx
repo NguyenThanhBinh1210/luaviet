@@ -85,20 +85,20 @@ const TuyenDung = () => {
         <div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5'>
           <div>
             <p className=' font-bold text-[28px] md:text-[40px] text-[#013879] md:pr-10'>
-              Khám Phá Nghề Nghiệp Tại Lửa Việt
+              Khám Phá Nghề Nghiệp Tại Hùng Anh
             </p>
             <p className='font-bold text-[28px] text-[#222222] my-4'>Tầm Nhìn Và Văn Hóa</p>
-            <p className='text-[#013879] font-semibold mb-2'>Tầm nhìn của Lửa Việt</p>
+            <p className='text-[#013879] font-semibold mb-2'>Tầm nhìn của Hùng Anh</p>
             <li className='text-[#222222]'>Là sự lựa chọn đầu tiên của KHÁCH HÀNG.</li>
             <li className='text-[#222222]'>Là đối tác đáng tin cậy của NHÀ CUNG CẤP.</li>
             <li className='text-[#222222]'>Là nơi thực hiện ước mơ nghề nghiệp của MỖI CÁ NHÂN.</li>
-            <p className='text-[#013879] font-semibold my-2'>Văn hóa của Lửa Việt</p>
+            <p className='text-[#013879] font-semibold my-2'>Văn hóa của Hùng Anh</p>
             <p className='text-[#222222] '>Chủ động – Học hỏi – Sáng tạo</p>
           </div>
           <img src={img1} alt='img1' />
         </div>
       </Section>
-      <Section title='7 Nguyên Tắc Của Lửa Việt' bg='bg-[#F6F8FA]' className='pb-10'>
+      <Section title='7 Nguyên Tắc Của Hùng Anh' bg='bg-[#F6F8FA]' className='pb-10'>
         <div className='grid grid-cols-2 md:grid-cols-4 gap-2  md:gap-5 justify-center mt-16'>
           {data.map((item, index) => (
             <div key={index} className=' bg-white flex flex-col items-center justify-center px-2 py-3 gap-y-5'>

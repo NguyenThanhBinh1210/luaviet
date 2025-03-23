@@ -670,7 +670,7 @@ const DuLich = () => {
                 châu Âu. <strong className='italic text-[#000080]'>Tour du lịch Châu Âu</strong> sẽ đưa du khách đến
                 những điểm đến biểu tượng nhất như{' '}
                 <strong className='text-[#ff6600]'>Paris hoa lệ, Venice lãng mạn và dãy núi Alps hùng vĩ</strong>,… Hãy
-                cùng Lửa Việt Tours chìm đắm vào những khoảnh khắc đáng nhớ cùng hành trình khám phá châu Âu không thể
+                cùng Hùng Anh Tours chìm đắm vào những khoảnh khắc đáng nhớ cùng hành trình khám phá châu Âu không thể
                 nào quên!
               </div>
             )}
@@ -687,7 +687,7 @@ const DuLich = () => {
             {location?.state?.local === 'Châu Úc' && (
               <div className='mt-2'>
                 <strong className='italic text-[#000080]'>Du lịch châu Úc</strong> tuyệt đẹp và nhận ngay những ưu đặc
-                biệt từ Lửa Việt! Trải nghiệm những kỳ quan thiên nhiên nổi tiếng như{' '}
+                biệt từ Hùng Anh! Trải nghiệm những kỳ quan thiên nhiên nổi tiếng như{' '}
                 <strong className='text-[#ff6600]'>Nhà hát Opera Sydney, khu phố cổ The Rocks, Nhà thờ St. Mary</strong>
                 ,… Cùng với đó là nhiều hoạt động trải nghiệm đầy mới lạ như khám phá nền văn hóa mới, thưởng thức ẩm
                 thực đặc trưng và tham gia vào những hoạt động thú vị tại xứ sở Nam Bán Cầu.
@@ -719,7 +719,7 @@ const DuLich = () => {
 }
 export const getLastSegment = (path: string | null): string => {
   if (!path) return '';
-  
+
   const segments = path.split('/');
   return segments[segments.length - 1] || '';
 }
