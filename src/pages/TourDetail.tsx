@@ -10,6 +10,7 @@ import { useQuery } from 'react-query'
 import chatApi from '~/apis/chat.api'
 import zalo from '~/assets/zalo.svg'
 import whatsapp from '~/assets/whatsapp.svg'
+import '~/styles/index.css';
 interface SocialLink {
   id: string | number
   name: string
