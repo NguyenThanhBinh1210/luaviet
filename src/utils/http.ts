@@ -9,7 +9,7 @@ import {
   setWalletFromLS
 } from './auth'
 import { LoginResponse } from '~/types/auth.type'
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'
 
 function createHttp(): AxiosInstance {
   let accessToken: string | null = getAccessTokenFromLS()
@@ -17,7 +17,8 @@ function createHttp(): AxiosInstance {
   // let refreshTokenRequest: Promise<string> | null = null
 
   const instance = axios.create({
-    baseURL: 'https://be-tour-du-lich.onrender.com/',
+    // baseURL: 'https://be-tour-du-lich.onrender.com/',
+    baseURL: 'http://localhost:4001',
     timeout: 10000,
     headers: {
       'Content-Type': 'application/json'
@@ -45,10 +46,10 @@ function createHttp(): AxiosInstance {
 
         const dataProfile = loginResponse.data.user
         const dataWallet = loginResponse.data.wallets
-        console.log(loginResponse);
+        console.log(loginResponse)
         accessToken = loginResponse.data.accessToken
         refreshToken = loginResponse.data.refreshToken
-        if (loginResponse.status === "success") {
+        if (loginResponse.status === 'success') {
           setProfileFromLS(dataProfile)
           setWalletFromLS(dataWallet)
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from 'react-router-dom'
 import certification1 from '~/assets/certifi1.png'
 import certification2 from '~/assets/certifi2.png'
@@ -6,7 +7,8 @@ import zalo from '~/assets/zalo.svg'
 import whatsapp from '~/assets/whatsapp.svg'
 import { useQuery } from 'react-query'
 import chatApi from '~/apis/chat.api'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
+import categoryApi from '~/apis/category.api'
 
 // Add this interface near the top of the file
 interface SocialLink {
@@ -17,6 +19,7 @@ interface SocialLink {
 
 const SocialFloatingButtons = () => {
   const [socialLinks, setSocialLinks] = useState<SocialLink[]>([])
+
   useQuery({
     queryKey: ['socialLinks'],
     queryFn: async () => {
@@ -29,49 +32,49 @@ const SocialFloatingButtons = () => {
   })
 
   return (
-    <div className="fixed right-4 bottom-20 flex flex-col gap-3 z-50">
+    <div className='fixed right-4 bottom-20 flex flex-col gap-3 z-50'>
       {socialLinks.map((link) => {
-        if (link.name === "Facebook") {
+        if (link.name === 'Facebook') {
           return (
             <a
               key={link.id}
               href={link.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-all"
+              target='_blank'
+              rel='noopener noreferrer'
+              className='bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-all'
             >
-              <div className="w-12 h-12 rounded-full flex items-center justify-center bg-[#1877f2]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="white">
-                  <path d="M12.001 2.002c-5.522 0-9.999 4.477-9.999 9.999 0 4.99 3.656 9.126 8.437 9.879v-6.988h-2.54v-2.891h2.54V9.798c0-2.508 1.493-3.891 3.776-3.891 1.094 0 2.24.195 2.24.195v2.459h-1.264c-1.24 0-1.628.772-1.628 1.563v1.875h2.771l-.443 2.891h-2.328v6.988C18.344 21.129 22 16.992 22 12.001c0-5.522-4.477-9.999-9.999-9.999z" />
+              <div className='w-12 h-12 rounded-full flex items-center justify-center bg-[#1877f2]'>
+                <svg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 24 24' fill='white'>
+                  <path d='M12.001 2.002c-5.522 0-9.999 4.477-9.999 9.999 0 4.99 3.656 9.126 8.437 9.879v-6.988h-2.54v-2.891h2.54V9.798c0-2.508 1.493-3.891 3.776-3.891 1.094 0 2.24.195 2.24.195v2.459h-1.264c-1.24 0-1.628.772-1.628 1.563v1.875h2.771l-.443 2.891h-2.328v6.988C18.344 21.129 22 16.992 22 12.001c0-5.522-4.477-9.999-9.999-9.999z' />
                 </svg>
               </div>
             </a>
           )
-        } else if (link.name === "Zalo") {
+        } else if (link.name === 'Zalo') {
           return (
             <a
               key={link.id}
               href={link.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-all"
+              target='_blank'
+              rel='noopener noreferrer'
+              className='bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-all'
             >
-              <div className="w-12 h-12 rounded-full flex items-center justify-center bg-[#0068ff]">
-                <img src={zalo} alt="Zalo" />
+              <div className='w-12 h-12 rounded-full flex items-center justify-center bg-[#0068ff]'>
+                <img src={zalo} alt='Zalo' />
               </div>
             </a>
           )
-        } else if (link.name === "Whatsapp") {
+        } else if (link.name === 'Whatsapp') {
           return (
             <a
               key={link.id}
               href={link.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-all"
+              target='_blank'
+              rel='noopener noreferrer'
+              className='bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-all'
             >
-              <div className="w-12 h-12 rounded-full flex items-center justify-center">
-                <img src={whatsapp} alt="WhatsApp" />
+              <div className='w-12 h-12 rounded-full flex items-center justify-center'>
+                <img src={whatsapp} alt='WhatsApp' />
               </div>
             </a>
           )
@@ -91,88 +94,93 @@ const SocialFloatingButtons = () => {
         </div>
       </a> */}
     </div>
-  );
-};
+  )
+}
 
 const Footer = () => {
+  const [categories, setCategories] = useState<any>()
+  useQuery({
+    queryKey: ['categories1'],
+    queryFn: async () => {
+      const response = await categoryApi.getCategories()
+      setCategories(response.data.data)
+    }
+  })
+
+  const organizedCategories = useMemo(() => {
+    if (!categories) return []
+
+    const categoryMap: { [key: string]: any } = {}
+    const result: any = []
+
+    categories.forEach((cat: any) => {
+      categoryMap[cat._id] = { ...cat, subCategories: [] }
+    })
+
+    Object.values(categoryMap).forEach((cat: any) => {
+      if (cat.parentId) {
+        const parent = categoryMap[cat.parentId]
+        if (parent) {
+          parent.subCategories.push(cat)
+        }
+      } else {
+        result.push(cat)
+      }
+    })
+
+    return result
+  }, [categories])
   return (
     <div className='bg-[#013879] pt-14 text-white relative'>
       <SocialFloatingButtons />
       <div className='px-4 max-w-[1262px] mx-auto'>
         <div className='md:grid md:grid-cols-12'>
           <div className='col-span-7 flex flex-wrap gap-y-12'>
-            <div className='w-full md:w-[58%] space-y-4'>
-              <div>
-                <p className='font-semibold mb-3'>Du Lịch Nước Ngoài</p>
-                <div className='flex flex-wrap  text-[13px] gap-3'>
-                  <div className='w-1/3 max-w-[104px]'>
-                    <p className='font-semibold mb-2'>Châu Âu</p>
-                    <div className='flex flex-col gap-1'>
-                      <Link to='/du-lich/chau-au/bi'>Bỉ</Link>
-                      <Link to='/du-lich/chau-au/phap'>Pháp</Link>
-                      <Link to='/du-lich/chau-au/duc'>Đức</Link>
-                      <Link to='/du-lich/chau-au/y'>Ý</Link>
-                      <Link to='/du-lich/chau-au/ha-lan'>Hà Lan</Link>
-                    </div>
-                  </div>
-                  <div className='w-1/3 max-w-[104px]'>
-                    <p className='font-semibold mb-2'>Châu Á</p>
-                    <div className='flex flex-col gap-1'>
-                      <Link to='/du-lich/chau-a/nhat-ban'>Nhật Bản</Link>
-                      <Link to='/du-lich/chau-a/trung-quoc'>Trung Quốc</Link>
-                      <Link to='/du-lich/chau-a/han-quoc'>Hàn Quốc</Link>
-                      <Link to='/du-lich/chau-a/dai-loan'>Đài Loan</Link>
-                      <Link to='/du-lich/chau-a/dubai'>Dubai</Link>
-                    </div>
-                  </div>
-                  <div className='w-1/3 max-w-[104px]'>
-                    <p className='font-semibold mb-2'>Châu Úc</p>
-                    <div className='flex flex-col gap-1'>
-                      <Link to='/du-lich/chau-uc/uc'>Úc</Link>
-                    </div>
-                  </div>
-                  <div className='w-1/3 max-w-[104px]'>
-                    <p className='font-semibold mb-2'>Châu Mỹ</p>
-                    <div className='flex flex-col gap-1'>
-                      <Link to='/du-lich/chau-my/hoa-ky'>Hoa Kỳ</Link>
-                      <Link to='/du-lich/chau-my/canada'>Canada</Link>
-                    </div>
-                  </div>
-                  <div className='w-1/3 max-w-[104px]'>
-                    <p className='font-semibold mb-2'>Châu Phi</p>
-                    <div className='flex flex-col gap-1'>
-                      <Link to='/du-lich/chau-phi/ai-cap'>Ai Cập</Link>
-                      <Link to='/du-lich/chau-phi/nam-phi'>Nam Phi</Link>
-                      <Link to='/du-lich/chau-phi/mauritius'>Mauritius</Link>
-                      <Link to='/du-lich/chau-phi/kenya'>Kenya</Link>
-                    </div>
+            <div className='w-full grid md:grid-cols-2 gap-y-4'>
+              {organizedCategories.map((cat: any) => (
+                <div key={cat._id}>
+                  <Link
+                    to={`/du-lich/du-lich-${cat.slug}`}
+                    state={{ title: `Du Lịch ${cat.name}`, type: `du-lich-${cat.slug}` }}
+                    className='font-semibold mb-3 block'
+                  >
+                    {cat.name}
+                  </Link>
+                  <div className='flex flex-wrap  text-[13px] gap-3'>
+                    {cat.subCategories.map((subCat: any) => (
+                      <div className='w-1/3 max-w-[104px]'>
+                        <Link
+                          to={`/du-lich/du-lich-${cat.slug}/${subCat.slug}`}
+                          state={{
+                            title: `Du Lịch ${subCat.name}`,
+                            local: subCat.name,
+                            type: `du-lich-${subCat.slug}`
+                          }}
+                          className='font-semibold mb-2 block'
+                        >
+                          {subCat.name}
+                        </Link>
+                        <div className='flex flex-col gap-1'>
+                          {subCat.subCategories.map((subSubCat: any) => (
+                            <Link
+                              to={`/du-lich/du-lich-${cat.slug}/${subCat.slug}/${subSubCat.slug}`}
+                              state={{
+                                title: `Du lịch ${subCat.name}`,
+                                local: subSubCat.name,
+                                type: `du-lich-${subCat.slug}`
+                              }}
+                            >
+                              {subSubCat.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              </div>
-              <div>
-                <p className='font-semibold mb-3'>Tour cao cấp</p>
-                <div className='flex flex-wrap  text-[13px] gap-3'>
-                  <div className='w-1/3 max-w-[104px]'>
-                    <Link to='/'>Châu Mỹ</Link>
-                  </div>
-                  <div className='w-1/3 max-w-[104px]'>
-                    <Link to='/'>Tour Du thuyền</Link>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
-            <div className='w-full md:w-[42%] space-y-4'>
-              <div>
-                <p className='font-semibold mb-3'>Du Lịch Trong Nước</p>
-                <div className='text-[13px]'>
-                  <div className='flex flex-col gap-1'>
-                    <Link to='/'>Miền Trung</Link>
-                    <Link to='/'>Miền Bắc</Link>
-                    <Link to='/'>Miền Nam</Link>
-                  </div>
-                </div>
-              </div>
-            </div>
+
             <div className='w-full md:w-[58%] space-y-4'>
               <div className='max-w-[360px]'>
                 <p className='font-semibold mb-3'>Liên hệ</p>
