@@ -53,10 +53,10 @@ const Header = () => {
         </Link>
         <div className='flex items-center gap-4 '>
           <div className='hidden lg:flex md:gap-x-3 xl:gap-x-6 2xl:gap-x-10 mr-6 text-sm xl:text-base'>
-            <div className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'>
-              Giới Thiệu
+            <Link to={'/'} className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group block'>
+              Trang chủ
               <div className='absolute bottom-0 left-0 w-0 h-[2px] bg-red-500 group-hover:w-full transition-all duration-300'></div>
-            </div>
+            </Link>
             <div className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group flex items-center gap-x-1'>
               Du Lịch
               <svg
@@ -126,11 +126,11 @@ const Header = () => {
                 </div>
               </div>
             </div>
-            <div className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'>
+            {/* <div className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'>
               Tour Khách Đoàn
               <div className='absolute bottom-0 left-0 w-0 h-[2px] bg-red-500 group-hover:w-full transition-all duration-300'></div>
-            </div>
-            <div className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group flex items-center gap-x-1'>
+            </div> */}
+            {/* <div className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group flex items-center gap-x-1'>
               Đối tác
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -156,26 +156,30 @@ const Header = () => {
                   Thương mại
                 </Link>
               </div>
-            </div>
-            <Link to={'/'} className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'>
-              Tin Tức
+            </div> */}
+            <Link to={'/tin-tuc'} className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'>
+              Tin tức
               <div className='absolute bottom-0 left-0 w-0 h-[2px] bg-red-500 group-hover:w-full transition-all duration-300'></div>
             </Link>
-            <Link
+            {/* <Link
               to={'/'}
               className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'
             >
               Chính Sách & Quy Định
+              <div className='absolute bottom-0 left-0 w-0 h-[2px] bg-red-500 group-hover:w-full transition-all duration-300'></div>
+            </Link> */}
+            <Link to={'/gallery'} className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'>
+              Trưng bày
               <div className='absolute bottom-0 left-0 w-0 h-[2px] bg-red-500 group-hover:w-full transition-all duration-300'></div>
             </Link>
             <Link to={'/lien-he'} className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'>
               Liên Hệ
               <div className='absolute bottom-0 left-0 w-0 h-[2px] bg-red-500 group-hover:w-full transition-all duration-300'></div>
             </Link>
-            <Link to={'/tuyen-dung'} className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'>
+            {/* <Link to={'/tuyen-dung'} className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'>
               Tuyển Dụng
               <div className='absolute bottom-0 left-0 w-0 h-[2px] bg-red-500 group-hover:w-full transition-all duration-300'></div>
-            </Link>
+            </Link> */}
           </div>
           <ChangeLanguage />
           <SearchButton />
