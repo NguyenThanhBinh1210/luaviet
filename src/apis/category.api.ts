@@ -2,8 +2,8 @@ import http from '~/utils/http'
 import { Category, CategoryCreate, CategoryUpdate } from '~/types/category.type'
 
 const categoryApi = {
-  getCategories() {
-    return http.get('/categories')
+  getCategories(params?: { languageCode?: string }) {
+    return http.get<any>('/categories', { params })
   },
 
   getCategory(id: string) {

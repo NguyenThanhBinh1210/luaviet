@@ -1,0 +1,123 @@
+{
+  "home": {
+    "featuredTours": "旅行杰出",
+    "favoriteDestinations": "最喜欢的目的地"
+  },
+  "destinations": {
+    "europe": "欧洲",
+    "australia": "澳大利亚",
+    "korea": "韩国",
+    "japan": "日本",
+    "asia": "亚洲"
+  },
+  "travel": {
+    "title": "旅游",
+    "allTours": "所有旅行",
+    "filter": "筛选",
+    "noResults": "没有合适的搜索结果。",
+    "filterOptions": {
+      "destination": "目的地",
+      "price": "旅游价格",
+      "duration": "时间"
+    },
+    "descriptions": {
+      "europe": {
+        "title": "欧洲旅游业",
+        "content": "随着悬挂式安赫（Anh），发现了法国，意大利，德国，西班牙，瑞士等伟大的目的地...体验著名的建筑作品，多样化的美食和丰富的旧大陆文化。"
+      },
+      "asia": {
+        "title": "亚洲旅游",
+        "content": "沿着悬挂的安赫（Anh），发现了日本，韩国，台湾，中国等伟大的目的地...亚洲巡回演出承诺将带来难忘的回忆。"
+      },
+      "australia": {
+        "title": "澳大利亚旅游业",
+        "content": "令人惊叹并从Hang Anh获得特殊优势！体验著名的自然奇观，例如悉尼歌剧院，岩石旧区，圣教堂。玛丽，...以及许多新的经验活动，例如探索新文化，享受典型的美食并参加南半球的有趣活动。"
+      }
+    }
+  },
+  "tourDetail": {
+    "breadcrumbs": {
+      "travel": "旅游"
+    },
+    "sections": {
+      "overview": "概述",
+      "description": "描述",
+      "itinerary": "日程",
+      "included": "服务包括",
+      "excluded": "服务不包括",
+      "notes": "笔记"
+    },
+    "details": {
+      "duration": "时间",
+      "destination": "目的地",
+      "tourGuide": "导游",
+      "accommodation": "住宿"
+    },
+    "booking": {
+      "title": "图书之旅",
+      "price": "旅游价格",
+      "departureDate": "出发日期",
+      "returnDate": "日常的",
+      "availableSeats": "地点数量",
+      "bookNow": "设置"
+    }
+  },
+  "tour": {
+    "labels": {
+      "new": "新的",
+      "promotion": "晋升"
+    },
+    "types": {
+      "budget": "节省",
+      "standard": "标准",
+      "luxury": "高级"
+    },
+    "info": {
+      "departurePlace": "起跑门",
+      "airline": "航空公司",
+      "departureDate": "每日旅行",
+      "optional": "选修的",
+      "contact": "接触",
+      "contactNow": "立即联系"
+    }
+  },
+  "news": {
+    "title": "消息",
+    "latestNews": "最新消息",
+    "readMore": "查看更多",
+    "detail": {
+      "relatedNews": "相关新闻"
+    }
+  },
+  "header": {
+    "home": "家",
+    "travel": "旅游",
+    "news": "消息",
+    "contact": "接触",
+    "display": "显示",
+    "selectLanguage": "选择语言"
+  },
+  "contact": {
+    "title": "接触",
+    "description": "如果您有任何请求或问题，请随时与我们联系",
+    "mainOffice": "主办公室",
+    "mainOfficeAddress": "677 Tran Hung Dao，第1区第1区，TP。 HCM",
+    "hanoiOffice": "河内办公室",
+    "hanoiOfficeAddress": "第22号，Mai Anh Tuan，O Cho Dua Ward，Dong Da District，TP。河内",
+    "canthoOffice": "可以分支",
+    "canthoOfficeAddress": "No.09 Cach Mang Thang Tam，Thoi Binh Ward，Ninh Kieu区，TP。可以",
+    "form": {
+      "title": "接触表格",
+      "fullName": "姓名",
+      "enterFullName": "输入全名",
+      "address": "地址",
+      "enterAddress": "输入地址",
+      "email": "电子邮件",
+      "enterEmail": "输入电子邮件",
+      "phone": "电话号码",
+      "enterPhone": "输入电话号码",
+      "content": "联系内容",
+      "submit": "确认"
+    }
+  }
+}

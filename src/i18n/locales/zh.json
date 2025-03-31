@@ -1,0 +1,99 @@
+{
+  "home": {
+    "featuredTours": "精选旅游",
+    "favoriteDestinations": "热门目的地"
+  },
+  "destinations": {
+    "europe": "欧洲",
+    "australia": "澳洲",
+    "korea": "韩国",
+    "japan": "日本",
+    "asia": "亚洲"
+  },
+  "travel": {
+    "title": "旅游",
+    "allTours": "所有旅游",
+    "filter": "筛选",
+    "noResults": "没有找到符合条件的结果。",
+    "filterOptions": {
+      "destination": "目的地",
+      "price": "价格",
+      "duration": "时间"
+    },
+    "descriptions": {
+      "europe": {
+        "title": "欧洲旅游",
+        "content": "与Hung Anh一起探索法国、意大利、德国、西班牙、瑞士等精彩目的地。体验著名的建筑、多样的美食和丰富的文化。"
+      },
+      "asia": {
+        "title": "亚洲旅游",
+        "content": "与Hung Anh一起探索日本、韩国、台湾、中国等精彩目的地。亚洲旅游团将为游客带来难忘的回忆。"
+      },
+      "australia": {
+        "title": "澳洲旅游",
+        "content": "与Hung Anh一起探索美丽的澳洲！体验悉尼歌剧院、岩石区、圣玛丽大教堂等著名景点。同时还有探索新文化、品尝特色美食和参与南半球有趣活动的全新体验。"
+      }
+    }
+  },
+  "tourDetail": {
+    "breadcrumbs": {
+      "travel": "旅游"
+    },
+    "sections": {
+      "overview": "概览",
+      "description": "描述",
+      "itinerary": "行程",
+      "included": "包含服务",
+      "excluded": "不包含服务",
+      "notes": "注意事项"
+    },
+    "details": {
+      "duration": "时间",
+      "destination": "目的地",
+      "tourGuide": "导游",
+      "accommodation": "住宿"
+    },
+    "booking": {
+      "title": "预订",
+      "price": "价格",
+      "departureDate": "出发日期",
+      "returnDate": "返回日期",
+      "availableSeats": "可用座位",
+      "bookNow": "立即预订"
+    }
+  },
+  "tour": {
+    "labels": {
+      "new": "新品",
+      "promotion": "促销"
+    },
+    "types": {
+      "budget": "经济",
+      "standard": "标准",
+      "luxury": "豪华"
+    },
+    "info": {
+      "departurePlace": "出发地",
+      "airline": "航空公司",
+      "departureDate": "出发日期",
+      "optional": "可选",
+      "contact": "联系我们",
+      "contactNow": "立即联系"
+    }
+  },
+  "news": {
+    "title": "新闻",
+    "latestNews": "最新消息",
+    "readMore": "查看更多",
+    "detail": {
+      "relatedNews": "相关新闻"
+    }
+  },
+  "header": {
+    "home": "首页",
+    "travel": "旅游",
+    "news": "新闻",
+    "contact": "联系我们",
+    "selectLanguage": "选择语言"
+  }
+} 

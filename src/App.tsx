@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import ScrollToTop from './components/scrollTop/scrollTop'
 import useRouteElements from './routes/useRouteElements'
+import ChangeLanguage from './components/ChangeLanguage'
 
 const App = () => {
   useEffect(() => {
@@ -17,6 +18,7 @@ const App = () => {
   return (
     <>
       <ScrollToTop />
+      <ChangeLanguage />
       {routeElements}
     </>
   )

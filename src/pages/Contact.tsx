@@ -1,9 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from 'react-router-dom'
 import Button from '~/components/Button'
 import Container from '~/components/Container'
 import Section from '~/components/Section'
+import { useTranslation } from 'react-i18next'
 
 const Contact = () => {
+  const { t } = useTranslation()
+  
   return (
     <div>
       <Container>
@@ -35,20 +39,20 @@ const Contact = () => {
             <path strokeLinecap='round' strokeLinejoin='round' d='m8.25 4.5 7.5 7.5-7.5 7.5' />
           </svg>
           <Link to='/lien-he' className='text-[13px]'>
-            Liên hệ
+            {t('contact.title')}
           </Link>
         </div>
       </Container>
       <Section>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5'>
           <div>
-            <p className=' font-bold text-[28px] md:text-[40px] text-[#013879] md:pr-10'>Liên Hệ</p>
+            <p className=' font-bold text-[28px] md:text-[40px] text-[#013879] md:pr-10'>{t('contact.title')}</p>
 
             <div className='text-[#222222] mt-4'>
-              Nếu bạn có bất kỳ yêu cầu hoặc thắc mắc nào, đừng ngần ngại, hãy liên hệ với chúng tôi
+              {t('contact.description')}
             </div>
             <div className='text-[#222222] font-bold text-xl md:text-[24px] my-8 border-l-4 border-red-500 pl-5'>
-              Văn Phòng Chính
+              {t('contact.mainOffice')}
             </div>
             <div className='text-[#222222] space-y-2 ml-4'>
               <p className='flex items-center gap-2'>
@@ -67,7 +71,7 @@ const Contact = () => {
                     d='M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z'
                   />
                 </svg>
-                677 Trần Hưng Đạo, Phường 1, Quận 5, TP. HCM
+                {t('contact.mainOfficeAddress')}
               </p>
 
               <div className='flex items-center gap-2'>
@@ -106,7 +110,7 @@ const Contact = () => {
               </div>
             </div>
             <div className='text-[#222222] font-bold text-xl md:text-[24px] my-8 border-l-4 border-red-500 pl-5'>
-              Văn Phòng Hà Nội
+              {t('contact.hanoiOffice')}
             </div>
             <div className='text-[#222222] space-y-2 ml-4'>
               <p className='flex items-center gap-2'>
@@ -125,7 +129,7 @@ const Contact = () => {
                     d='M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z'
                   />
                 </svg>
-                Số 22, Mai Anh Tuấn, Phường Ô Chợ Dừa, Quận Đống Đa, TP. Hà Nội
+                {t('contact.hanoiOfficeAddress')}
               </p>
 
               <div className='flex items-center gap-2'>
@@ -143,7 +147,7 @@ const Contact = () => {
                     d='M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z'
                   />
                 </svg>
-                1900 6420
+                0906 801 855
               </div>
               <div className='flex items-center gap-2'>
                 <svg
@@ -164,7 +168,7 @@ const Contact = () => {
               </div>
             </div>
             <div className='text-[#222222] font-bold text-xl md:text-[24px] my-8 border-l-4 border-red-500 pl-5'>
-              Chi Nhánh Cần Thơ
+              {t('contact.canthoOffice')}
             </div>
             <div className='text-[#222222] space-y-2 ml-4'>
               <p className='flex items-center gap-2'>
@@ -183,7 +187,7 @@ const Contact = () => {
                     d='M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z'
                   />
                 </svg>
-                Số 09 Cách Mạng Tháng Tám, Phường Thới Bình, Quận Ninh Kiều, TP. Cần Thơ
+                {t('contact.canthoOfficeAddress')}
               </p>
 
               <div className='flex items-center gap-2'>
@@ -229,54 +233,59 @@ const Contact = () => {
           ></iframe>
         </div>
       </Section>
-      <Section title='Form Liên hệ' bg='bg-[#F6F8FA]'>
+      <Section title={t('contact.form.title')} bg='bg-[#F6F8FA]'>
         <form className='mt-[30px] md:mt-[100px] max-w-[815px] mx-auto space-y-6'>
           <div className='md:flex md:items-center'>
             <label className='text-sm md:text-lg font-bold text-[#222222]  md:w-[210px]' htmlFor='name'>
-              Họ và tên <span className='text-[#FF0000]'>*</span>
+              {t('contact.form.fullName')} <span className='text-[#FF0000]'>*</span>
             </label>
             <input
               className='p-[18px] bg-white w-full mt-1.5 md:mt-0'
               type='text'
               id='name'
-              placeholder='Nhập họ và tên'
+              placeholder={t('contact.form.enterFullName')}
             />
           </div>
           <div className='md:flex md:items-center'>
-            <label className='text-sm md:text-lg font-bold text-[#222222]  md:w-[210px]' htmlFor='name'>
-              Địa chỉ <span className='text-[#FF0000]'>*</span>
+            <label className='text-sm md:text-lg font-bold text-[#222222]  md:w-[210px]' htmlFor='address'>
+              {t('contact.form.address')} <span className='text-[#FF0000]'>*</span>
             </label>
             <input
               className='p-[18px] bg-white w-full mt-1.5 md:mt-0'
               type='text'
-              id='name'
-              placeholder='Nhập địa chỉ'
+              id='address'
+              placeholder={t('contact.form.enterAddress')}
             />
           </div>
           <div className='md:flex md:items-center'>
-            <label className='text-sm md:text-lg font-bold text-[#222222]  md:w-[210px]' htmlFor='name'>
-              Email <span className='text-[#FF0000]'>*</span>
+            <label className='text-sm md:text-lg font-bold text-[#222222]  md:w-[210px]' htmlFor='email'>
+              {t('contact.form.email')} <span className='text-[#FF0000]'>*</span>
             </label>
-            <input className='p-[18px] bg-white w-full mt-1.5 md:mt-0' type='text' id='name' placeholder='Nhập email' />
+            <input 
+              className='p-[18px] bg-white w-full mt-1.5 md:mt-0' 
+              type='email' 
+              id='email' 
+              placeholder={t('contact.form.enterEmail')} 
+            />
           </div>
           <div className='md:flex md:items-center'>
-            <label className='text-sm md:text-lg font-bold text-[#222222]  md:w-[210px]' htmlFor='name'>
-              Số điện thoại <span className='text-[#FF0000]'>*</span>
+            <label className='text-sm md:text-lg font-bold text-[#222222]  md:w-[210px]' htmlFor='phone'>
+              {t('contact.form.phone')} <span className='text-[#FF0000]'>*</span>
             </label>
             <input
               className='p-[18px] bg-white w-full mt-1.5 md:mt-0'
               type='text'
-              id='name'
-              placeholder='Nhập Số điện thoại'
+              id='phone'
+              placeholder={t('contact.form.enterPhone')}
             />
           </div>
           <div className='md:flex '>
-            <label className='text-sm md:text-lg font-bold text-[#222222]  md:w-[210px]' htmlFor='name'>
-              Nội dung liên hệ <span className='text-[#FF0000]'>*</span>
+            <label className='text-sm md:text-lg font-bold text-[#222222]  md:w-[210px]' htmlFor='content'>
+              {t('contact.form.content')} <span className='text-[#FF0000]'>*</span>
             </label>
-            <textarea rows={5} className='p-[18px] bg-white w-full mt-1.5 md:mt-0' id='name' placeholder='' />
+            <textarea rows={5} className='p-[18px] bg-white w-full mt-1.5 md:mt-0' id='content' placeholder='' />
           </div>
-          <Button className='py-4 mx-auto mt-10'>Xác nhận</Button>
+          <Button className='py-4 mx-auto mt-10'>{t('contact.form.submit')}</Button>
         </form>
       </Section>
     </div>

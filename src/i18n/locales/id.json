@@ -1,0 +1,99 @@
+{
+  "home": {
+    "featuredTours": "Tur Unggulan",
+    "favoriteDestinations": "Destinasi Favorit"
+  },
+  "destinations": {
+    "europe": "Eropa",
+    "australia": "Australia",
+    "korea": "Korea Selatan",
+    "japan": "Jepang",
+    "asia": "Asia"
+  },
+  "travel": {
+    "title": "Perjalanan",
+    "allTours": "Semua Tur",
+    "filter": "Filter",
+    "noResults": "Tidak ada hasil pencarian yang sesuai.",
+    "filterOptions": {
+      "destination": "Destinasi",
+      "price": "Harga Tur",
+      "duration": "Durasi"
+    },
+    "descriptions": {
+      "europe": {
+        "title": "Wisata Eropa",
+        "content": "bersama Hung Anh dan jelajahi destinasi menakjubkan seperti Prancis, Italia, Jerman, Spanyol, Swiss... Nikmati arsitektur terkenal, kuliner beragam, dan budaya kaya benua tua."
+      },
+      "asia": {
+        "title": "Wisata Asia",
+        "content": "bersama Hung Anh dan jelajahi destinasi menakjubkan seperti Jepang, Korea Selatan, Taiwan, Tiongkok... Paket tur Asia menjanjikan kenangan tak terlupakan bagi wisatawan."
+      },
+      "australia": {
+        "title": "Wisata Australia",
+        "content": "yang indah dan dapatkan penawaran spesial dari Hung Anh! Nikmati keajaiban alam terkenal seperti Sydney Opera House, The Rocks, St. Mary's Cathedral... Serta berbagai pengalaman baru seperti menjelajahi budaya baru, mencicipi kuliner khas, dan berpartisipasi dalam kegiatan menarik di belahan bumi selatan."
+      }
+    }
+  },
+  "tourDetail": {
+    "breadcrumbs": {
+      "travel": "Perjalanan"
+    },
+    "sections": {
+      "overview": "Ikhtisar",
+      "description": "Deskripsi",
+      "itinerary": "Jadwal Perjalanan",
+      "included": "Layanan Termasuk",
+      "excluded": "Layanan Tidak Termasuk",
+      "notes": "Catatan"
+    },
+    "details": {
+      "duration": "Durasi",
+      "destination": "Destinasi",
+      "tourGuide": "Pemandu Wisata",
+      "accommodation": "Akomodasi"
+    },
+    "booking": {
+      "title": "Pemesanan",
+      "price": "Harga",
+      "departureDate": "Tanggal Keberangkatan",
+      "returnDate": "Tanggal Kembali",
+      "availableSeats": "Kursi Tersedia",
+      "bookNow": "Pesan Sekarang"
+    }
+  },
+  "tour": {
+    "labels": {
+      "new": "Baru",
+      "promotion": "Promosi"
+    },
+    "types": {
+      "budget": "Ekonomis",
+      "standard": "Standar",
+      "luxury": "Mewah"
+    },
+    "info": {
+      "departurePlace": "Tempat Keberangkatan",
+      "airline": "Maskapai",
+      "departureDate": "Tanggal Keberangkatan",
+      "optional": "Opsional",
+      "contact": "Hubungi",
+      "contactNow": "Hubungi Sekarang"
+    }
+  },
+  "news": {
+    "title": "Berita",
+    "latestNews": "Berita Terbaru",
+    "readMore": "Lihat Selengkapnya",
+    "detail": {
+      "relatedNews": "Berita Terkait"
+    }
+  },
+  "header": {
+    "home": "Beranda",
+    "travel": "Perjalanan",
+    "news": "Berita",
+    "contact": "Kontak",
+    "selectLanguage": "Pilih Bahasa"
+  }
+} 

@@ -15,11 +15,29 @@ import TourLink from '~/components/TourLink'
 import { useState, useEffect } from 'react'
 import { tourApi } from '~/apis/tour.api'
 import { useQuery } from 'react-query'
+import { imageApi } from '~/apis/image.api'
+import { useTranslation } from 'react-i18next'
 
 const Home = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [tours, setTours] = useState<any>()
-  console.log(tours);
+  const { t } = useTranslation()
+  const { data: imageData } = useQuery({
+    queryKey: ['images', 'home'],
+    queryFn: () => imageApi.getImages({ pageSlug: 'home' })
+  })
+  console.log(imageData);
+  // Helper function to get image URL by filename
+  const getImageUrl = (filename: string, fallbackImage: string) => {
+    if (!imageData?.data?.data) return fallbackImage;
+
+    const foundImage = imageData.data.data.find(
+      (img) => img.filename === filename
+    );
+
+    return foundImage?.url || fallbackImage;
+  };
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % 3)
@@ -27,11 +45,14 @@ const Home = () => {
 
     return () => clearInterval(interval)
   }, [])
+  const currentLanguage = localStorage.getItem('app_language') || 'vi'
   useQuery({
-    queryKey: ['tour-all'],
+    queryKey: ['tour-all', currentLanguage],
     queryFn: async () => {
-      const response = await tourApi.getTours()
-      const data = response.data.data.filter((item: any) => item.isPopular === true)
+      const response = await tourApi.getTours({
+        languageCode: currentLanguage
+      })
+      const data = response.data.data.data.filter((item: any) => item.isPopular === true)
       setTours(data)
     }
   })
@@ -40,26 +61,32 @@ const Home = () => {
       <div>
         {currentImageIndex === 0 && (
           <>
-            <img src={banner1} alt='banner' className='fade-in  object-cover hidden lg:block' />
-            <img src={banner11} alt='banner' className='fade-in  object-cover lg:hidden' />
+            <img src={getImageUrl('banner-website-han-quoc-pc', banner1)}
+              alt='banner' className='fade-in object-cover hidden lg:block' />
+            <img src={getImageUrl('banner-website-han-quoc-sp-1024x573', banner11)}
+              alt='banner' className='fade-in object-cover lg:hidden' />
           </>
         )}
         {currentImageIndex === 1 && (
           <>
-            <img src={banner2} alt='banner' className='fade-in  object-cover hidden lg:block' />
-            <img src={banner22} alt='banner' className='fade-in  object-cover lg:hidden' />
+            <img src={getImageUrl('banner-website-dai-loan-pc', banner2)}
+              alt='banner' className='fade-in object-cover hidden lg:block' />
+            <img src={getImageUrl('banner-website-dai-loan-sp-1024x573', banner22)}
+              alt='banner' className='fade-in object-cover lg:hidden' />
           </>
         )}
         {currentImageIndex === 2 && (
           <>
-            <img src={banner3} alt='banner' className='fade-in  object-cover hidden lg:block' />
-            <img src={banner33} alt='banner' className='fade-in  object-cover lg:hidden' />
+            <img src={getImageUrl('banner-website-chau-au-pc', banner3)}
+              alt='banner' className='fade-in object-cover hidden lg:block' />
+            <img src={getImageUrl('banner-website-chau-au-sp-1024x573', banner33)}
+              alt='banner' className='fade-in object-cover lg:hidden' />
           </>
         )}
       </div>
       <section className='pt-20'>
         <div className='px-4 max-w-[1262px] mx-auto'>
-          <h2 className='text-[28px] md:text-[40px] font-bold text-[#013879] text-center'>Tour Nổi Bật</h2>
+          <h2 className='text-[28px] md:text-[40px] font-bold text-[#013879] text-center'>{t('home.featuredTours')}</h2>
           <div className='grid grid-cols-2 md:grid-cols-3 gap-y-[33px] md:gap-y-[65px] gap-4 mt-8'>
             {tours?.map((item: any, index: number) => (
               <TourLink
@@ -75,7 +102,7 @@ const Home = () => {
       </section>
       <section className='py-20'>
         <div className='px-4 max-w-[1262px] mx-auto'>
-          <h2 className='text-[28px] md:text-[40px] font-bold text-[#013879] text-center'>Điểm Đến Yêu Thích</h2>
+          <h2 className='text-[28px] md:text-[40px] font-bold text-[#013879] text-center'>{t('home.favoriteDestinations')}</h2>
           <div className='my-12'>
             <div className='grid grid-cols-2 md:grid-cols-4 md:grid-rows-2 gap-2 md:gap-4'>
               <Link to={'/du-lich/du-lich-nuoc-ngoai/chau-au'} className='col-span-2 row-span-2 relative  group 1'>
@@ -86,7 +113,7 @@ const Home = () => {
                 />
                 <div className='group-hover:opacity-100 opacity-0 transition-all duration-300 absolute top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center'></div>
                 <p className='text-[26px] group-hover:text-[40px] group-hover:bottom-1/2 group-hover:left-1/2 group-hover:-translate-x-1/2 group-hover:translate-y-1/2 transition-all duration-300 absolute bottom-4 left-4 text-white text-center '>
-                  Châu Âu
+                  {t('destinations.europe')}
                 </p>
               </Link>
               <Link to={'/du-lich/du-lich-nuoc-ngoai/chau-uc'} className=' relative  group 2'>
@@ -97,7 +124,7 @@ const Home = () => {
                 />
                 <div className='group-hover:opacity-100 opacity-0 transition-all duration-300 absolute top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center'></div>
                 <p className='text-[20px] group-hover:text-[30px] group-hover:bottom-1/2 group-hover:left-1/2 group-hover:-translate-x-1/2 group-hover:translate-y-1/2 transition-all duration-300 absolute bottom-4 left-4 text-white text-center '>
-                  Châu Úc
+                  {t('destinations.australia')}
                 </p>
               </Link>
               <Link to={'/du-lich/du-lich-nuoc-ngoai/chau-a/han-quoc'} className=' relative  group 3'>
@@ -108,7 +135,7 @@ const Home = () => {
                 />
                 <div className='group-hover:opacity-100 opacity-0 transition-all duration-300 absolute top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center'></div>
                 <p className='text-[20px] group-hover:text-[30px] group-hover:bottom-1/2 group-hover:left-1/2 group-hover:-translate-x-1/2 group-hover:translate-y-1/2 transition-all duration-300 absolute bottom-4 left-4 text-white text-center '>
-                  Hàn Quốc
+                  {t('destinations.korea')}
                 </p>
               </Link>
               <Link to={'/du-lich/du-lich-nuoc-ngoai/chau-a/nhat-ban'} className='col-span-2  relative  group 4'>
@@ -119,7 +146,7 @@ const Home = () => {
                 />
                 <div className='group-hover:opacity-100 opacity-0 transition-all duration-300 absolute top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center'></div>
                 <p className='text-[20px] group-hover:text-[30px] group-hover:bottom-1/2 group-hover:left-1/2 group-hover:-translate-x-1/2 group-hover:translate-y-1/2 transition-all duration-300 absolute bottom-4 left-4 text-white text-center '>
-                  Nhật Bản
+                  {t('destinations.japan')}
                 </p>
               </Link>
             </div>

@@ -1,0 +1,123 @@
+{
+  "home": {
+    "featuredTours": "Tur Luar Biasa",
+    "favoriteDestinations": "Tujuan favorit"
+  },
+  "destinations": {
+    "europe": "Eropa",
+    "australia": "Australia",
+    "korea": "Korea",
+    "japan": "Jepang",
+    "asia": "Asia"
+  },
+  "travel": {
+    "title": "Pariwisata",
+    "allTours": "Semua tur",
+    "filter": "Menyaring",
+    "noResults": "Tidak ada hasil pencarian yang cocok.",
+    "filterOptions": {
+      "destination": "Tujuan",
+      "price": "Harga Tur",
+      "duration": "Waktu"
+    },
+    "descriptions": {
+      "europe": {
+        "title": "Pariwisata Eropa",
+        "content": "Dengan Hung Anh dan menemukan tujuan besar seperti Prancis, Italia, Jerman, Spanyol, Swiss ... mengalami karya -karya arsitektur yang terkenal, beragam masakan dan budaya kaya benua lama."
+      },
+      "asia": {
+        "title": "Pariwisata Asia",
+        "content": "Sepanjang Hung Anh dan temukan tujuan besar seperti Jepang, Korea, Taiwan, Cina, ... Tur Asia berjanji untuk membawa pengunjung kenangan yang tak terlupakan."
+      },
+      "australia": {
+        "title": "Pariwisata Australia",
+        "content": "Menakjubkan dan menerima keuntungan khusus dari Hung Anh! Mengalami keajaiban alam yang terkenal seperti Sydney Opera House, The Rocks Old Quarter, St. Church. Mary, ... bersama dengan banyak kegiatan pengalaman baru seperti menjelajahi budaya baru, menikmati masakan khas dan berpartisipasi dalam kegiatan menarik di belahan bumi selatan."
+      }
+    }
+  },
+  "tourDetail": {
+    "breadcrumbs": {
+      "travel": "Pariwisata"
+    },
+    "sections": {
+      "overview": "Ringkasan",
+      "description": "Menggambarkan",
+      "itinerary": "Jadwal",
+      "included": "Layanan termasuk",
+      "excluded": "Layanan tidak termasuk",
+      "notes": "Catatan"
+    },
+    "details": {
+      "duration": "Waktu",
+      "destination": "Tujuan",
+      "tourGuide": "pemandu wisata",
+      "accommodation": "Akomodasi"
+    },
+    "booking": {
+      "title": "Tur buku",
+      "price": "Harga Tur",
+      "departureDate": "Tanggal keberangkatan",
+      "returnDate": "Sehari-hari",
+      "availableSeats": "Jumlah tempat",
+      "bookNow": "Mendirikan"
+    }
+  },
+  "tour": {
+    "labels": {
+      "new": "Baru",
+      "promotion": "Promosi"
+    },
+    "types": {
+      "budget": "Menyimpan",
+      "standard": "Standar",
+      "luxury": "Kelas atas"
+    },
+    "info": {
+      "departurePlace": "Gerbang awal",
+      "airline": "Perusahaan penerbangan",
+      "departureDate": "Perjalanan harian",
+      "optional": "Opsional",
+      "contact": "Kontak",
+      "contactNow": "Hubungi sekarang"
+    }
+  },
+  "news": {
+    "title": "Berita",
+    "latestNews": "Berita terbaru",
+    "readMore": "Lihat lebih banyak",
+    "detail": {
+      "relatedNews": "Berita terkait"
+    }
+  },
+  "header": {
+    "home": "Rumah",
+    "travel": "Pariwisata",
+    "news": "Berita",
+    "contact": "Kontak",
+    "display": "Tampilkan",
+    "selectLanguage": "Pilih bahasa"
+  },
+  "contact": {
+    "title": "Kontak",
+    "description": "Jika Anda memiliki permintaan atau pertanyaan, jangan ragu, silakan hubungi kami",
+    "mainOffice": "Kantor utama",
+    "mainOfficeAddress": "677 Tran Hung Dao, Bangsal 1, Distrik 5, tp. HCM",
+    "hanoiOffice": "Kantor Hanoi",
+    "hanoiOfficeAddress": "No. 22, Mai Anh Tuan, O Cho Dua Ward, Distrik Dong Da, Tp. Hanoi",
+    "canthoOffice": "Bisakah cabang",
+    "canthoOfficeAddress": "09 Cach Mang Thang Tam, Thoi Binh Ward, Distrik Ninh Kieu, Tp. Bisa tho",
+    "form": {
+      "title": "Formulir Kontak",
+      "fullName": "Nama lengkap",
+      "enterFullName": "Masukkan nama lengkapnya",
+      "address": "Alamat",
+      "enterAddress": "Masukkan alamatnya",
+      "email": "E-mail",
+      "enterEmail": "Masukkan email",
+      "phone": "Nomor telepon",
+      "enterPhone": "Masukkan nomor telepon",
+      "content": "Konten kontak",
+      "submit": "Mengonfirmasi"
+    }
+  }
+}

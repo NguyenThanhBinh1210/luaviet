@@ -1,0 +1,123 @@
+{
+  "home": {
+    "featuredTours": "Tour Nổi Bật",
+    "favoriteDestinations": "Điểm Đến Yêu Thích"
+  },
+  "destinations": {
+    "europe": "Châu Âu",
+    "australia": "Châu Úc",
+    "korea": "Hàn Quốc",
+    "japan": "Nhật Bản",
+    "asia": "Châu Á"
+  },
+  "travel": {
+    "title": "Du Lịch",
+    "allTours": "Tất Cả Tour",
+    "filter": "Bộ Lọc",
+    "noResults": "Không có kết quả tìm kiếm phù hợp.",
+    "filterOptions": {
+      "destination": "Điểm Đến",
+      "price": "Giá Tour",
+      "duration": "Thời Gian"
+    },
+    "descriptions": {
+      "europe": {
+        "title": "Du lịch châu Âu",
+        "content": "với Hùng Anh và khám phá những điểm đến tuyệt vời như Pháp, Ý, Đức, Tây Ban Nha, Thụy Sĩ... Trải nghiệm những công trình kiến trúc nổi tiếng, nền ẩm thực đa dạng và nền văn hóa phong phú của lục địa già."
+      },
+      "asia": {
+        "title": "Du lịch châu Á",
+        "content": "cùng Hùng Anh và khám phá những điểm đến tuyệt vời như Nhật Bản, Hàn Quốc, Đài Loan, Trung Quốc,… Chùm tour du lịch Châu Á hứa hẹn sẽ mang đến cho du khách những kỉ niệm khó quên."
+      },
+      "australia": {
+        "title": "Du lịch châu Úc",
+        "content": "tuyệt đẹp và nhận ngay những ưu đặc biệt từ Hùng Anh! Trải nghiệm những kỳ quan thiên nhiên nổi tiếng như Nhà hát Opera Sydney, khu phố cổ The Rocks, Nhà thờ St. Mary,… Cùng với đó là nhiều hoạt động trải nghiệm đầy mới lạ như khám phá nền văn hóa mới, thưởng thức ẩm thực đặc trưng và tham gia vào những hoạt động thú vị tại xứ sở Nam Bán Cầu."
+      }
+    }
+  },
+  "tourDetail": {
+    "breadcrumbs": {
+      "travel": "Du Lịch"
+    },
+    "sections": {
+      "overview": "Tổng Quan",
+      "description": "Mô Tả",
+      "itinerary": "Lịch Trình",
+      "included": "Dịch Vụ Bao Gồm",
+      "excluded": "Dịch Vụ Không Bao Gồm",
+      "notes": "Lưu Ý"
+    },
+    "details": {
+      "duration": "Thời Gian",
+      "destination": "Điểm Đến",
+      "tourGuide": "Hướng Dẫn Viên",
+      "accommodation": "Chỗ Ở"
+    },
+    "booking": {
+      "title": "Đặt Tour",
+      "price": "Giá Tour",
+      "departureDate": "Ngày Khởi Hành",
+      "returnDate": "Ngày Về",
+      "availableSeats": "Số Chỗ Còn",
+      "bookNow": "Đặt Ngay"
+    }
+  },
+  "tour": {
+    "labels": {
+      "new": "Mới",
+      "promotion": "Khuyến mãi"
+    },
+    "types": {
+      "budget": "Tiết kiệm",
+      "standard": "Tiêu chuẩn",
+      "luxury": "Cao cấp"
+    },
+    "info": {
+      "departurePlace": "Nơi khởi hành",
+      "airline": "Hãng bay",
+      "departureDate": "Ngày đi",
+      "optional": "Tuỳ chọn",
+      "contact": "Liên hệ",
+      "contactNow": "Liên hệ ngay"
+    }
+  },
+  "news": {
+    "title": "Tin Tức",
+    "latestNews": "Tin Tức Mới Nhất",
+    "readMore": "Xem Thêm",
+    "detail": {
+      "relatedNews": "Tin Tức Liên Quan"
+    }
+  },
+  "header": {
+    "home": "Trang Chủ",
+    "travel": "Du Lịch",
+    "news": "Tin Tức",
+    "contact": "Liên Hệ",
+    "display": "Hiển Thị",
+    "selectLanguage": "Chọn Ngôn Ngữ"
+  },
+  "contact": {
+    "title": "Liên Hệ",
+    "description": "Nếu bạn có bất kỳ yêu cầu hoặc thắc mắc nào, đừng ngần ngại, hãy liên hệ với chúng tôi",
+    "mainOffice": "Văn Phòng Chính",
+    "mainOfficeAddress": "677 Trần Hưng Đạo, Phường 1, Quận 5, TP. HCM",
+    "hanoiOffice": "Văn Phòng Hà Nội",
+    "hanoiOfficeAddress": "Số 22, Mai Anh Tuấn, Phường Ô Chợ Dừa, Quận Đống Đa, TP. Hà Nội",
+    "canthoOffice": "Chi Nhánh Cần Thơ",
+    "canthoOfficeAddress": "Số 09 Cách Mạng Tháng Tám, Phường Thới Bình, Quận Ninh Kiều, TP. Cần Thơ",
+    "form": {
+      "title": "Form Liên hệ",
+      "fullName": "Họ và tên",
+      "enterFullName": "Nhập họ và tên",
+      "address": "Địa chỉ",
+      "enterAddress": "Nhập địa chỉ",
+      "email": "Email",
+      "enterEmail": "Nhập email",
+      "phone": "Số điện thoại",
+      "enterPhone": "Nhập Số điện thoại",
+      "content": "Nội dung liên hệ",
+      "submit": "Xác nhận"
+    }
+  }
+}

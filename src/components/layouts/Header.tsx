@@ -6,13 +6,22 @@ import { useEffect, useMemo, useState } from 'react'
 import ChangeLanguage from '../ChangeLanguage'
 import { useQuery } from 'react-query'
 import categoryApi from '~/apis/category.api'
+import { useTranslation } from 'react-i18next'
 const Header = () => {
   const [categories, setCategories] = useState<any>()
+
+  // Lấy ngôn ngữ từ localStorage, mặc định là 'vi'
+  const currentLanguage = localStorage.getItem('app_language') || 'vi'
+
+  const { t } = useTranslation()
   useQuery({
-    queryKey: ['categories'],
+    queryKey: ['categories', currentLanguage], // Thêm currentLanguage vào queryKey để re-fetch khi ngôn ngữ thay đổi
     queryFn: async () => {
-      const response = await categoryApi.getCategories()
+      const response = await categoryApi.getCategories({
+        languageCode: currentLanguage
+      })
       setCategories(response.data.data)
+      return response.data.data
     }
   })
 
@@ -53,12 +62,12 @@ const Header = () => {
         </Link>
         <div className='flex items-center gap-4 '>
           <div className='hidden lg:flex md:gap-x-3 xl:gap-x-6 2xl:gap-x-10 mr-6 text-sm xl:text-base'>
-            <div className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'>
-              Giới Thiệu
+            <Link to={'/'} className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group block'>
+              {t('header.home')}
               <div className='absolute bottom-0 left-0 w-0 h-[2px] bg-red-500 group-hover:w-full transition-all duration-300'></div>
-            </div>
+            </Link>
             <div className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group flex items-center gap-x-1'>
-              Du Lịch
+              {t('header.travel')}
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
@@ -79,7 +88,7 @@ const Header = () => {
                       <Link
                         key={index}
                         to={`/du-lich/du-lich-${item.slug}`}
-                        state={{ title: `Du Lịch ${item.name}`, type: `du-lich-${item.slug}` }}
+                        state={{ title: `${t('header.travel')} ${item.name}`, type: `du-lich-${item.slug}` }}
                         onMouseEnter={() => setActive(item)}
                         className={`${activeTour === item && 'font-medium'} hover:font-medium mb-3 block `}
                       >
@@ -92,7 +101,7 @@ const Header = () => {
                       <div key={index} className='w-[140px] xl:w-[180px]'>
                         <Link
                           to={`/du-lich/du-lich-${activeTour.slug}/${item.slug}`}
-                          state={{ title: `Du Lịch ${item.name}`, local: item.name, type: `du-lich-${item.slug}` }}
+                          state={{ title: `${t('header.travel')} ${item.name}`, local: item.name, type: `du-lich-${item.slug}` }}
                           className='font-semibold mb-2 block'
                         >
                           {item.name}
@@ -102,7 +111,7 @@ const Header = () => {
                             <Link
                               key={index}
                               to={`/du-lich/du-lich-${activeTour.slug}/${item.slug}/${subItem.slug}`}
-                              state={{ title: `Du lịch ${item.name}`, local: subItem.name, type: `du-lich-${item.slug}` }}
+                              state={{ title: `${t('header.travel')} ${item.name}`, local: subItem.name, type: `du-lich-${item.slug}` }}
                               className='hover:opacity-55 transition-all'
                             >
                               {subItem.name}
@@ -111,7 +120,7 @@ const Header = () => {
                           {item.subCategories.length > 5 && (
                             <Link
                               to={`/du-lich/du-lich-${item.slug}`}
-                              state={{ title: `Du Lịch ${item.name}`, type: `du-lich-${item.slug}` }}
+                              state={{ title: `${t('header.travel')} ${item.name}`, type: `du-lich-${item.slug}` }}
                               className='font-medium underline hover:opacity-55 transition-all '
                             >
                               Xem tất cả
@@ -126,11 +135,11 @@ const Header = () => {
                 </div>
               </div>
             </div>
-            <div className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'>
+            {/* <div className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'>
               Tour Khách Đoàn
               <div className='absolute bottom-0 left-0 w-0 h-[2px] bg-red-500 group-hover:w-full transition-all duration-300'></div>
-            </div>
-            <div className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group flex items-center gap-x-1'>
+            </div> */}
+            {/* <div className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group flex items-center gap-x-1'>
               Đối tác
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -156,26 +165,30 @@ const Header = () => {
                   Thương mại
                 </Link>
               </div>
-            </div>
-            <Link to={'/'} className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'>
-              Tin Tức
+            </div> */}
+            <Link to={'/tin-tuc'} className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'>
+            {t('header.news')}
               <div className='absolute bottom-0 left-0 w-0 h-[2px] bg-red-500 group-hover:w-full transition-all duration-300'></div>
             </Link>
-            <Link
+            {/* <Link
               to={'/'}
               className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'
             >
               Chính Sách & Quy Định
               <div className='absolute bottom-0 left-0 w-0 h-[2px] bg-red-500 group-hover:w-full transition-all duration-300'></div>
+            </Link> */}
+            <Link to={'/gallery'} className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'>
+            {t('header.display')}
+              <div className='absolute bottom-0 left-0 w-0 h-[2px] bg-red-500 group-hover:w-full transition-all duration-300'></div>
             </Link>
             <Link to={'/lien-he'} className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'>
-              Liên Hệ
+            {t('header.contact')}
               <div className='absolute bottom-0 left-0 w-0 h-[2px] bg-red-500 group-hover:w-full transition-all duration-300'></div>
             </Link>
-            <Link to={'/tuyen-dung'} className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'>
+            {/* <Link to={'/tuyen-dung'} className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'>
               Tuyển Dụng
               <div className='absolute bottom-0 left-0 w-0 h-[2px] bg-red-500 group-hover:w-full transition-all duration-300'></div>
-            </Link>
+            </Link> */}
           </div>
           <ChangeLanguage />
           <SearchButton />
@@ -209,6 +222,8 @@ const Header = () => {
 }
 const ButtonMenu = ({ organizedCategories }: { organizedCategories: any }) => {
   const [isOpen, setIsOpen] = useState(false)
+  const { t } = useTranslation()
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden'
@@ -268,13 +283,13 @@ const ButtonMenu = ({ organizedCategories }: { organizedCategories: any }) => {
           Giới Thiệu
         </Link>
         {organizedCategories.map((item: any, index: number) => (
-          <Accordion key={index} title={` Du Lịch ${item.name}`}  >
+          <Accordion key={index} title={` ${t('header.travel')} ${item.name}`}  >
             {item.subCategories.map((subItem: any, index: number) => (
               <div key={index}>
                 <div className='mb-5'>
                   <Link
                     to={`/du-lich/du-lich-${item.slug}/${subItem.slug}`}
-                    state={{ title: `Du Lịch ${subItem.name}`, local: subItem.name, type: `du-lich-${item.slug}` }}
+                    state={{ title: `${t('header.travel')} ${subItem.name}`, local: subItem.name, type: `du-lich-${item.slug}` }}
                     className='font-semibold mb-2 block'
                     onClick={handleLinkClick}
                   >
@@ -295,7 +310,7 @@ const ButtonMenu = ({ organizedCategories }: { organizedCategories: any }) => {
                     {subItem.subCategories.length > 5 && (
                       <Link
                         to={`/du-lich/du-lich-${item.slug}/${subItem.slug}`}
-                        state={{ title: `Du Lịch ${subItem.name}`, local: subItem.name, type: `du-lich-${item.slug}` }}
+                        state={{ title: `${t('header.travel')} ${subItem.name}`, local: subItem.name, type: `du-lich-${item.slug}` }}
                         className='font-semibold mb-2 block'
                         onClick={handleLinkClick}
                       >
@@ -309,7 +324,7 @@ const ButtonMenu = ({ organizedCategories }: { organizedCategories: any }) => {
 
           </Accordion>
         ))}
-        {/* <Accordion title='Du Lịch Nước Ngoài'>
+        {/* <Accordion title='${t('header.travel')} Nước Ngoài'>
           <div className='mb-5'>
             <Link
               to={'/du-lich/du-lich-nuoc-ngoai/chau-au'}
@@ -534,7 +549,7 @@ const ButtonMenu = ({ organizedCategories }: { organizedCategories: any }) => {
             </div>
           </div>
         </Accordion>
-        <Accordion title='Du Lịch Trong Nước'>
+        <Accordion title='${t('header.travel')} Trong Nước'>
           <div className='mb-5'>
             <Link
               to={'/du-lich/du-lich-trong-nuoc/mien-trung'}
@@ -788,7 +803,8 @@ const ButtonMenu = ({ organizedCategories }: { organizedCategories: any }) => {
           className='text-[#013879] font-medium text-lg py-6 px-[16px] w-full block border-b'
           onClick={handleLinkClick}
         >
-          Tin Tức
+          {t('header.news')}
+
         </Link>
         <Link
           to={'/'}
@@ -802,7 +818,7 @@ const ButtonMenu = ({ organizedCategories }: { organizedCategories: any }) => {
           className='text-[#013879] font-medium text-lg py-6 px-[16px] w-full block border-b'
           onClick={handleLinkClick}
         >
-          Liên Hệ
+          {t('header.contact')}
         </Link>
         <Link
           to={'/tuyen-dung'}
