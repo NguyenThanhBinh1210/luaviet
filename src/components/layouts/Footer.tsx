@@ -84,7 +84,7 @@ const SocialFloatingButtons = () => {
 
       {/* Phone Button - Static */}
       {/* <a
-        href="tel:1900 6420"
+        href="tel:+84 968272768"
         className="bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-all"
       >
         <div className="w-12 h-12 rounded-full flex items-center justify-center bg-[#e60039]">
