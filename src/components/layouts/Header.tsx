@@ -167,7 +167,7 @@ const Header = () => {
               </div>
             </div> */}
             <Link to={'/tin-tuc'} className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'>
-            {t('header.news')}
+              {t('header.news')}
               <div className='absolute bottom-0 left-0 w-0 h-[2px] bg-red-500 group-hover:w-full transition-all duration-300'></div>
             </Link>
             {/* <Link
@@ -178,11 +178,11 @@ const Header = () => {
               <div className='absolute bottom-0 left-0 w-0 h-[2px] bg-red-500 group-hover:w-full transition-all duration-300'></div>
             </Link> */}
             <Link to={'/gallery'} className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'>
-            {t('header.display')}
+              {t('header.display')}
               <div className='absolute bottom-0 left-0 w-0 h-[2px] bg-red-500 group-hover:w-full transition-all duration-300'></div>
             </Link>
             <Link to={'/lien-he'} className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'>
-            {t('header.contact')}
+              {t('header.contact')}
               <div className='absolute bottom-0 left-0 w-0 h-[2px] bg-red-500 group-hover:w-full transition-all duration-300'></div>
             </Link>
             {/* <Link to={'/tuyen-dung'} className='py-[22px] relative  text-[#013879]  font-medium cursor-pointer group'>

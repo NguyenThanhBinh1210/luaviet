@@ -54,16 +54,20 @@ body {
   animation: fadeIn 2s forwards;
   /* Thêm hiệu ứng fade-in */
 }
+
 table {
   border-collapse: collapse !important;
   width: 100% !important;
 }
 
-table, th, td {
+table,
+th,
+td {
   border: 1px solid #ddd !important;
 }
 
-th, td {
+th,
+td {
   padding: 8px !important;
   text-align: left !important;
 }
@@ -76,8 +80,50 @@ th {
   background-color: #f8f9fa !important;
   font-weight: 500 !important;
 }
+
 @keyframes fadeIn {
   to {
     opacity: 1;
   }
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+
+
+
+
+
+
+.carousel-controls {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.carousel-prev,
+.carousel-next {
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  color: white;
+  border-radius: 50%;
+}
+
+.carousel-prev svg,
+.carousel-next svg {
+  width: 20px;
+  height: 20px;
 }

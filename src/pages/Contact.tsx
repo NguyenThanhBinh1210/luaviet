@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 
 const Contact = () => {
   const { t } = useTranslation()
-  
+
   return (
     <div>
       <Container>
@@ -106,125 +106,9 @@ const Contact = () => {
                     d='M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75'
                   />
                 </svg>
-                info@luavietours.com
-              </div>
+                gm.hunganhtravel@gmail.com              </div>
             </div>
-            <div className='text-[#222222] font-bold text-xl md:text-[24px] my-8 border-l-4 border-red-500 pl-5'>
-              {t('contact.hanoiOffice')}
-            </div>
-            <div className='text-[#222222] space-y-2 ml-4'>
-              <p className='flex items-center gap-2'>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  fill='none'
-                  viewBox='0 0 24 24'
-                  strokeWidth={1.5}
-                  stroke='currentColor'
-                  className='size-4'
-                >
-                  <path strokeLinecap='round' strokeLinejoin='round' d='M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z' />
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    d='M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z'
-                  />
-                </svg>
-                {t('contact.hanoiOfficeAddress')}
-              </p>
 
-              <div className='flex items-center gap-2'>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  fill='none'
-                  viewBox='0 0 24 24'
-                  strokeWidth={1.5}
-                  stroke='currentColor'
-                  className='size-4'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    d='M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z'
-                  />
-                </svg>
-                0906 801 855
-              </div>
-              <div className='flex items-center gap-2'>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  fill='none'
-                  viewBox='0 0 24 24'
-                  strokeWidth={1.5}
-                  stroke='currentColor'
-                  className='size-4'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    d='M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75'
-                  />
-                </svg>
-                info@luavietours.com
-              </div>
-            </div>
-            <div className='text-[#222222] font-bold text-xl md:text-[24px] my-8 border-l-4 border-red-500 pl-5'>
-              {t('contact.canthoOffice')}
-            </div>
-            <div className='text-[#222222] space-y-2 ml-4'>
-              <p className='flex items-center gap-2'>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  fill='none'
-                  viewBox='0 0 24 24'
-                  strokeWidth={1.5}
-                  stroke='currentColor'
-                  className='size-4'
-                >
-                  <path strokeLinecap='round' strokeLinejoin='round' d='M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z' />
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    d='M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z'
-                  />
-                </svg>
-                {t('contact.canthoOfficeAddress')}
-              </p>
-
-              <div className='flex items-center gap-2'>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  fill='none'
-                  viewBox='0 0 24 24'
-                  strokeWidth={1.5}
-                  stroke='currentColor'
-                  className='size-4'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    d='M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z'
-                  />
-                </svg>
-                0906 801 855
-              </div>
-              <div className='flex items-center gap-2'>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  fill='none'
-                  viewBox='0 0 24 24'
-                  strokeWidth={1.5}
-                  stroke='currentColor'
-                  className='size-4'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    d='M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75'
-                  />
-                </svg>
-                mekong.bsm@luavietours.com
-              </div>
-            </div>
           </div>
           <iframe
             src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9301.16933088598!2d106.67296956301738!3d10.757117630936738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f10dd8155b1%3A0x5c5208c7def9a688!2zQ8O0bmcgdHkgVE5ISCBEdSBM4buLY2ggTOG7rWEgVmnhu4d0!5e0!3m2!1svi!2s!4v1684728750200!5m2!1svi!2s'
@@ -261,11 +145,11 @@ const Contact = () => {
             <label className='text-sm md:text-lg font-bold text-[#222222]  md:w-[210px]' htmlFor='email'>
               {t('contact.form.email')} <span className='text-[#FF0000]'>*</span>
             </label>
-            <input 
-              className='p-[18px] bg-white w-full mt-1.5 md:mt-0' 
-              type='email' 
-              id='email' 
-              placeholder={t('contact.form.enterEmail')} 
+            <input
+              className='p-[18px] bg-white w-full mt-1.5 md:mt-0'
+              type='email'
+              id='email'
+              placeholder={t('contact.form.enterEmail')}
             />
           </div>
           <div className='md:flex md:items-center'>

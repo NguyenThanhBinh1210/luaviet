@@ -253,7 +253,7 @@ const Footer = () => {
                           />
                         </svg>
 
-                        <p>nfo@luavietours.com</p>
+                        <p>gm.hunganhtravel@gmail.com</p>
                       </div>
                     </div>
                   </div>

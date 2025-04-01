@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from 'react-router-dom'
 import Container from '~/components/Container'
-import img1 from '~/assets/img_1.jpg'
 import img2 from '~/assets/img_2.png'
 import img3 from '~/assets/img_3.png'
 import img4 from '~/assets/img_4.png'
@@ -8,14 +8,15 @@ import img5 from '~/assets/img_5.png'
 import img6 from '~/assets/img_6.png'
 import img7 from '~/assets/img_7.png'
 import img8 from '~/assets/img_8.png'
-import img9 from '~/assets/img_9.jpg'
-import img10 from '~/assets/img_10.png'
-import img11 from '~/assets/img_11.png'
-import img12 from '~/assets/img_12.png'
+
 import Section from '~/components/Section'
-import Button from '~/components/Button'
-import Accodion from '~/components/Accodion'
+
+import { useTranslation } from 'react-i18next'
+import { useState } from 'react'
+
 const TuyenDung = () => {
+  const { t } = useTranslation()
+
   const data = [
     {
       title: 'Chúng ta tôn trọng mọi người',
@@ -49,7 +50,7 @@ const TuyenDung = () => {
   return (
     <div>
       <Container>
-        <div className=' items-center gap-1 mt-[52px]  hidden md:flex'>
+        <div className=' items-center gap-1 mt-[52px]  hidden md:flex mb-10'>
           <Link to='/'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -76,28 +77,20 @@ const TuyenDung = () => {
           >
             <path strokeLinecap='round' strokeLinejoin='round' d='m8.25 4.5 7.5 7.5-7.5 7.5' />
           </svg>
-          <Link to='/tuyen-dung' className='text-[13px]'>
-            Tuyển Dụng
+          <Link to='/gallery' className='text-[13px]'>
+            {t('header.display')}
           </Link>
         </div>
       </Container>
-      <Section>
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5'>
-          <div>
-            <p className=' font-bold text-[28px] md:text-[40px] text-[#013879] md:pr-10'>
-              Khám Phá Nghề Nghiệp Tại Hùng Anh
-            </p>
-            <p className='font-bold text-[28px] text-[#222222] my-4'>Tầm Nhìn Và Văn Hóa</p>
-            <p className='text-[#013879] font-semibold mb-2'>Tầm nhìn của Hùng Anh</p>
-            <li className='text-[#222222]'>Là sự lựa chọn đầu tiên của KHÁCH HÀNG.</li>
-            <li className='text-[#222222]'>Là đối tác đáng tin cậy của NHÀ CUNG CẤP.</li>
-            <li className='text-[#222222]'>Là nơi thực hiện ước mơ nghề nghiệp của MỖI CÁ NHÂN.</li>
-            <p className='text-[#013879] font-semibold my-2'>Văn hóa của Hùng Anh</p>
-            <p className='text-[#222222] '>Chủ động – Học hỏi – Sáng tạo</p>
-          </div>
-          <img src={img1} alt='img1' />
+
+      <Section title='Hình ảnh các đoàn tour' className='pb-10 '>
+        <div className='grid grid-cols-2 md:grid-cols-3 gap-5  md:gap-10 gap-y-20 md:gap-y-28 justify-center mt-16'>
+          {data.map((_, index) => (
+            <ImgGallery key={index} />
+          ))}
         </div>
       </Section>
+      {/*
       <Section title='7 Nguyên Tắc Của Hùng Anh' bg='bg-[#F6F8FA]' className='pb-10'>
         <div className='grid grid-cols-2 md:grid-cols-4 gap-2  md:gap-5 justify-center mt-16'>
           {data.map((item, index) => (
@@ -307,7 +300,6 @@ const TuyenDung = () => {
           <Accodion title='Nhân viên Kế toán (TPHCM)' />
         </div>
       </Section>
-
       <Section title='Quy Trình Tuyển Dụng'>
         <div className='mt-12 grid grid-cols-1 lg:grid-cols-3 gap-x-14 gap-y-10'>
           <div className='bg-[#F6F8FA] p-4 relative'>
@@ -372,7 +364,92 @@ const TuyenDung = () => {
           </div>
         </div>
       </Section>
+      */}
     </div>
+  )
+}
+
+const ImgGallery = ({ index }: any) => {
+  const images = [
+    'https://www.luavietours.com/assets/img/gioi-thieu/img_5.jpg',
+    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg',
+    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg',
+    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg',
+    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg'
+  ]
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1))
+  }
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1))
+  }
+  const [show, isShow] = useState(false)
+  const handleShow = () => {
+    isShow(!show)
+  }
+  return (
+    <>
+      <div key={index} className=' bg-white flex flex-col  relative '>
+        <img
+          onClick={handleShow}
+          src={'https://www.luavietours.com/assets/img/gioi-thieu/img_4.jpg'}
+          alt={'https://www.luavietours.com/assets/img/gioi-thieu/img_4.jpg'}
+          className=' object-cover aspect-square cursor-pointer'
+        />
+
+        <div className='px-4 py-2 md:py-5 flex flex-col justify-between h-max absolute -bottom-12 md:-bottom-20 left-1/2 -translate-x-1/2 right-0 bg-white w-[90%]'>
+          <div className='w-full  text-[#013879] mt-2 font-semibold flex justify-between mb-3'>
+            29-3-2024
+            <div>Hội An</div>
+          </div>
+          <p className='text-[#222222] text-sm md:text-base line-clamp-3 min-h-16'>
+            Bao gồm các tour trong nước, ngoài nước, hội họp, xúc tiến thương mại, hậu cần du lịch …
+          </p>
+        </div>
+      </div>
+      <div onClick={() => {
+        handleShow()
+      }} className={`${show ? 'block' : "hidden"} inset-0 fixed bg-[#44444480] z-50 flex items-center justify-center`}>
+        <div className='carousel-container' onClick={(e) => e.stopPropagation()}>
+          <div className='carousel'>
+            <div className='carousel-item'>
+              <img
+                src={images[currentIndex]}
+                alt='carousel'
+                className='carousel-image aspect-square md:aspect-[16/11] w-full object-cover'
+              />
+            </div>
+          </div>
+          <div className='carousel-controls'>
+            <button className='carousel-prev' onClick={prevSlide}>
+              <svg className='w-5 h-5' fill='none' viewBox='0 0 14 10' xmlns='http://www.w3.org/2000/svg'>
+                <path
+                  stroke='currentColor'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth='2'
+                  d='M13 5H1m0 0 4 4M1 5l4-4'
+                />
+              </svg>
+            </button>
+            <button className='carousel-next' onClick={nextSlide}>
+              <svg className='w-5 h-5' fill='none' viewBox='0 0 14 10' xmlns='http://www.w3.org/2000/svg'>
+                <path
+                  stroke='currentColor'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth='2'
+                  d='M1 5h12m0 0L9 1m4 4L9 9'
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
   )
 }
 
