@@ -3,21 +3,21 @@ import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { blogApi } from '~/apis/blog.api'
-import news1 from '~/assets/6170305031849493246 (1).jpg'
 import { useTranslation } from 'react-i18next'
 
 const News = () => {
   const navigate = useNavigate()
   const location = useLocation()
-  console.log(location);
   const title = location.state?.title
   const type = location.state?.type
+  const thumbnail = location.state?.thumbnail
+  console.log("thumbnail",thumbnail);
   // const tags = location.state?.tags
   // const createdAt = location.state?.createdAt
   const content = location.state?.content
 
-  const [blogs, setBlogs] = useState([])
-  const [diffBlogs, SetDiffBlogs] = useState([])
+  const [blogs, setBlogs] = useState<any[]>([])
+  const [diffBlogs, SetDiffBlogs] = useState<any[]>([])
 
   // Lấy ngôn ngữ từ localStorage, mặc định là 'vi'
   const currentLanguage = localStorage.getItem('app_language') || 'vi'
@@ -37,6 +37,7 @@ const News = () => {
       return []
     }
   })
+  
   useEffect(() => {
     if (location.pathname.includes('loai-tin-tuc')) {
       const category = title
@@ -46,7 +47,8 @@ const News = () => {
     } else {
       setBlogs(diffBlogs)
     }
-  }, [location.pathname, title])
+  }, [location.pathname, title, diffBlogs])
+  
   // const convertToSlug = (text: string) => {
   //   return text
   //     .toLowerCase() // Chuyển đổi tất cả các ký tự thành chữ thường
@@ -55,6 +57,7 @@ const News = () => {
   //     .replace(/\s+/g, '-') // Thay thế khoảng trắng bằng dấu gạch ngang
   //     .replace(/-+/g, '-') // Loại bỏ các dấu gạch ngang liên tiếp
   // }
+  
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
     const options: Intl.DateTimeFormatOptions = {
@@ -88,6 +91,7 @@ const News = () => {
   //     {} as Record<string, any[]>
   //   )
   // }
+  
   return (
     <div className='px-4 max-w-[1262px] mx-auto pb-[87px]'>
       <div className=' items-center gap-1 mt-[52px] hidden md:flex'>
@@ -152,9 +156,11 @@ const News = () => {
                         state: {
                           type: 'detail',
                           title: item.title,
+                          thumbnail: item.thumbnail,
+
                           tags: item.tags,
                           createdAt: item.createdAt,
-                          content: item.content
+                          content: item.content[0] || ""
                         }
                       })
                     }}
@@ -163,13 +169,13 @@ const News = () => {
                     <div className='overflow-hidden'>
                       <img
                         src={item.thumbnail}
-                        alt='news1'
+                        alt={item.title}
                         className='w-full h-full aspect-[9/7] object-cover hover:scale-110 transition-all duration-300'
                       />
                     </div>
                     <div>
                       <p className='uppercase font-medium mt-3 mb-2'>{item.title}</p>
-                      <p className='text-[#8B8B8B] text-sm line-clamp-3'>{item.description}</p>
+                      <p className='text-[#8B8B8B] text-sm line-clamp-3'>{item.description || item.title}</p>
                       <div className='flex justify-between items-center mt-3'>
                         <p className='text-[#8B8B8B] text-xs'>{formatDate(item.createdAt)}</p>
                         <p className='text-[#013879] text-xs font-medium'>{t('news.readMore')}</p>
@@ -186,7 +192,7 @@ const News = () => {
             <h2 className='text-[28px] md:text-[40px] font-bold text-[#013879] text-center'>{title}</h2>
             <div className='mt-[30px]'>
               <div className='overflow-hidden'>
-                <img src={news1} alt='news1' className='w-full h-full aspect-video object-cover' />
+                <img src={thumbnail} alt='thumbnail' className='w-full h-full aspect-video object-cover' />
               </div>
               <div className='mt-5'>
                 <div dangerouslySetInnerHTML={{ __html: content }}></div>
