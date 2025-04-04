@@ -18,7 +18,9 @@ function createHttp(): AxiosInstance {
 
   const instance = axios.create({
     // baseURL: 'https://be-tour-du-lich.onrender.com/',
-    baseURL: 'https://api.liburankevietnam.com',
+    // baseURL: 'https://api.liburankevietnam.com',
+    baseURL: 'http://localhost:4001',
+
     timeout: 10000,
     headers: {
       'Content-Type': 'application/json'

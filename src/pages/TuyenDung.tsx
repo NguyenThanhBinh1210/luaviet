@@ -1,52 +1,31 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from 'react-router-dom'
 import Container from '~/components/Container'
-import img2 from '~/assets/img_2.png'
-import img3 from '~/assets/img_3.png'
-import img4 from '~/assets/img_4.png'
-import img5 from '~/assets/img_5.png'
-import img6 from '~/assets/img_6.png'
-import img7 from '~/assets/img_7.png'
-import img8 from '~/assets/img_8.png'
+
 
 import Section from '~/components/Section'
 
 import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
+import { galleryApi } from '~/apis/gallery.ai'
+import { useQuery } from 'react-query'
 
 const TuyenDung = () => {
+  const [gallery, setGallery] = useState<any>([])
   const { t } = useTranslation()
-
-  const data = [
-    {
-      title: 'Chúng ta tôn trọng mọi người',
-      img: img2
-    },
-    {
-      title: 'Chúng ta đánh giá cao năng lực cá nhân',
-      img: img3
-    },
-    {
-      title: 'Chúng ta tập trung một cách chiến lược vào công việc của mình',
-      img: img4
-    },
-    {
-      title: 'Chúng ta lắng nghe bên ngoài',
-      img: img5
-    },
-    {
-      title: 'Chúng ta không ngừng cải tiến',
-      img: img6
-    },
-    {
-      title: 'Chúng ta đoàn kết, hỗ trợ lẫn nhau',
-      img: img7
-    },
-    {
-      title: 'Lợi ích của công ty và của cá nhân hoàn toàn không thể tách biệt',
-      img: img8
+  const currentLanguage = localStorage.getItem('app_language') || 'vi'
+  useQuery({
+    queryKey: ['gallery', currentLanguage],
+    queryFn: async () => {
+      const response = await galleryApi.getGallerys(currentLanguage)
+      if (response.data.data) {
+        setGallery(response.data.data.data)
+        return response.data.data
+      }
+      return []
     }
-  ]
+  })
+
   return (
     <div>
       <Container>
@@ -85,8 +64,8 @@ const TuyenDung = () => {
 
       <Section title='Hình ảnh các đoàn tour' className='pb-10 '>
         <div className='grid grid-cols-2 md:grid-cols-3 gap-5  md:gap-10 gap-y-20 md:gap-y-28 justify-center mt-16'>
-          {data.map((_, index) => (
-            <ImgGallery key={index} />
+          {gallery.map((item: any, index: number) => (
+            <ImgGallery item={item} key={index} />
           ))}
         </div>
       </Section>
@@ -369,55 +348,59 @@ const TuyenDung = () => {
   )
 }
 
-const ImgGallery = ({ index }: any) => {
-  const images = [
-    'https://www.luavietours.com/assets/img/gioi-thieu/img_5.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg'
-  ]
+const ImgGallery = ({ item, index }: any) => {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1))
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? item.images.length - 1 : prevIndex - 1))
   }
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1))
+    setCurrentIndex((prevIndex) => (prevIndex === item.images.length - 1 ? 0 : prevIndex + 1))
   }
   const [show, isShow] = useState(false)
   const handleShow = () => {
     isShow(!show)
+  }
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString)
+    const options: Intl.DateTimeFormatOptions = {
+      day: 'numeric',
+      month: 'numeric',
+      year: 'numeric'
+    }
+    return date.toLocaleString('vi-VN', options)
   }
   return (
     <>
       <div key={index} className=' bg-white flex flex-col  relative '>
         <img
           onClick={handleShow}
-          src={'https://www.luavietours.com/assets/img/gioi-thieu/img_4.jpg'}
+          src={item.images[currentIndex]}
           alt={'https://www.luavietours.com/assets/img/gioi-thieu/img_4.jpg'}
           className=' object-cover aspect-square cursor-pointer'
         />
 
         <div className='px-4 py-2 md:py-5 flex flex-col justify-between h-max absolute -bottom-12 md:-bottom-20 left-1/2 -translate-x-1/2 right-0 bg-white w-[90%]'>
-          <div className='w-full  text-[#013879] mt-2 font-semibold flex justify-between mb-3'>
-            29-3-2024
-            <div>Hội An</div>
+          <div className='w-full  text-[#013879]  font-semibold flex justify-between mb-1'>{item.title}</div>
+          <div className='w-full  text-[#333333]  font-semibold text-xs flex justify-between mb-3'>
+            {formatDate(item.travelDate)}
+            <div className='text-[#013879]'>{item.categoryIdLevel3.name}</div>
           </div>
-          <p className='text-[#222222] text-sm md:text-base line-clamp-3 min-h-16'>
-            Bao gồm các tour trong nước, ngoài nước, hội họp, xúc tiến thương mại, hậu cần du lịch …
-          </p>
+          <p className='text-[#222222] text-sm md:text-base line-clamp-3 min-h-16'>{item.content}</p>
         </div>
       </div>
-      <div onClick={() => {
-        handleShow()
-      }} className={`${show ? 'block' : "hidden"} inset-0 fixed bg-[#44444480] z-50 flex items-center justify-center`}>
+      <div
+        onClick={() => {
+          handleShow()
+        }}
+        className={`${show ? 'block' : 'hidden'} inset-0 fixed bg-[#44444480] z-50 flex items-center justify-center`}
+      >
         <div className='carousel-container' onClick={(e) => e.stopPropagation()}>
           <div className='carousel'>
             <div className='carousel-item'>
               <img
-                src={images[currentIndex]}
+                src={item.images[currentIndex]}
                 alt='carousel'
                 className='carousel-image aspect-square md:aspect-[16/11] w-full object-cover'
               />
